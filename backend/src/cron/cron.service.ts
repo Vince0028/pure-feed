@@ -1,4 +1,4 @@
-import { Injectable, Logger } from '@nestjs/common';
+import { Injectable, Logger, OnModuleInit } from '@nestjs/common';
 import { Cron, CronExpression } from '@nestjs/schedule';
 import { YoutubeService } from '../youtube/youtube.service';
 import { RssService } from '../rss/rss.service';
@@ -14,7 +14,7 @@ import { randomUUID } from 'crypto';
  * Also triggered on-demand via the CronController endpoint.
  */
 @Injectable()
-export class CronJobService {
+export class CronJobService implements OnModuleInit {
   private readonly logger = new Logger(CronJobService.name);
 
   constructor(
@@ -22,7 +22,15 @@ export class CronJobService {
     private readonly rss: RssService,
     private readonly gatekeeper: GatekeeperService,
     private readonly feed: FeedService,
-  ) {}
+  ) { }
+
+  /**
+   * Run immediately on startup to populate the feed.
+   */
+  async onModuleInit() {
+    this.logger.log('🚀 Server started — triggering initial feed fetch...');
+    await this.handleCron();
+  }
 
   /**
    * Automatic cron: runs every hour.
@@ -39,12 +47,24 @@ export class CronJobService {
   async fetchAndFilter(): Promise<{ fetched: number; passed: number; stored: number }> {
     // 1. Fetch from all sources
     this.logger.log('📡 Fetching from YouTube + RSS...');
-    const [youtubeItems, rssItems] = await Promise.all([
-      this.youtube.fetchShorts('AI technology news', 10),
-      this.rss.fetchArticles(3),
+
+    // Fetch 4 batches of shorts (using rotating hashtags) -> ~200 items
+    const shortsPromises = Array(4).fill(0).map(() => this.youtube.fetchShorts(undefined, 50));
+
+    // Fetch 1 batch of long videos -> ~50 items
+    const videosPromises = Array(1).fill(0).map(() => this.youtube.fetchLongVideos(undefined, 50));
+
+    const [shortsJson, videosJson, rssItems] = await Promise.all([
+      Promise.all(shortsPromises),
+      Promise.all(videosPromises),
+      this.rss.fetchArticles(5),
     ]);
 
-    const allItems: RawFeedItem[] = [...youtubeItems, ...rssItems];
+    const allItems: RawFeedItem[] = [
+      ...shortsJson.flat(),
+      ...videosJson.flat(),
+      ...rssItems
+    ];
     this.logger.log(`Fetched ${allItems.length} total items`);
 
     // 2. Run Gatekeeper — kill the fluff
@@ -55,6 +75,7 @@ export class CronJobService {
     const posts: FeedPost[] = techItems.map((item) => ({
       id: randomUUID(),
       source: item.source,
+      contentType: item.contentType,
       sourceId: item.sourceId,
       embedUrl: item.embedUrl,
       title: item.title,

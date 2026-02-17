@@ -5,6 +5,7 @@
 export interface FeedPost {
   id: string;
   source: 'youtube' | 'rss';
+  contentType: 'short' | 'video' | 'article';
   sourceId: string;
   embedUrl: string;
   title: string;
@@ -20,6 +21,7 @@ export interface FeedPost {
  */
 export interface RawFeedItem {
   source: 'youtube' | 'rss';
+  contentType: 'short' | 'video' | 'article';
   sourceId: string;
   embedUrl: string;
   title: string;

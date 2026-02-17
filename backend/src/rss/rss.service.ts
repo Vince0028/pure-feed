@@ -38,6 +38,7 @@ export class RssService {
         for (const item of items) {
           results.push({
             source: 'rss',
+            contentType: 'article',
             sourceId: item.link || item.guid || '',
             embedUrl: '',
             title: item.title || 'Untitled',

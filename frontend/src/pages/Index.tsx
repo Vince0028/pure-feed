@@ -7,12 +7,25 @@ import { mockPosts, ContentType } from "@/data/mockPosts";
 type FilterTab = "articles" | "shorts" | "videos";
 
 const Index = () => {
+  const [posts, setPosts] = useState<typeof mockPosts>(mockPosts);
   const [filter, setFilter] = useState<FilterTab>("shorts");
   const [activeIndex, setActiveIndex] = useState(0);
   const [shuffleKey, setShuffleKey] = useState(0);
   const containerRef = useRef<HTMLDivElement>(null);
   const isScrolling = useRef(false);
   const touchStartY = useRef(0);
+
+  // Fetch real data from backend
+  useEffect(() => {
+    fetch('/api/feed')
+      .then(res => res.json())
+      .then(data => {
+        if (Array.isArray(data) && data.length > 0) {
+          setPosts(current => [...current, ...data]);
+        }
+      })
+      .catch(err => console.error("Failed to fetch feed:", err));
+  }, []);
 
   // Remember scroll position per tab
   const tabIndices = useRef<Record<FilterTab, number>>({ articles: 0, shorts: 0, videos: 0 });
@@ -23,10 +36,10 @@ const Index = () => {
       shorts: "short",
       videos: "video",
     };
-    const typed = mockPosts.filter((p) => p.contentType === tabToType[filter]);
+    const typed = posts.filter((p) => p.contentType === tabToType[filter]);
     // Always shuffle — randomize on every load and tab switch
     return [...typed].sort(() => Math.random() - 0.5);
-  }, [filter, shuffleKey]);
+  }, [filter, shuffleKey, posts]);
 
   // Persist current index back to the ref whenever it changes
   useEffect(() => {
@@ -147,11 +160,10 @@ const Index = () => {
           <button
             key={tab}
             onClick={() => handleTabClick(tab)}
-            className={`px-3 py-1 text-xs font-medium rounded-md transition-colors capitalize ${
-              filter === tab
+            className={`px-3 py-1 text-xs font-medium rounded-md transition-colors capitalize ${filter === tab
                 ? "bg-foreground/10 text-foreground"
                 : "text-muted-foreground hover:text-foreground/70"
-            }`}
+              }`}
           >
             {tab === "articles" ? "Articles" : tab === "shorts" ? "Shorts" : "Videos"}
           </button>
@@ -175,11 +187,10 @@ const Index = () => {
                 }
               }}
               style={{ transform: `scale(${scale})`, opacity: 1 - distance * 0.15 }}
-              className={`rounded-full transition-all duration-300 ${
-                i === activeIndex
+              className={`rounded-full transition-all duration-300 ${i === activeIndex
                   ? "h-5 w-1.5 bg-foreground/70"
                   : "h-1.5 w-1.5 bg-muted-foreground/30 hover:bg-muted-foreground/50"
-              }`}
+                }`}
             />
           );
         })}

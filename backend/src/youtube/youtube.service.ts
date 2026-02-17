@@ -121,6 +121,7 @@ export class YoutubeService {
 
       return (data.items || []).map((item: any) => ({
         source: 'youtube' as const,
+        contentType: duration === 'short' ? 'short' : 'video',
         sourceId: item.id.videoId,
         embedUrl: `https://www.youtube.com/embed/${item.id.videoId}`,
         title: item.snippet.title,
@@ -165,6 +166,7 @@ export class YoutubeService {
     return [
       {
         source: 'youtube',
+        contentType: 'short',
         sourceId: 'aircAruvnKk',
         embedUrl: 'https://www.youtube.com/embed/aircAruvnKk',
         title: 'But what is a neural network? | Deep Learning Ch.1',
@@ -173,6 +175,7 @@ export class YoutubeService {
       },
       {
         source: 'youtube',
+        contentType: 'short',
         sourceId: 'zjkBMFhNj_g',
         embedUrl: 'https://www.youtube.com/embed/zjkBMFhNj_g',
         title: 'Attention in Transformers, visually explained',
@@ -181,6 +184,7 @@ export class YoutubeService {
       },
       {
         source: 'youtube',
+        contentType: 'short',
         sourceId: 'VMj-3S1tku0',
         embedUrl: 'https://www.youtube.com/embed/VMj-3S1tku0',
         title: 'Building makemore: intro to language modeling',
