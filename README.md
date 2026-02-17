@@ -90,27 +90,27 @@ No API key required. Unlimited. Direct XML feeds from major sources:
 
 ```
 ┌─────────────────────────────────────────────────┐
-│                   VERCEL                         │
-│                                                  │
+│                   VERCEL                        │
+│                                                 │
 │  ┌──────────────┐       ┌─────────────────────┐ │
-│  │  React +     │  API  │  NestJS (Serverless) │ │
-│  │  Tailwind    │◄─────►│                      │ │
-│  │  Frontend    │       │  ┌─ FetchService     │ │
-│  │              │       │  │  (YouTube + RSS)   │ │
-│  │  ┌────────┐  │       │  ├─ GatekeeperSvc    │ │
-│  │  │Media   │  │       │  │  (Gemini: TECH    │ │
-│  │  │Card    │  │       │  │   or FLUFF?)      │ │
-│  │  │[video] │  │       │  ├─ SummarizerSvc    │ │
-│  │  │[summa- │  │       │  │  (Gemini: 3       │ │
-│  │  │ rize]  │  │       │  │   bullet points)  │ │
-│  │  └────────┘  │       │  ├─ GeminiService    │ │
-│  │              │       │  │  (key rotation)    │ │
-│  └──────────────┘       └──────────┬────────────┘ │
-│                                    │              │
-│                           ┌────────▼────────┐    │
-│                           │  In-memory store │    │
-│                           │  (MVP / no DB)   │    │
-│                           └─────────────────┘    │
+│  │  React +     │  API  │  NestJS (Serverless)│ │
+│  │  Tailwind    │◄─────►│                     │ │
+│  │  Frontend    │       │  ┌─ FetchService    │ │
+│  │              │       │  │  (YouTube + RSS) │ │
+│  │  ┌────────┐  │       │  ├─ GatekeeperSvc   │ │
+│  │  │Media   │  │       │  │  (Gemini: TECH   │ │
+│  │  │Card    │  │       │  │   or FLUFF?)     │ │
+│  │  │[video] │  │       │  ├─ SummarizerSc    │ │
+│  │  │[summa- │  │       │  │  (Gemini: 3      │ │
+│  │  │ rize]  │  │       │  │   bullet points) │ │
+│  │  └────────┘  │       │  ├─ GeminiService   │ │
+│  │              │       │  │  (key rotation)    │ 
+│  └──────────────┘       └──────────┬────────────┘ 
+│                                    │            │
+│                           ┌────────▼────────┐   │
+│                           │  In-memory store │  │
+│                           │  (MVP / no DB)   │  │
+│                           └─────────────────┘   │
 └─────────────────────────────────────────────────┘
 ```
 

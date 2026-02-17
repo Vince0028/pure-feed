@@ -14,6 +14,9 @@ const Index = () => {
   const isScrolling = useRef(false);
   const touchStartY = useRef(0);
 
+  // Remember scroll position per tab
+  const tabIndices = useRef<Record<FilterTab, number>>({ articles: 0, shorts: 0, videos: 0 });
+
   const filteredPosts = useMemo(() => {
     const tabToType: Record<FilterTab, ContentType> = {
       articles: "article",
@@ -27,10 +30,18 @@ const Index = () => {
     return typed;
   }, [filter, shuffleKey]);
 
-  // Reset index when filter or shuffle changes
+  // Persist current index back to the ref whenever it changes
   useEffect(() => {
-    setActiveIndex(0);
-  }, [filter, shuffleKey]);
+    tabIndices.current[filter] = activeIndex;
+  }, [activeIndex, filter]);
+
+  // Only reset index on shuffle, NOT on tab switch
+  useEffect(() => {
+    if (shuffleKey > 0) {
+      setActiveIndex(0);
+      tabIndices.current[filter] = 0;
+    }
+  }, [shuffleKey]);
 
   // Tap active tab to refresh (like TikTok)
   const handleTabClick = (tab: FilterTab) => {
@@ -38,6 +49,9 @@ const Index = () => {
       setShuffleKey((k) => k + 1);
     } else {
       setFilter(tab);
+      // Restore the saved scroll position for that tab
+      const saved = tabIndices.current[tab];
+      setActiveIndex(saved);
     }
   };
 

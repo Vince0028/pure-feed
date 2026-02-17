@@ -1,6 +1,6 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect, useMemo } from "react";
 import { motion, AnimatePresence } from "framer-motion";
-import { Youtube, Rss, ExternalLink, ChevronDown, Play, Music } from "lucide-react";
+import { Youtube, Rss, ExternalLink, ChevronDown, Play, Music, Clock, BookOpen } from "lucide-react";
 import { FeedPost } from "@/data/mockPosts";
 import { summarizePost } from "@/lib/api";
 
@@ -110,7 +110,7 @@ const mockSummaries: Record<string, string[]> = {
   // ── TikTok Shorts ──
   t1: [
     "AI agents on Moltbook post, comment, and interact without human input.",
-    "They developed their own slang and social dynamics organically.",
+    "They developed their own slang, religion, and social dynamics organically.",
     "The experiment shows emergent behavior at scale with LLM-powered agents.",
   ],
   t2: [
@@ -129,9 +129,9 @@ const mockSummaries: Record<string, string[]> = {
     "Agents can use tools, browse the web, and complete multi-step tasks.",
   ],
   t5: [
-    "Voice AI agents can now make outbound phone calls autonomously.",
-    "They handle scheduling, customer support, and sales calls.",
-    "Latency is under 500ms, making conversations feel natural.",
+    "Next.js for frontend and backend, TailwindCSS for styling.",
+    "MongoDB with Mongoose for data, Auth0 for auth, Stripe for payments.",
+    "Easy to set up and build high quality projects quickly.",
   ],
   t6: [
     "AI agent capabilities are accelerating faster than expected.",
@@ -139,49 +139,224 @@ const mockSummaries: Record<string, string[]> = {
     "The gap between demo and production-ready agents is shrinking fast.",
   ],
   t7: [
-    "The agent monitors tasks, processes data, and sends reports 24/7.",
-    "Built with Python, LangChain, and a scheduler for continuous operation.",
-    "Replaced 3 hours of daily manual work with zero human intervention.",
+    "Voice AI agents can now make outbound phone calls autonomously.",
+    "They handle scheduling, customer support, and sales calls.",
+    "Latency is under 500ms, making conversations feel natural.",
   ],
   t8: [
-    "OpenAI acquired OpenClaw, a robotics startup focused on dexterous manipulation.",
-    "The deal signals OpenAI's push into physical AI beyond software.",
-    "OpenClaw's hardware enables robots to handle objects with human-like precision.",
-  ],
-  t9: [
-    "React or Next.js for frontend, Node or Python for backend.",
-    "PostgreSQL for data, Redis for caching, Docker for deployment.",
-    "Tailwind CSS and TypeScript are now considered essentials.",
-  ],
-  t10: [
     "Use Cursor or Copilot for AI-assisted coding to move faster.",
     "TypeScript plus Next.js covers most full-stack needs.",
     "Automate deployments with Vercel or Railway for instant shipping.",
   ],
+  t9: [
+    "Compares stacks for web apps, mobile apps, and AI projects.",
+    "React plus Node.js dominates web, Swift and Kotlin lead mobile.",
+    "Python with PyTorch is the default for machine learning work.",
+  ],
+  t10: [
+    "React Native with Expo handles cross-platform mobile development.",
+    "Supabase provides backend, auth, and real-time data out of the box.",
+    "PostHog and Sentry handle analytics and error tracking.",
+  ],
   t11: [
-    "Next.js, Supabase, and Vercel give you a full SaaS stack for free.",
-    "Stripe handles payments with no upfront cost.",
-    "You can launch and validate an idea without spending a dollar on infra.",
+    "Python, React, TypeScript, Docker, and AWS form the core stack.",
+    "Focus on depth over surface knowledge for each technology.",
+    "This stack landed multiple software engineering internship offers.",
   ],
   t12: [
+    "The agent monitors tasks, processes data, and sends reports 24/7.",
+    "Built with OpenClaw on a Mac mini for continuous operation.",
+    "Replaced hours of daily manual work with zero human intervention.",
+  ],
+  t13: [
+    "Cursor plus Claude for coding, Vercel for hosting, Supabase for database.",
+    "Resend handles email, Fal.ai provides AI model access.",
+    "You can launch and validate an idea without spending a dollar on infra.",
+  ],
+  t14: [
+    "OpenAI acquired OpenClaw, a robotics startup focused on dexterous manipulation.",
+    "The deal signals OpenAI's push into physical AI beyond software.",
+    "OpenClaw's hardware enables robots to handle objects with human-like precision.",
+  ],
+  t15: [
+    "AI agents can now execute trades on crypto markets autonomously.",
+    "Platforms are opening up API access for agent-driven trading.",
+    "Builders who integrate AI with DeFi protocols will have an advantage.",
+  ],
+  t16: [
+    "Running a real production software stack costs real money monthly.",
+    "Cloud hosting, databases, monitoring, and CDN fees add up quickly.",
+    "Choosing the right tier for each service keeps costs under control.",
+  ],
+  t17: [
     "Vibe coding means using AI to generate most of the boilerplate.",
     "Cursor plus Claude handles 80% of repetitive code.",
     "Focus shifts from typing code to reviewing and directing the AI.",
   ],
-  t13: [
+  t18: [
+    "This tech stack landed 4 software engineering intern offers.",
+    "JavaScript, Python, React, and SQL cover most interview requirements.",
+    "Building projects with these tools proves real competence to employers.",
+  ],
+  t19: [
     "OpenClaw builds robotic hands with fine motor control for real-world tasks.",
     "OpenAI plans to integrate GPT models directly into robotic systems.",
     "Physical AI agents could handle warehouse, lab, and household tasks.",
   ],
-  t14: [
-    "The agent writes scripts, generates voiceover, and edits video automatically.",
+  t20: [
+    "Popular technologies have many devs coding in them daily.",
+    "Focus on depth in a specific stack rather than learning everything.",
+    "The stack includes React, Node, TypeScript, and PostgreSQL.",
+  ],
+  t21: [
+    "Netflix uses Java and Python for backend microservices.",
+    "React powers the frontend across web and TV apps.",
+    "Custom A/B testing framework drives all product decisions.",
+  ],
+  t22: [
+    "Kixie for calling, HighLevel for CRM, Retell AI for voice agents.",
+    "Stripe handles payments, Fellow manages meetings.",
+    "The full AI agency tech stack from sales to delivery.",
+  ],
+  t23: [
+    "AI agents are evolving from task executors to decision makers.",
+    "They can now evaluate options, weigh tradeoffs, and choose actions.",
+    "The most valuable role for agents is judgment, not just execution.",
+  ],
+  t24: [
+    "HubSpot for CRM, Apollo for outreach, Slack for team communication.",
+    "These three tools cover most of the tech sales workflow.",
+    "Integration between them is key for pipeline efficiency.",
+  ],
+  t25: [
+    "Start with AI receptionist and appointment booking agents.",
+    "Use no-code platforms to build MVPs before writing custom code.",
+    "Charge monthly retainers for ongoing AI agent management.",
+  ],
+  t26: [
+    "Creative stack includes design tools, video editors, and AI generators.",
+    "Figma for design, After Effects for motion, Midjourney for concepts.",
+    "The tools you pick shape your creative output speed.",
+  ],
+  t27: [
+    "AI agents and crypto tokens are merging into new platforms.",
+    "Autonomous agents can execute on-chain transactions independently.",
+    "The intersection creates new business models for builders.",
+  ],
+  t28: [
+    "Not every AI tool is worth adopting for your business.",
+    "Focus on tools that solve a real bottleneck, not just trending ones.",
+    "The basics like CRM and analytics still matter more than AI hype.",
+  ],
+  t29: [
+    "Gamma for presentations, Google Workspace for docs and email.",
+    "Squarespace for the website, ChatGPT for content and strategy.",
+    "A lean consulting business needs fewer tools than you think.",
+  ],
+  t30: [
+    "AI agency tools include voice platforms, CRMs, and automation builders.",
+    "Start with one service offering before expanding your toolkit.",
+    "Client acquisition is harder than the actual AI implementation.",
+  ],
+  t31: [
+    "AI receptionists handle inbound calls without human staff.",
+    "Sales agents qualify leads and book meetings automatically.",
+    "Some clients deploy all five agent types across their business.",
+  ],
+  t32: [
+    "Wonda handles scripting, voices, editing, and rendering automatically.",
     "It uses multiple AI models chained together for each production step.",
     "Full podcast episodes go from topic to published in under 10 minutes.",
   ],
-  t15: [
+  t33: [
+    "The SaaS runs on a lean stack with minimal monthly costs.",
+    "Framework plus database plus hosting covers the essentials.",
+    "Keeping the stack simple reduces bugs and deployment complexity.",
+  ],
+  t34: [
+    "Squarespace for web, Collective for finance, iPostal1 for mail.",
+    "MotionAI for automation and workflow management.",
+    "A non-technical founder can run operations with just four tools.",
+  ],
+  t35: [
+    "Mobile development with a vibe coding approach uses AI assistance.",
+    "React Native or Flutter for cross-platform, Cursor for AI pairing.",
+    "Ship an MVP mobile app in days instead of months.",
+  ],
+  t36: [
+    "React Native with Expo for the app framework.",
+    "Supabase for backend, RevenueCat for subscriptions.",
+    "PostHog for analytics, Sentry for crash reporting.",
+  ],
+  t37: [
+    "OpenClaw plus Novi enables agents that generate revenue autonomously.",
+    "Set up once and the agents handle tasks while you sleep.",
+    "Monetization through AI agent services is becoming viable.",
+  ],
+  t38: [
+    "Different AI tools excel at different tasks.",
+    "ChatGPT for writing, Cursor for code, Perplexity for research.",
+    "Pick the right tool for each workflow step as an entrepreneur.",
+  ],
+  t39: [
     "OpenAI recruited a top robotics researcher to lead their agent hardware team.",
     "The hire accelerates their timeline for physical AI products.",
-    "Competitors like Google and Tesla are also racing to build embodied agents.",
+    "Anthropic leads with Claude but OpenAI is closing the gap fast.",
+  ],
+  t40: [
+    "Essential AI and dev tools that every startup should consider.",
+    "Automation platforms, AI copilots, and monitoring services.",
+    "The right toolset compounds productivity over time.",
+  ],
+  t41: [
+    "Discord bot pulls daily data from Apple Watch, smart scale, and MacroFactor.",
+    "Cron jobs trigger the agent to check in and hold you accountable.",
+    "Eventually becomes a full Life OS with all health logs in one place.",
+  ],
+  t42: [
+    "OpenAI hired the OpenClaw founder to build physical AI agents.",
+    "Jobs in AI are shifting from software-only to hardware plus software.",
+    "The move signals a race between OpenAI, Google, and Tesla on embodied AI.",
+  ],
+  t43: [
+    "Laravel plus React provides a fast full-stack development workflow.",
+    "Shipping fast is the priority to validate ideas quickly.",
+    "No fancy frameworks needed — use what you already know well.",
+  ],
+  t44: [
+    "A solopreneur built a timer app making $25K/month.",
+    "Simple product, lean stack, 4,400 paying customers.",
+    "No complex frameworks, just tools he already knew.",
+  ],
+  t45: [
+    "OpenClaw agents run tasks autonomously on connected systems.",
+    "Integration works with various platforms for end-to-end automation.",
+    "Still early but the potential for always-on AI workers is clear.",
+  ],
+  t46: [
+    "Real AI agents build their own plans and recover when things break.",
+    "Fake ones just follow your script and stop when they hit a wall.",
+    "Ask if it can handle unexpected inputs to test if it's truly autonomous.",
+  ],
+  t47: [
+    "Voice AI agents can do outbound sales and client acquisition.",
+    "Testing whether an agent can land a $10K client on its own.",
+    "Sales AI is moving from demos to real revenue generation.",
+  ],
+  t48: [
+    "Multiple tech stacks used daily for different project types.",
+    "Web, mobile, and backend each have their optimal tool combinations.",
+    "Experience with multiple stacks makes you more versatile as a developer.",
+  ],
+  t49: [
+    "Selling AI agents as a service is more scalable than building them in-house.",
+    "No dev work needed if you use existing platforms and white-label solutions.",
+    "The business model is recurring revenue with minimal ongoing effort.",
+  ],
+  t50: [
+    "AI agent businesses can generate income within the first week.",
+    "Start with a niche, build one agent, then expand the offering.",
+    "The barrier to entry is lower than most people think.",
   ],
 
   // ── Videos ──
@@ -387,6 +562,256 @@ const mockSummaries: Record<string, string[]> = {
     "Distributed training setup reduced from 100 lines of boilerplate to 3.",
     "New memory-efficient attention is built into core, no external libraries needed.",
   ],
+  a21: [
+    "Codex Agent runs in a sandboxed cloud environment to write an test code autonomously.",
+    "It solves 78% of SWE-bench tasks end-to-end without human intervention.",
+    "Supports full-stack Python, TypeScript, and Go projects.",
+  ],
+  a22: [
+    "Perplexity Enterprise integrates with Confluence, Notion, and internal knowledge bases.",
+    "Every answer links back to the original source document for verification.",
+    "Role-based access controls keep sensitive corporate data properly scoped.",
+  ],
+  a23: [
+    "RT-3 generalizes across 700+ manipulation tasks with zero-shot transfer.",
+    "Trained on 130K robot demonstrations for diverse object handling.",
+    "Google plans warehouse and logistics deployment by late 2026.",
+  ],
+  a24: [
+    "AMD MI400 delivers inference within 10% of H100 at 30% lower cost.",
+    "Built on TSMC 3nm with 192GB HBM4 memory.",
+    "Azure and Oracle Cloud committed to deploying MI400 clusters.",
+  ],
+  a25: [
+    "SmolLM 3 is a 1.7B model that beats GPT-3.5 on MMLU and HumanEval.",
+    "Runs at 60 tokens per second on a MacBook Air with no GPU.",
+    "Proves data quality can overcome parameter count disadvantages.",
+  ],
+  a26: [
+    "Codestral 2 generates code 3x faster than Code Llama 70B at matching accuracy.",
+    "22B parameters with a 256K context window and 80+ language support.",
+    "Under 100ms streaming completions when running locally on a single GPU.",
+  ],
+  a27: [
+    "UMG, Sony, and Warner sued Suno and Udio over training on copyrighted recordings.",
+    "Labels seek up to $150,000 per work in damages.",
+    "The case could set precedent for all generative AI and copyrighted content.",
+  ],
+  a28: [
+    "Transformers cannot reliably solve problems requiring 15+ sequential logical steps.",
+    "Attention mechanisms fail to maintain consistent variable bindings in deep reasoning.",
+    "Hybrid neuro-symbolic architectures are suggested as a path forward.",
+  ],
+  a29: [
+    "Stripe's AI fraud engine blocked over $5B in fraudulent payments in 12 months.",
+    "Analyzes 150+ signals per transaction in under 50ms using transformer ensembles.",
+    "False positive rate dropped to 0.3%, reducing legitimate transaction blocks.",
+  ],
+  a30: [
+    "Salesforce, ServiceNow, and Microsoft ship production-ready enterprise AI agents.",
+    "Many startups still lack SOC 2 compliance and enterprise-grade reliability.",
+    "The demo-to-production gap remains the biggest challenge in enterprise AI.",
+  ],
+  a31: [
+    "AI training and inference consumed 6.6 billion liters of water for cooling in 2025.",
+    "A single GPT-5 training run used approximately 3 billion liters.",
+    "Microsoft, Google, and Amazon all missed their water sustainability targets.",
+  ],
+  a32: [
+    "Model Context Protocol is now supported by 40+ major tool providers.",
+    "Provides a unified interface for AI models to use Stripe, GitHub, and Salesforce.",
+    "The protocol is being considered for formal IETF standardization.",
+  ],
+  a33: [
+    "Cloudflare AI Gateway processes over 10 billion LLM API requests daily.",
+    "Caching reduces costs by up to 80% for repeated queries.",
+    "Intelligent routing selects between models based on latency and cost.",
+  ],
+  a34: [
+    "Nvidia NIM packages optimized models into single-command Docker deployments.",
+    "Supports Llama, Mistral, and custom fine-tuned models with automatic batching.",
+    "Pre-configured containers include weights, runtime, and API endpoints.",
+  ],
+  a35: [
+    "Sora API generates 1080p videos at $0.10 per second with fine-grained control.",
+    "Supports text-to-video, image-to-video, and video-to-video transformations.",
+    "Rate limits start at 100 generations per hour on the standard tier.",
+  ],
+  a36: [
+    "pgvector 0.7 delivers 10x faster HNSW index construction and 3x faster queries.",
+    "Binary quantization cuts storage by 32x with less than 5% recall loss.",
+    "Postgres-native vector search now handles billion-scale embeddings.",
+  ],
+  a37: [
+    "Galaxy S26 runs a 7B parameter model on-device with zero cloud fallback.",
+    "Exynos 2600 NPU hits 80 TOPS for real-time inference.",
+    "Features include call translation in 16 languages and on-device summarization.",
+  ],
+  a38: [
+    "Deno 2.1 achieves full npm compatibility with zero configuration.",
+    "Built-in AI SDK provides a unified interface for OpenAI, Anthropic, and local models.",
+    "Edge deploy supports functions in 35 global regions.",
+  ],
+  a39: [
+    "Diffusion model designs novel proteins that have never existed in nature.",
+    "Created enzymes that break down microplastics and antibodies for drug-resistant bacteria.",
+    "Three designed proteins have entered preclinical testing.",
+  ],
+  a40: [
+    "AWS Bedrock Agents combine foundation models with action groups and guardrails.",
+    "Agents autonomously query databases, call APIs, and execute business workflows.",
+    "Pay-per-invocation pricing with no minimum commitment.",
+  ],
+  a41: [
+    "AI engineer salaries are 40% higher than traditional software engineering roles.",
+    "Manual QA testing roles declined 25% as AI handles routine test generation.",
+    "Companies prioritize candidates who can ship AI-integrated products.",
+  ],
+  a42: [
+    "Stable Audio 3 generates 44.1kHz stereo music tracks up to 3 minutes.",
+    "Built-in stem separation lets users isolate vocals, drums, bass, and melody.",
+    "Licensed for commercial use, competing directly with Suno and Udio.",
+  ],
+  a43: [
+    "Huawei's Ascend 920 achieves 80% of H100 performance on 7nm domestic manufacturing.",
+    "Alibaba, Baidu, and Tencent are deploying the chips in their data centers.",
+    "The development challenges effectiveness of US export controls on AI chips.",
+  ],
+  a44: [
+    "Replit Agent v2 builds full apps including database, auth, and deployment.",
+    "Iterates until all tests pass and the app works end-to-end.",
+    "Free users get 5 agent sessions per month.",
+  ],
+  a45: [
+    "KV-cache compression reduces memory usage by 8x with under 1% quality loss.",
+    "Makes million-token context windows practical on a single GPU.",
+    "Learned quantization preserves the most important attention patterns.",
+  ],
+  a46: [
+    "Adobe Firefly 3 trained only on licensed content with full IP indemnity.",
+    "Quality approaches Midjourney v7 while guaranteeing commercial safety.",
+    "Integrates natively with Photoshop, Illustrator, and Creative Cloud API.",
+  ],
+  a47: [
+    "Spotify AI DJ generates personalized commentary using listening history and mood.",
+    "Available in 50 markets with 25% longer average session length.",
+    "The model adapts to time-of-day preferences and individual music taste.",
+  ],
+  a48: [
+    "DBRX 2 has 132B total params, 36B active, trained on 12T enterprise tokens.",
+    "Outperforms Llama 3.1 70B on SQL generation and document analysis.",
+    "Open license available for self-hosting outside Databricks platform.",
+  ],
+  a49: [
+    "Waymo expanded fully autonomous rides to 10 US cities with no safety driver.",
+    "Completed 10 million autonomous miles in 2025 with zero at-fault serious incidents.",
+    "Custom transformer model processes lidar, cameras, and radar inputs for driving decisions.",
+  ],
+  a50: [
+    "Figma AI generates complete design systems from uploaded brand guideline PDFs.",
+    "Produces color tokens, typography scales, and component libraries with variants.",
+    "Cuts design system creation time from weeks to hours.",
+  ],
+  a51: [
+    "Meta's AI cluster comprises over 600,000 GPUs connected by custom network fabric.",
+    "The company spent $37B on AI infrastructure in 2025, plans $60B in 2026.",
+    "Powers Llama 4 training and recommendation models serving 3 billion users.",
+  ],
+  a52: [
+    "Tailwind v4 Oxide engine replaces PostCSS with a Rust compiler for instant HMR.",
+    "Build times drop from seconds to milliseconds with under 5ms hot reload.",
+    "Zero-config setup works out of the box with Vite projects.",
+  ],
+  a53: [
+    "Whisper v4 achieves 99% accuracy in English with 200ms streaming latency.",
+    "Built-in speaker diarization identifies and labels individual speakers.",
+    "Pricing at $0.003 per minute makes it the cheapest high-accuracy transcription API.",
+  ],
+  a54: [
+    "Global AI startup funding was $120B in 2025, doubling 2024 levels.",
+    "Foundation model companies raised over $40B combined.",
+    "AI infrastructure and developer tooling saw the fastest growth.",
+  ],
+  a55: [
+    "Docker AI Assistant generates Dockerfiles and Compose configs from plain English.",
+    "Understands framework best practices for Node.js, Python, Go, and Rust.",
+    "Includes proper layer caching, security hardening, and minimal base image selection.",
+  ],
+  a56: [
+    "Spending more compute at inference time consistently improves output quality.",
+    "Models generate multiple solutions, verify them, and select the best one.",
+    "10x more inference compute yields roughly 2x better accuracy on hard problems.",
+  ],
+  a57: [
+    "Linear AI auto-triages issues by reading descriptions and assigning labels.",
+    "Accuracy improves from 70% to 95% within the first month of use.",
+    "Detects and links duplicate issues automatically.",
+  ],
+  a58: [
+    "Cloudflare Workers AI runs GPU inference at 300+ edge locations globally.",
+    "Under 50ms latency from anywhere for Llama, Stable Diffusion, and Whisper.",
+    "Pricing starts at $0.01 per 1,000 tokens for text models.",
+  ],
+  a59: [
+    "DOJ investigates OpenAI and Google for AI market concentration practices.",
+    "Probe examines exclusive cloud deals and predatory API pricing strategies.",
+    "Microsoft's $13B investment in OpenAI under scrutiny for anticompetitive dependency.",
+  ],
+  a60: [
+    "LangSmith visualizes every prompt, response, and tool call in production AI apps.",
+    "Drill into traces for latency breakdowns, token usage, and cost per request.",
+    "Automatic regression detection alerts when output quality drops below thresholds.",
+  ],
+  a61: [
+    "Phi-4 is a 14B model matching GPT-4 on graduate-level reasoning benchmarks.",
+    "Trained primarily on synthetic reasoning data from larger models.",
+    "Runs on a single consumer GPU, ideal for local deployment.",
+  ],
+  a62: [
+    "Copilot code review analyzes PRs with inline bug fix and security suggestions.",
+    "Understands full repository context to flag potentially breaking changes.",
+    "Catches 30% more issues than human reviewers alone.",
+  ],
+  a63: [
+    "Spotify replaced collaborative filtering with a transformer-based sequential model.",
+    "Improved niche artist discovery by 35% and reduced listening fatigue.",
+    "Processes 500M recommendation requests daily with 20ms P99 latency.",
+  ],
+  a64: [
+    "AI-powered cyberattacks increased 300% in 2025 including deepfake phishing.",
+    "LLM-generated polymorphic malware evades traditional detection methods.",
+    "Companies deploying AI defense systems in an emerging AI-versus-AI arms race.",
+  ],
+  a65: [
+    "Rust is replacing C++ for AI inference engines due to memory safety guarantees.",
+    "Hugging Face, Mistral, and startups now use Rust for serving runtimes.",
+    "Eliminates entire classes of memory bugs that cause production outages.",
+  ],
+  a66: [
+    "Hybrid search combining BM25 with vector similarity improves RAG retrieval quality.",
+    "Proper metadata pre-filtering reduces search space by 100x.",
+    "Real-time indexing keeps RAG systems current without full re-indexing.",
+  ],
+  a67: [
+    "FDA cleared its 200th AI medical device across radiology, pathology, and cardiology.",
+    "AI-assisted radiologists detect cancers 25% more accurately than unassisted physicians.",
+    "AI diagnostics becoming standard of care in many hospital systems.",
+  ],
+  a68: [
+    "Next.js 16 makes React Server Components the default with 50% smaller bundles.",
+    "Turbopack bundler is now stable and 700x faster than Webpack on large projects.",
+    "Partial prerendering combines static and dynamic content in a single request.",
+  ],
+  a69: [
+    "Modal offers serverless H100 GPUs at $0.80/hr with pay-per-second billing.",
+    "Zero cold start for cached models with automatic multi-region scaling.",
+    "Companies report 5-10x cost savings compared to reserved GPU instances.",
+  ],
+  a70: [
+    "AI tutors matched or exceeded human 1-on-1 tutoring in a 50-school trial.",
+    "Students showed 20% greater improvement on standardized tests.",
+    "Systems adapt difficulty in real-time with unlimited patience for learners.",
+  ],
 };
 
 interface FeedCardProps {
@@ -426,6 +851,58 @@ export function FeedCard({ post, isActive }: FeedCardProps) {
 
   const isVideo = post.contentType === "short" || post.contentType === "video";
   const isShort = post.contentType === "short";
+  const isArticle = post.contentType === "article";
+
+  /** Highlight tech keywords inside the snippet */
+  const highlightKeywords = useMemo(() => {
+    if (!post.snippet) return null;
+    const keywords = [
+      "GPT-5", "GPT-4", "GPT-4o", "Gemini", "Claude", "Llama 4", "Qwen 3",
+      "OpenAI", "Anthropic", "Google", "Meta", "Microsoft", "Apple", "Tesla",
+      "Nvidia", "TSMC", "Copilot", "Cursor", "Vercel", "LangChain", "LangGraph",
+      "PyTorch", "AlphaFold", "Sora", "Stability AI", "Hugging Face",
+      "chain-of-thought", "mixture-of-experts", "Mixture of Depths",
+      "10 million tokens", "10M token", "500K context", "128K tokens",
+      "1000 logical qubits", "1,000 logical qubits",
+      "400B", "52B", "3B parameter", "40 TOPS",
+      "3nm process", "torch.compile", "Flash Attention",
+      "RLHF", "RAG", "transformer", "MoE", "AI agents", "AI Act",
+      "2x", "3x", "10x", "40%", "30%", "15%", "400%",
+      "$400M", "$4B", "$25,000", "35 million euros", "7%",
+      "Apache 2.0", "Phase 1", "Q3 2026", "2027",
+      "autonomous", "on-device", "open weights", "open-weight",
+      "code execution", "computer-use", "multi-step", "multi-file",
+      "inference", "hallucination", "fine-tuning",
+    ];
+    const escaped = keywords
+      .sort((a, b) => b.length - a.length)
+      .map((k) => k.replace(/[.*+?^${}()|[\]\\]/g, "\\$&"));
+    const re = new RegExp(`(${escaped.join("|")})`, "gi");
+    const parts = post.snippet.split(re);
+    return parts.map((part, i) => {
+      if (re.test(part)) {
+        return (
+          <mark
+            key={i}
+            className="bg-amber-400/15 text-amber-300 rounded-sm px-0.5 font-medium"
+          >
+            {part}
+          </mark>
+        );
+      }
+      return <span key={i}>{part}</span>;
+    });
+  }, [post.snippet]);
+
+  /** Time-ago string for articles */
+  const timeAgo = useMemo(() => {
+    const diff = Date.now() - new Date(post.createdAt).getTime();
+    const hours = Math.floor(diff / 3_600_000);
+    if (hours < 1) return "just now";
+    if (hours < 24) return `${hours}h ago`;
+    const days = Math.floor(hours / 24);
+    return `${days}d ago`;
+  }, [post.createdAt]);
 
   return (
     <div className="relative flex h-full w-full items-center justify-center overflow-hidden">
@@ -444,6 +921,127 @@ export function FeedCard({ post, isActive }: FeedCardProps) {
             allowFullScreen
           />
         </div>
+      ) : isArticle ? (
+        /* ──────────────────────────────────────────
+           ARTICLE — "Paper" style card
+           ────────────────────────────────────────── */
+        <div className="absolute inset-0 z-0 flex items-center justify-center bg-background overflow-y-auto scrollbar-hide">
+          <div className="w-full max-w-lg mx-auto px-5 py-16 sm:py-20 space-y-5">
+            {/* Top meta row: source, time, read time */}
+            <div className="flex items-center gap-2 text-[11px] text-muted-foreground">
+              <span className="inline-flex items-center gap-1 rounded-md bg-badge-article/10 border border-badge-article/15 px-2 py-0.5 text-badge-article font-medium">
+                <BookOpen className="h-3 w-3" />
+                {post.sourceName || "Article"}
+              </span>
+              <span className="text-foreground/20">·</span>
+              <span>{timeAgo}</span>
+              {post.readTime && (
+                <>
+                  <span className="text-foreground/20">·</span>
+                  <span className="inline-flex items-center gap-0.5">
+                    <Clock className="h-3 w-3" />
+                    {post.readTime} min read
+                  </span>
+                </>
+              )}
+            </div>
+
+            {/* Tags */}
+            <div className="flex flex-wrap gap-1.5">
+              {post.tags.map((tag) => (
+                <span
+                  key={tag}
+                  className="rounded-full bg-foreground/6 border border-foreground/8 px-2.5 py-0.5 text-[10px] font-medium text-foreground/50 uppercase tracking-wider"
+                >
+                  {tag}
+                </span>
+              ))}
+            </div>
+
+            {/* Title — editorial style */}
+            <h1 className="text-2xl sm:text-3xl font-bold leading-tight tracking-tight text-foreground">
+              {post.title}
+            </h1>
+
+            {/* Divider */}
+            <div className="h-px w-12 bg-badge-article/40" />
+
+            {/* Snippet with keyword highlights */}
+            {post.snippet && (
+              <p className="text-sm sm:text-base leading-relaxed text-foreground/65 font-light">
+                {highlightKeywords}
+              </p>
+            )}
+
+            {/* Caption / subtitle */}
+            {post.caption && (
+              <p className="text-xs sm:text-sm text-muted-foreground italic border-l-2 border-badge-article/30 pl-3">
+                {post.caption}
+              </p>
+            )}
+
+            {/* Read full article link */}
+            <a
+              href={post.sourceId}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="inline-flex items-center gap-2 rounded-lg border border-border/40 bg-foreground/5 px-4 py-2.5 text-sm text-foreground/70 hover:text-foreground hover:bg-foreground/10 transition-all group"
+            >
+              Read full article
+              <ExternalLink className="h-3.5 w-3.5 transition-transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
+            </a>
+
+            {/* Summary toggle */}
+            <div>
+              <button
+                onClick={handleToggle}
+                disabled={loading}
+                className="flex w-full items-center justify-between rounded-lg border border-border/50 bg-foreground/5 backdrop-blur-md px-3 py-2.5 text-sm text-foreground/80 transition-colors hover:bg-foreground/10 disabled:opacity-50"
+              >
+                <span className="flex items-center gap-2">
+                  {loading ? (
+                    <>
+                      <div className="h-3.5 w-3.5 animate-spin rounded-full border-2 border-foreground/40 border-t-transparent" />
+                      Summarizing...
+                    </>
+                  ) : (
+                    "AI Summary — 3 Key Points"
+                  )}
+                </span>
+                <motion.span
+                  animate={{ rotate: open ? 180 : 0 }}
+                  transition={{ duration: 0.2 }}
+                >
+                  <ChevronDown className="h-4 w-4 text-muted-foreground" />
+                </motion.span>
+              </button>
+
+              <AnimatePresence>
+                {open && summary && (
+                  <motion.div
+                    initial={{ height: 0, opacity: 0 }}
+                    animate={{ height: "auto", opacity: 1 }}
+                    exit={{ height: 0, opacity: 0 }}
+                    transition={{ duration: 0.25 }}
+                    className="overflow-hidden"
+                  >
+                    <ul className="mt-2 space-y-2 rounded-lg border border-border/40 bg-foreground/5 p-4">
+                      {summary.map((point, i) => (
+                        <li key={i} className="flex gap-2.5 text-sm text-foreground/80">
+                          <span className="mt-0.5 text-badge-article font-semibold shrink-0">{i + 1}.</span>
+                          <span>{point}</span>
+                        </li>
+                      ))}
+                    </ul>
+                  </motion.div>
+                )}
+              </AnimatePresence>
+            </div>
+
+            {/* Bottom spacer for the bottom bar */}
+            <div className="h-16" />
+          </div>
+        </div>
       ) : (
         <div className="absolute inset-0 z-0 flex items-center justify-center bg-background">
           <div className="flex flex-col items-center gap-4 px-8 text-center">
@@ -455,115 +1053,103 @@ export function FeedCard({ post, isActive }: FeedCardProps) {
         </div>
       )}
 
-      {/* Gradient overlay — only bottom portion so video stays visible */}
-      <div className="absolute inset-x-0 bottom-0 h-[55%] sm:h-[50%] bg-gradient-to-t from-background via-background/70 to-transparent z-10 pointer-events-none" />
+      {/* ── Video overlay (gradient + title + summary) — hidden for articles ── */}
+      {isVideo && (
+        <>
+          {/* Gradient overlay — only bottom portion so video stays visible */}
+          <div className="absolute inset-x-0 bottom-0 h-[55%] sm:h-[50%] bg-gradient-to-t from-background via-background/70 to-transparent z-10 pointer-events-none" />
 
-      {/* Content overlay — pinned to bottom, above the bottom bar */}
-      <div className="absolute bottom-0 left-0 right-0 z-20 px-4 pb-14 sm:pb-16 sm:px-5 space-y-2 sm:space-y-3 max-w-lg pointer-events-none">
-        {/* Source badge */}
-        <div className="flex items-center gap-2 pointer-events-auto">
-          {isShort && post.source === "tiktok" ? (
-            <span className="inline-flex items-center gap-1 rounded-md bg-cyan-500/15 px-2 py-0.5 text-[11px] font-medium text-cyan-400">
-              <Music className="h-3 w-3" />
-              TikTok
-            </span>
-          ) : isShort ? (
-            <span className="inline-flex items-center gap-1 rounded-md bg-red-500/15 px-2 py-0.5 text-[11px] font-medium text-red-400">
-              <Youtube className="h-3 w-3" />
-              Short
-            </span>
-          ) : post.contentType === "video" ? (
-            <span className="inline-flex items-center gap-1 rounded-md bg-red-500/15 px-2 py-0.5 text-[11px] font-medium text-red-400">
-              <Play className="h-3 w-3" />
-              Video
-            </span>
-          ) : (
-            <span className="inline-flex items-center gap-1 rounded-md bg-foreground/10 px-2 py-0.5 text-[11px] font-medium text-foreground/60">
-              <Rss className="h-3 w-3" />
-              Article
-            </span>
-          )}
-          {post.tags.slice(0, 2).map((tag) => (
-            <span
-              key={tag}
-              className="rounded-md bg-foreground/8 px-1.5 py-0.5 text-[10px] text-foreground/50"
-            >
-              {tag}
-            </span>
-          ))}
-        </div>
-
-        {/* Title */}
-        <h2 className="text-lg sm:text-xl font-semibold leading-tight text-foreground">
-          {post.title}
-        </h2>
-
-        {/* Caption — hidden on very small screens for video to save space */}
-        {post.caption && (
-          <p className={`text-sm text-foreground/50 line-clamp-2 ${isVideo ? "hidden sm:block" : ""}`}>
-            {post.caption}
-          </p>
-        )}
-
-        {/* Article link */}
-        {!isVideo && (
-          <a
-            href={post.sourceId}
-            target="_blank"
-            rel="noopener noreferrer"
-            className="inline-flex items-center gap-1.5 text-sm text-foreground/60 hover:text-foreground transition-colors pointer-events-auto"
-          >
-            Read full article <ExternalLink className="h-3.5 w-3.5" />
-          </a>
-        )}
-
-        {/* Summary toggle */}
-        <div className="pointer-events-auto">
-          <button
-            onClick={handleToggle}
-            disabled={loading}
-            className="flex w-full items-center justify-between rounded-lg border border-border/50 bg-background/70 backdrop-blur-md px-3 py-2 text-sm text-foreground/80 transition-colors hover:bg-secondary/60 disabled:opacity-50"
-          >
-            <span className="flex items-center gap-2">
-              {loading ? (
-                <>
-                  <div className="h-3.5 w-3.5 animate-spin rounded-full border-2 border-foreground/40 border-t-transparent" />
-                  Summarizing...
-                </>
+          {/* Content overlay — pinned to bottom, above the bottom bar */}
+          <div className="absolute bottom-0 left-0 right-0 z-20 px-4 pb-14 sm:pb-16 sm:px-5 space-y-2 sm:space-y-3 max-w-lg pointer-events-none">
+            {/* Source badge */}
+            <div className="flex items-center gap-2 pointer-events-auto">
+              {isShort && post.source === "tiktok" ? (
+                <span className="inline-flex items-center gap-1 rounded-md bg-cyan-500/15 px-2 py-0.5 text-[11px] font-medium text-cyan-400">
+                  <Music className="h-3 w-3" />
+                  TikTok
+                </span>
+              ) : isShort ? (
+                <span className="inline-flex items-center gap-1 rounded-md bg-red-500/15 px-2 py-0.5 text-[11px] font-medium text-red-400">
+                  <Youtube className="h-3 w-3" />
+                  Short
+                </span>
               ) : (
-                "Summarize"
+                <span className="inline-flex items-center gap-1 rounded-md bg-red-500/15 px-2 py-0.5 text-[11px] font-medium text-red-400">
+                  <Play className="h-3 w-3" />
+                  Video
+                </span>
               )}
-            </span>
-            <motion.span
-              animate={{ rotate: open ? 180 : 0 }}
-              transition={{ duration: 0.2 }}
-            >
-              <ChevronDown className="h-4 w-4 text-muted-foreground" />
-            </motion.span>
-          </button>
+              {post.tags.slice(0, 2).map((tag) => (
+                <span
+                  key={tag}
+                  className="rounded-md bg-foreground/8 px-1.5 py-0.5 text-[10px] text-foreground/50"
+                >
+                  {tag}
+                </span>
+              ))}
+            </div>
 
-          <AnimatePresence>
-            {open && summary && (
-              <motion.div
-                initial={{ height: 0, opacity: 0 }}
-                animate={{ height: "auto", opacity: 1 }}
-                exit={{ height: 0, opacity: 0 }}
-                transition={{ duration: 0.25 }}
-                className="overflow-hidden"
-              >
-                <ul className="mt-2 space-y-1.5 rounded-lg border border-border/40 bg-background/70 backdrop-blur-md p-3">
-                  {summary.map((point, i) => (
-                    <li key={i} className="flex gap-2 text-xs sm:text-sm text-foreground/80">
-                      <span className="mt-0.5 text-muted-foreground shrink-0">{i + 1}.</span>
-                      <span>{point}</span>
-                    </li>
-                  ))}
-                </ul>
-              </motion.div>
+            {/* Title */}
+            <h2 className="text-lg sm:text-xl font-semibold leading-tight text-foreground">
+              {post.title}
+            </h2>
+
+            {/* Caption — hidden on very small screens for video to save space */}
+            {post.caption && (
+              <p className="text-sm text-foreground/50 line-clamp-2 hidden sm:block">
+                {post.caption}
+              </p>
             )}
-          </AnimatePresence>
-        </div>
-      </div>
+
+            {/* Summary toggle */}
+            <div className="pointer-events-auto">
+              <button
+                onClick={handleToggle}
+                disabled={loading}
+                className="flex w-full items-center justify-between rounded-lg border border-border/50 bg-background/70 backdrop-blur-md px-3 py-2 text-sm text-foreground/80 transition-colors hover:bg-secondary/60 disabled:opacity-50"
+              >
+                <span className="flex items-center gap-2">
+                  {loading ? (
+                    <>
+                      <div className="h-3.5 w-3.5 animate-spin rounded-full border-2 border-foreground/40 border-t-transparent" />
+                      Summarizing...
+                    </>
+                  ) : (
+                    "Summarize"
+                  )}
+                </span>
+                <motion.span
+                  animate={{ rotate: open ? 180 : 0 }}
+                  transition={{ duration: 0.2 }}
+                >
+                  <ChevronDown className="h-4 w-4 text-muted-foreground" />
+                </motion.span>
+              </button>
+
+              <AnimatePresence>
+                {open && summary && (
+                  <motion.div
+                    initial={{ height: 0, opacity: 0 }}
+                    animate={{ height: "auto", opacity: 1 }}
+                    exit={{ height: 0, opacity: 0 }}
+                    transition={{ duration: 0.25 }}
+                    className="overflow-hidden"
+                  >
+                    <ul className="mt-2 space-y-1.5 rounded-lg border border-border/40 bg-background/70 backdrop-blur-md p-3">
+                      {summary.map((point, i) => (
+                        <li key={i} className="flex gap-2 text-xs sm:text-sm text-foreground/80">
+                          <span className="mt-0.5 text-muted-foreground shrink-0">{i + 1}.</span>
+                          <span>{point}</span>
+                        </li>
+                      ))}
+                    </ul>
+                  </motion.div>
+                )}
+              </AnimatePresence>
+            </div>
+          </div>
+        </>
+      )}
     </div>
   );
 }

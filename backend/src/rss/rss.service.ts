@@ -12,12 +12,15 @@ export class RssService {
   private readonly logger = new Logger(RssService.name);
   private readonly parser = new Parser();
 
-  /** List of trusted AI/tech RSS feeds */
+  /** List of trusted AI/tech RSS feeds — all free, no API keys required */
   private readonly feeds = [
+    { name: 'OpenAI News', url: 'https://openai.com/news/rss' },
+    { name: 'MIT AI News', url: 'https://news.mit.edu/rss/topic/artificial-intelligence' },
+    { name: 'TechRepublic', url: 'https://www.techrepublic.com/rssfeeds/articles/' },
     { name: 'TechCrunch AI', url: 'https://techcrunch.com/category/artificial-intelligence/feed/' },
     { name: 'The Verge AI', url: 'https://www.theverge.com/rss/ai-artificial-intelligence/index.xml' },
     { name: 'Ars Technica', url: 'https://feeds.arstechnica.com/arstechnica/technology-lab' },
-    { name: 'MIT Tech Review', url: 'https://www.technologyreview.com/feed/' },
+    { name: 'HPCwire AI', url: 'https://www.hpcwire.com/aiwire/feed/' },
   ];
 
   /**
