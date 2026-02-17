@@ -24,10 +24,8 @@ const Index = () => {
       videos: "video",
     };
     const typed = mockPosts.filter((p) => p.contentType === tabToType[filter]);
-    if (shuffleKey > 0) {
-      return [...typed].sort(() => Math.random() - 0.5);
-    }
-    return typed;
+    // Always shuffle — randomize on every load and tab switch
+    return [...typed].sort(() => Math.random() - 0.5);
   }, [filter, shuffleKey]);
 
   // Persist current index back to the ref whenever it changes
