@@ -1,0 +1,110 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@import url('https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;600&family=Inter:wght@300;400;500;600;700;800;900&display=swap');
+
+@layer base {
+  :root {
+    --background: 220 10% 7%;
+    --foreground: 0 0% 88%;
+
+    --card: 220 8% 11%;
+    --card-foreground: 0 0% 88%;
+
+    --popover: 220 8% 11%;
+    --popover-foreground: 0 0% 88%;
+
+    --primary: 0 0% 88%;
+    --primary-foreground: 220 10% 7%;
+
+    --secondary: 220 6% 15%;
+    --secondary-foreground: 0 0% 75%;
+
+    --muted: 220 6% 15%;
+    --muted-foreground: 220 5% 50%;
+
+    --accent: 220 6% 20%;
+    --accent-foreground: 0 0% 88%;
+
+    --destructive: 0 60% 50%;
+    --destructive-foreground: 0 0% 95%;
+
+    --border: 220 6% 16%;
+    --input: 220 6% 16%;
+    --ring: 0 0% 60%;
+
+    --radius: 0.5rem;
+
+    --sidebar-background: 220 10% 8%;
+    --sidebar-foreground: 0 0% 88%;
+    --sidebar-primary: 0 0% 88%;
+    --sidebar-primary-foreground: 220 10% 7%;
+    --sidebar-accent: 220 6% 15%;
+    --sidebar-accent-foreground: 0 0% 88%;
+    --sidebar-border: 220 6% 16%;
+    --sidebar-ring: 0 0% 60%;
+
+    /* Custom tokens */
+    --glow-primary: 0 0% 60%;
+    --glow-accent: 0 0% 50%;
+    --surface-hover: 220 6% 13%;
+    --badge-tech: 0 0% 70%;
+    --badge-video: 0 72% 51%;
+    --badge-article: 35 80% 55%;
+    --skeleton-base: 220 6% 13%;
+    --skeleton-shine: 220 6% 18%;
+  }
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+
+  body {
+    @apply bg-background text-foreground font-sans antialiased;
+    font-family: 'Inter', system-ui, sans-serif;
+  }
+
+  code, .font-mono {
+    font-family: 'JetBrains Mono', monospace;
+  }
+}
+
+@layer utilities {
+  .glow-primary {
+    box-shadow: 0 0 8px hsl(var(--glow-primary) / 0.08);
+  }
+
+  .glow-accent {
+    box-shadow: 0 0 8px hsl(var(--glow-accent) / 0.08);
+  }
+
+  .text-gradient-primary {
+    color: hsl(var(--foreground));
+  }
+
+  .bg-grid {
+    background-image: 
+      linear-gradient(hsl(var(--border) / 0.3) 1px, transparent 1px),
+      linear-gradient(90deg, hsl(var(--border) / 0.3) 1px, transparent 1px);
+    background-size: 60px 60px;
+  }
+
+  .shimmer {
+    background: linear-gradient(
+      90deg,
+      hsl(var(--skeleton-base)) 0%,
+      hsl(var(--skeleton-shine)) 50%,
+      hsl(var(--skeleton-base)) 100%
+    );
+    background-size: 200% 100%;
+    animation: shimmer 1.5s infinite;
+  }
+
+  @keyframes shimmer {
+    0% { background-position: 200% 0; }
+    100% { background-position: -200% 0; }
+  }
+}
