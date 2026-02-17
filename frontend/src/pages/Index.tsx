@@ -112,19 +112,35 @@ const Index = () => {
     return () => window.removeEventListener("keydown", handler);
   }, [goTo]);
 
+  // Infinite scroll — when user reaches the last 3 posts, reshuffle and append more
+  useEffect(() => {
+    if (filteredPosts.length === 0) return;
+    const remaining = filteredPosts.length - 1 - activeIndex;
+    if (remaining <= 2) {
+      setShuffleKey((k) => k + 1);
+    }
+  }, [activeIndex, filteredPosts.length]);
+
   return (
     <div ref={containerRef} className="fixed inset-0 overflow-hidden bg-background">
-      {/* Scrolling container */}
+      {/* Scrolling container — only render a window of ±3 cards for performance */}
       <motion.div
         className="h-full w-full"
         animate={{ y: `-${activeIndex * 100}%` }}
         transition={{ type: "spring", stiffness: 300, damping: 30 }}
       >
-        {filteredPosts.map((post, i) => (
-          <div key={post.id} className="h-screen w-full">
-            <FeedCard post={post} isActive={i === activeIndex} />
-          </div>
-        ))}
+        {filteredPosts.map((post, i) => {
+          const distance = Math.abs(i - activeIndex);
+          const shouldRender = distance <= 3;
+          const isNearby = distance === 1;
+          return (
+            <div key={post.id} className="h-screen w-full">
+              {shouldRender ? (
+                <FeedCard post={post} isActive={i === activeIndex} isNearby={isNearby} />
+              ) : null}
+            </div>
+          );
+        })}
       </motion.div>
 
       {/* Filter tabs */}
@@ -144,25 +160,31 @@ const Index = () => {
         ))}
       </div>
 
-      {/* Side navigation dots — hidden on mobile */}
-      <div className="hidden sm:flex fixed right-4 top-1/2 -translate-y-1/2 z-50 flex-col items-center gap-2">
-        {filteredPosts.map((_, i) => (
-          <button
-            key={i}
-            onClick={() => {
-              if (!isScrolling.current) {
-                isScrolling.current = true;
-                setActiveIndex(i);
-                setTimeout(() => { isScrolling.current = false; }, 600);
-              }
-            }}
-            className={`rounded-full transition-all duration-300 ${
-              i === activeIndex
-                ? "h-5 w-1.5 bg-foreground/70"
-                : "h-1.5 w-1.5 bg-muted-foreground/25 hover:bg-muted-foreground/50"
-            }`}
-          />
-        ))}
+      {/* Side navigation dots — show only nearby ±4 dots, hidden on mobile */}
+      <div className="hidden sm:flex fixed right-4 top-1/2 -translate-y-1/2 z-50 flex-col items-center gap-1.5">
+        {filteredPosts.map((_, i) => {
+          const distance = Math.abs(i - activeIndex);
+          if (distance > 4) return null;
+          const scale = distance === 0 ? 1 : distance <= 2 ? 0.8 : 0.5;
+          return (
+            <button
+              key={i}
+              onClick={() => {
+                if (!isScrolling.current) {
+                  isScrolling.current = true;
+                  setActiveIndex(i);
+                  setTimeout(() => { isScrolling.current = false; }, 600);
+                }
+              }}
+              style={{ transform: `scale(${scale})`, opacity: 1 - distance * 0.15 }}
+              className={`rounded-full transition-all duration-300 ${
+                i === activeIndex
+                  ? "h-5 w-1.5 bg-foreground/70"
+                  : "h-1.5 w-1.5 bg-muted-foreground/30 hover:bg-muted-foreground/50"
+              }`}
+            />
+          );
+        })}
       </div>
 
       {/* Bottom bar — logo, nav arrows, counter */}

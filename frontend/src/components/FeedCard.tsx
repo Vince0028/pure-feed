@@ -359,6 +359,917 @@ const mockSummaries: Record<string, string[]> = {
     "The barrier to entry is lower than most people think.",
   ],
 
+  t51: [
+    "this is what the fastest coder in the world looks like 🤯 #coding #typing #keybo.",
+    "By @leonsilicon — 6700K views.",
+    "Duration: 12s. Coding.",
+  ],
+  t52: [
+    "I always thought coding was kinda boring—until I found this site that actually m.",
+    "By @shigcodes — 6400K views.",
+    "Duration: 9s. Coding, Tutorial.",
+  ],
+  t53: [
+    "How to start coding with Zero Knowledge Starting your coding journey can feel co.",
+    "By @thom.code — 5400K views.",
+    "Duration: 138s. Coding, Career, Tutorial.",
+  ],
+  t54: [
+    "when you are a programmer...😂 #programmer #programmingmemes #coding #softwareen.",
+    "By @software__engineer — 5400K views.",
+    "Duration: 39s. Coding, Career.",
+  ],
+  t55: [
+    "or rage quit coding with me #coding #csmajors #codinglife #techtok #studygram.",
+    "By @gazi.ai — 3900K views.",
+    "Duration: 43s. Coding.",
+  ],
+  t56: [
+    "My AI crushing this musical dance 🔥 Generated with [Tool] – who’s joining? 👀 #.",
+    "By @nyloncouture.ai — 3700K views.",
+    "Duration: 14s. AI.",
+  ],
+  t57: [
+    "You’re a Software Engineer and can’t work from home anymore True story, I was on.",
+    "By @andrewcodesmith — 2000K views.",
+    "Duration: 62s. Coding, Career.",
+  ],
+  t58: [
+    "Typed ‘Hello World’, now I control the matrix 🧠💀 #codingmemes #programming#c++.",
+    "By @mz.devs — 2000K views.",
+    "Duration: 9s. Coding.",
+  ],
+  t59: [
+    "Python Edit || #edit #fyp #programming #code #python.",
+    "By @hxthuyeen.kuzze — 1800K views.",
+    "Duration: 18s. Coding, Python.",
+  ],
+  t60: [
+    "She was crying😎 #programming #coding #computerscience #csmajor.",
+    "By @thecodingpad — 1800K views.",
+    "Duration: 12s. Coding.",
+  ],
+  t61: [
+    "Who hoping on tictac #compsci #java #codinglife #collegelife #calculus #coding #.",
+    "By @kazytho_ — 1600K views.",
+    "Duration: 19s. Coding.",
+  ],
+  t62: [
+    "I post about AI every day… This is the biggest news yet. the first time I opened.",
+    "By @ava.on.ai — 1300K views.",
+    "Duration: 305s. AI, Coding, AI Tools.",
+  ],
+  t63: [
+    "10 types of Programmers and what they do. The term “programmer” is literally so .",
+    "By @lewismenelaws — 987K views.",
+    "Duration: 154s. Coding.",
+  ],
+  t64: [
+    "Tutorial ⬇️ This entire video was made with AI — a hyper-realistic image generat.",
+    "By @ineffable.ai22 — 837K views.",
+    "Duration: 9s. AI, AI Tools, Mobile Dev.",
+  ],
+  t65: [
+    "How is ChatGPT 5 different.. #carterpcs #tech #techtok #ai #gpt5.",
+    "By @carterpcs — 792K views.",
+    "Duration: 47s. AI, AI Tools, GPT-5.",
+  ],
+  t66: [
+    "What do software engineers do? Find out in Ep. 1 of Demystifying Software Engine.",
+    "By @allenvert — 677K views.",
+    "Duration: 61s. Coding, Career.",
+  ],
+  t67: [
+    "Thoughts on emerging tech? I also learned some vocab words like “AgenticAI” whic.",
+    "By @underthedesknews — 580K views.",
+    "Duration: 177s. AI, AI Agents, Tutorial.",
+  ],
+  t68: [
+    "Google 7 New AI Tools You Should Be Using Wait Until The End #GoogleAI #AITools .",
+    "By @benkimball.ai — 544K views.",
+    "Duration: 77s. AI, AI Tools, Google.",
+  ],
+  t69: [
+    "Replying to @Reynan Vieira The path to building a SaaS is not clear in public or.",
+    "By @saasgod — 432K views.",
+    "Duration: 131s. Coding, Startup, Career.",
+  ],
+  t70: [
+    "Clustering in real life is scary #ai #datascience #machinelearning #stem #cluste.",
+    "By @piluladedados — 429K views.",
+    "Duration: 8s. AI, ML, Tutorial.",
+  ],
+  t71: [
+    "# Merge mindset → main #developersoftiktok #devtok #coding #universe #yougotthis.",
+    "By @microsoftdeveloper — 397K views.",
+    "Duration: 13s. Coding.",
+  ],
+  t72: [
+    "Feel free to message me if you have questions n I’ll help you out 💖 #howto #goo.",
+    "By @cali.gurl444 — 388K views.",
+    "Duration: 34s. AI Tools, Google.",
+  ],
+  t73: [
+    "Learn Python in 1 hour! 🐍 #coding #programming #python (00:00:00) intro to pyth.",
+    "By @truebrocode — 380K views.",
+    "Duration: 3600s. Coding, Python, Tutorial.",
+  ],
+  t74: [
+    "This is crazy! 🤯 Should I sell? (day 12 of building my SaaS to $1m) #business #.",
+    "By @mikestrives — 369K views.",
+    "Duration: 33s. Coding, Startup, Career.",
+  ],
+  t75: [
+    "How to run up a bag with CHATGPT5 #chatgpt5 #artificalintelligence #ai #ecommerc.",
+    "By @realdennisdemarino5 — 368K views.",
+    "Duration: 163s. AI, AI Tools, GPT-5.",
+  ],
+  t76: [
+    "My very accurate 2026 tech predictions.. #carterpcs.",
+    "By @carterpcs — 364K views.",
+    "Duration: 39s. Tech.",
+  ],
+  t77: [
+    "GPT 5 is mean and unhelpful #carterpcs #tech #techtok #gpt5 #ai.",
+    "By @carterpcs — 346K views.",
+    "Duration: 41s. AI, GPT-5.",
+  ],
+  t78: [
+    "step by step machine learning guide for beginners #techtok #careertok #coding #m.",
+    "By @itsallykrinsky — 345K views.",
+    "Duration: 48s. AI, Coding, Career.",
+  ],
+  t79: [
+    "pov: you’re on work leave but still coding to escape the 9-5 #code #softwareengi.",
+    "By @alvinjonathan — 341K views.",
+    "Duration: 20s. Coding, Career.",
+  ],
+  t80: [
+    "#developerlife #humor #devtok #codinghumor #codinglife.",
+    "By @jelvix_company — 322K views.",
+    "Duration: 31s. Coding.",
+  ],
+  t81: [
+    "Best FREE AI Video Generators 2026 🎥 #aivideo #freeaitools #ai #aitools #aivide.",
+    "By @mattfarmerai — 319K views.",
+    "Duration: 95s. AI.",
+  ],
+  t82: [
+    "A bit hard starting, but worth #stem #ia #machinelearning #ai #datascience.",
+    "By @piluladedados — 306K views.",
+    "Duration: 7s. AI, Tutorial.",
+  ],
+  t83: [
+    "GPT-5正式发布！3分钟全面解读5大核心突破！程序员、老师都将被取代或改变 #ChatGPT #GPT5 #opena.",
+    "By @wilson777776 — 299K views.",
+    "Duration: 167s. AI Tools, GPT-5, OpenAI.",
+  ],
+  t84: [
+    "Do NOT go into Software Engineering 🚨 #swe #tech #software #fyp.",
+    "By @sajjaadkhader — 295K views.",
+    "Duration: 39s. Coding, Career.",
+  ],
+  t85: [
+    "Claude code crash course in 1 min.",
+    "By @gregisenberg — 262K views.",
+    "Duration: 49s. Coding, AI Tools, Claude.",
+  ],
+  t86: [
+    "Honestly OpenClaw is insane #openclaw #ai #clawdbot.",
+    "By @shawn.kanungo — 259K views.",
+    "Duration: 130s. AI, AI Agents.",
+  ],
+  t87: [
+    "DM me the words “ML BASICS” to get a free guide to Master your Coding Foundation.",
+    "By @bashifuirkashi — 252K views.",
+    "Duration: 34s. AI, Coding, Career.",
+  ],
+  t88: [
+    "If I was a beginner learning to code, I would use this 90 day roadmap step by st.",
+    "By @swerikcodes — 251K views.",
+    "Duration: 42s. Coding, Tutorial.",
+  ],
+  t89: [
+    "6 yrs of brutally honest coding advice in 30 seconds #coding #softwareengineer #.",
+    "By @bashifuirkashi — 240K views.",
+    "Duration: 31s. AI, Coding, Career.",
+  ],
+  t90: [
+    "Powerful websites you should know (part 626) learn coding like playing a game #c.",
+    "By @setups_ai — 236K views.",
+    "Duration: 13s. Coding, Tutorial.",
+  ],
+  t91: [
+    "Claude's Opus 4.6 is the best model & it's in your Excel document #ai #claude.",
+    "By @shawn.kanungo — 231K views.",
+    "Duration: 39s. AI, AI Tools, Claude.",
+  ],
+  t92: [
+    "I guess bugs must be scared of the dark 😌 #devtok #developersoftiktok #coding #.",
+    "By @microsoftdeveloper — 229K views.",
+    "Duration: 9s. Coding.",
+  ],
+  t93: [
+    "The 6 AI Tools save me 15 hours every week! 🤖🤯⏳ #chatgpt #aitools #aitool #ait.",
+    "By @thelimitlessjess — 199K views.",
+    "Duration: 148s. AI, AI Tools, Claude.",
+  ],
+  t94: [
+    "cant remember haha #fyp #viral #coding #programming #xyzbca.",
+    "By @arnurartykbay — 196K views.",
+    "Duration: 13s. Coding.",
+  ],
+  t95: [
+    "too real? #computerscience #tech #code #programming #programming.",
+    "By @programmergrind — 194K views.",
+    "Duration: 78s. Coding.",
+  ],
+  t96: [
+    "Here are AI tools for beginners to help you utilize and begin to learn Ai! #ai #.",
+    "By @carter.braydon — 173K views.",
+    "Duration: 21s. AI, AI Tools, OpenAI.",
+  ],
+  t97: [
+    "2x for the most unhinged ai story of 2026? #tech #openai #openclaw.",
+    "By @elenanisonoff — 141K views.",
+    "Duration: 318s. AI, AI Agents, OpenAI.",
+  ],
+  t98: [
+    "OpenAI acquires OpenClaw. The founder just won the game of life… #vibecoding #op.",
+    "By @casey.aicreates — 139K views.",
+    "Duration: 66s. Startup, AI Agents, OpenAI.",
+  ],
+  t99: [
+    "#ai #neuralnetworks #machinelearning #reinforcementlearning #algorithm #deeplear.",
+    "By @chillwebdeveloper — 136K views.",
+    "Duration: 62s. AI, ML, Tutorial.",
+  ],
+  t100: [
+    "Software engineers are still getting fired. #softwareengineer #softwaredeveloper.",
+    "By @i.buildtech — 123K views.",
+    "Duration: 107s. Coding, Career.",
+  ],
+  t101: [
+    "Lets go over some cons of being a software engineer #computerscience #tech #soft.",
+    "By @billy.livin — 102K views.",
+    "Duration: 150s. Coding, Career.",
+  ],
+  t102: [
+    "Free Google AI tools If you create content, build products, study, or run market.",
+    "By @reliablesoft_academy — 101K views.",
+    "Duration: 47s. AI, Coding, AI Tools.",
+  ],
+  t103: [
+    "3 lectures to learn Agentic AI. Find them all for free on Maven. Link in bio. #m.",
+    "By @maven_hq — 90K views.",
+    "Duration: 30s. AI, AI Agents, Tutorial.",
+  ],
+  t104: [
+    "It’s never been harder to get a “software engineering” role. The basics are stil.",
+    "By @arjay_mccandless — 89K views.",
+    "Duration: 305s. Coding, Career.",
+  ],
+  t105: [
+    "#softwaredeveloper #programming #coding #python #techtok.",
+    "By @topgcoder — 88K views.",
+    "Duration: 11s. Coding, Python.",
+  ],
+  t106: [
+    "Replying to @AhmadMohammed Here are some code-free #saasbusiness you can start t.",
+    "By @imicedtee — 86K views.",
+    "Duration: 97s. Coding, Startup.",
+  ],
+  t107: [
+    "I think im actually insane but thats not the point here. Chatgpt 5.1 is ELITE wh.",
+    "By @thejudymoon — 77K views.",
+    "Duration: 21s. AI Tools, GPT-5, OpenAI.",
+  ],
+  t108: [
+    "Qué piensan?? #inteligenciaartificial #ai #ia #chatgpt #n8n.",
+    "By @nicolasimagine — 70K views.",
+    "Duration: 131s. AI, AI Tools, OpenAI.",
+  ],
+  t109: [
+    "How to start an AI automation business in 2026.",
+    "By @danvmartell — 68K views.",
+    "Duration: 32s. AI, AI Agents, Tutorial.",
+  ],
+  t110: [
+    "quick fix = famous last words #devtok #developersoftiktok #programmerhumor #debu.",
+    "By @microsoftdeveloper — 65K views.",
+    "Duration: 5s. Coding.",
+  ],
+  t111: [
+    "How to use openclaw for beginners, this is the easiest way to set it up #ai #fyp.",
+    "By @ray_fu — 64K views.",
+    "Duration: 44s. AI, AI Agents, Tutorial.",
+  ],
+  t112: [
+    "#ai #aisafety #moltbot #claudeopus #gemini.",
+    "By @super.intelligent4 — 61K views.",
+    "Duration: 594s. AI, AI Tools, Claude.",
+  ],
+  t113: [
+    "vibecode dot dev Is wild dude. Claude 4.5 Opus is just nuts..",
+    "By @rileybrown.ai — 61K views.",
+    "Duration: 108s. Coding, AI Tools, Claude.",
+  ],
+  t114: [
+    "Very hard not to think lesser of ppl who see use in generative Ai… #greenscreen .",
+    "By @deandreee_ — 54K views.",
+    "Duration: 87s. AI, AI Tools, OpenAI.",
+  ],
+  t115: [
+    "Just hearing someone say SaaS makes me cringe now lol. Clearly I’m being hyperbo.",
+    "By @gabtheory0 — 50K views.",
+    "Duration: 97s. AI, Coding, Startup.",
+  ],
+  t116: [
+    "forever a work in progress 😌 #devtok #developersoftiktok #coding #yougotthis #s.",
+    "By @microsoftdeveloper — 48K views.",
+    "Duration: 12s. Coding.",
+  ],
+  t117: [
+    "ML Data Clustering Visualized #algorithm #fyp #coding #programming #donevdev #da.",
+    "By @donev.dev — 41K views.",
+    "Duration: 15s. Coding, ML.",
+  ],
+  t118: [
+    "New OpenAI privacy policy, let’s have a look, shall we? #greenscreen #ai #openai.",
+    "By @justaiwithpaige — 39K views.",
+    "Duration: 238s. AI, OpenAI.",
+  ],
+  t119: [
+    "idk who needs to hear this but keep going 🫡 #devtok #developersoftiktok #coding.",
+    "By @microsoftdeveloper — 34K views.",
+    "Duration: 11s. Coding.",
+  ],
+  t120: [
+    "How I produce over $600,000 a month with GoHighLevel! I use a SaaS platform to r.",
+    "By @thedombaptist — 32K views.",
+    "Duration: 122s. Startup, Tutorial.",
+  ],
+  t121: [
+    "how to generate an ai model #aimodel #aigirls #aiofm #fanvue.",
+    "By @aicontentteacher — 29K views.",
+    "Duration: 17s. AI, Tutorial.",
+  ],
+  t122: [
+    "Comment “REAL” for my prompts and step-by-step process. ⬇️ He’s not real — an AI.",
+    "By @synthstreamstudio.ai — 29K views.",
+    "Duration: 11s. AI, Startup, Tutorial.",
+  ],
+  t123: [
+    "Agentic AI roadmap. Start with system design, then learn deployment, then focus .",
+    "By @maven_hq — 28K views.",
+    "Duration: 50s. AI, AI Agents, Tutorial.",
+  ],
+  t124: [
+    "The only way to create multiple cinematic shots in Gemini Nano Banana Pro for yo.",
+    "By @ifkjourney — 26K views.",
+    "Duration: 61s. AI, AI Tools, Google.",
+  ],
+  t125: [
+    "What is “Generative AI”? How is it different from other types of AI? Many of you.",
+    "By @harpercarrollai — 22K views.",
+    "Duration: 84s. AI, Coding, ML.",
+  ],
+  t126: [
+    "When you want a user base that doesn’t give a #%^* about the risks and will show.",
+    "By @byjacobward — 20K views.",
+    "Duration: 134s. AI Agents, OpenAI, News.",
+  ],
+  t127: [
+    "🎓 Day 1 of my machine learning journey starts now! 🚀 Today, I dove into linear.",
+    "By @learnmlwithme — 20K views.",
+    "Duration: 31s. AI, ML, Tutorial.",
+  ],
+  t128: [
+    "Looking for more Claude code guides? Check my bio!.",
+    "By @chase_ai_ — 19K views.",
+    "Duration: 143s. Coding, AI Tools, Claude.",
+  ],
+  t129: [
+    "TikTok and YouTube Automation New Viral Niche... #automation #tiktokearning #wor.",
+    "By @ismailafridi077 — 19K views.",
+    "Duration: 91s. AI Agents.",
+  ],
+  t130: [
+    "i’ve made a website with the links for easy access! https://eggintech.carrd.co/ .",
+    "By @learnwithmaven — 16K views.",
+    "Duration: 45s. Coding, AI Agents, Tutorial.",
+  ],
+  t131: [
+    "Breaking news #ainews #aifunny #aicomedy #funnyvideos #fyp.",
+    "By @yikesproduction — 16K views.",
+    "Duration: 15s. News.",
+  ],
+  t132: [
+    "A long awaited video but I hope this helps you all get started!! #saasqueens #in.",
+    "By @tylamarieofficial — 16K views.",
+    "Duration: 217s. Startup.",
+  ],
+  t133: [
+    "In my upcoming blog i'll have to write more about animation tools (HugoOlsson's .",
+    "By @dr.justin.hodges — 16K views.",
+    "Duration: 47s. AI, AI Tools, Career.",
+  ],
+  t134: [
+    "The AI tools you need to start using as a knowledge worker.",
+    "By @andruyeung — 15K views.",
+    "Duration: 156s. AI, AI Tools.",
+  ],
+  t135: [
+    "Agentic Rag and Agentic system #agentic #agenticrag #aiagent #professorglitch.",
+    "By @pro.glitch — 14K views.",
+    "Duration: 129s. AI Agents.",
+  ],
+  t136: [
+    "SEO traffic increased 24% with one simple workflow. Webflow's VP of Growth share.",
+    "By @sabrina_ramonov — 14K views.",
+    "Duration: 50s. AI, Startup, AI Agents.",
+  ],
+  t137: [
+    "Breaking news #aifunny #ainews #aicomedy #funnyvideos #fyp.",
+    "By @yikesproduction — 14K views.",
+    "Duration: 15s. News.",
+  ],
+  t138: [
+    "Every company wants Agentic AI. Here’s a quick breakdown of what it is, how it w.",
+    "By @maven_hq — 14K views.",
+    "Duration: 59s. AI, AI Agents, Tutorial.",
+  ],
+  t139: [
+    "There are so many things I’ve missed in this video but I wanted to get this out .",
+    "By @bumblebeest_ — 14K views.",
+    "Duration: 147s. AI.",
+  ],
+  t140: [
+    "Qwen Image Layers AI Tool Is INSANE 🤯 Wait Until The End… #QwenAI #AITools #AIE.",
+    "By @benkimball.ai — 12K views.",
+    "Duration: 27s. AI, AI Tools.",
+  ],
+  t141: [
+    "This is the best video generator and it’s free rn and nobody knows 😳 #seedance .",
+    "By @mikadontlouz — 12K views.",
+    "Duration: 65s. AI.",
+  ],
+  t142: [
+    "Biggest tech releases coming in early 2026. Samsung Galaxy S26, iPhone 17e, Appl.",
+    "By @raylotech — 11K views.",
+    "Duration: 65s. News.",
+  ],
+  t143: [
+    "#investmentproperty #airbnb #airbnbcleaning #automation #airbnbautomated.",
+    "By @chris_gerbig — 11K views.",
+    "Duration: 128s. AI Agents.",
+  ],
+  t144: [
+    "This ChatGPT model leaves a dark history. So much damage done from its release i.",
+    "By @emilyforlini_ — 10K views.",
+    "Duration: 39s. AI, AI Tools, OpenAI.",
+  ],
+  t145: [
+    "Google Gemini AI is POWERFUL and is leading in the AI world! Here’s how to use i.",
+    "By @carter.braydon — 10K views.",
+    "Duration: 50s. AI, AI Tools, Google.",
+  ],
+  t146: [
+    "#greenscreenvideo #openclaw #clawdbot #ai #aiagents Openclaw use cases u should .",
+    "By @learnwithcheer — 10K views.",
+    "Duration: 8s. AI, AI Agents.",
+  ],
+  t147: [
+    "More unhinged tech trends for 2026… #tech #technews #techtiktok #dev #fireship.",
+    "By @fireship_dev — 10K views.",
+    "Duration: 94s. News.",
+  ],
+  t148: [
+    "Machine Learning: Random Forests #machinelearning #datascience #appliedmath #vis.",
+    "By @mathofmolski — 9K views.",
+    "Duration: 28s. AI, ML, Tutorial.",
+  ],
+  t149: [
+    "Another day, another slay at work as a software engineer❤️✨ . . . #softwareengin.",
+    "By @bylannii — 9K views.",
+    "Duration: 49s. Coding, Career.",
+  ],
+  t150: [
+    "Steal this Claude Code setup. #claude #claudecode #maven.",
+    "By @maven_hq — 9K views.",
+    "Duration: 50s. Coding, AI Tools, Claude.",
+  ],
+  t151: [
+    "CLAUDE OPUS 4.6 IS OUTT. Take.my.money. @Anthropic.ai #claude #opus #ai.",
+    "By @startupsep — 8K views.",
+    "Duration: 44s. AI, AI Tools, Claude.",
+  ],
+  t152: [
+    "Dude I had to restart my entire OpenClaw setup 4 times until I learned this. One.",
+    "By @tristynnmcgowan — 8K views.",
+    "Duration: 52s. AI, AI Agents, Tutorial.",
+  ],
+  t153: [
+    "AI has made building SaaS easier... but not creating credibility! SaaS websites .",
+    "By @joshfromyolkk — 8K views.",
+    "Duration: 187s. AI, Coding, Startup.",
+  ],
+  t154: [
+    "(I’d do the exact same thing) #techtok #fyp #computerscience #coding #pov.",
+    "By @dav_tech — 8K views.",
+    "Duration: 12s. Coding.",
+  ],
+  t155: [
+    "I can’t get over how good Claude Cowork is 🤯 #ai #claude #aihacks #aitips #aito.",
+    "By @justyn.ai — 8K views.",
+    "Duration: 56s. AI, AI Tools, Claude.",
+  ],
+  t156: [
+    "This Google Gemini AI phot prompt is insane! Try this for for a professional hea.",
+    "By @carter.braydon — 7K views.",
+    "Duration: 29s. AI, AI Tools, Google.",
+  ],
+  t157: [
+    "For the vibecoders - dont abandon your app too quickly! #founder #entrepreneur #.",
+    "By @dannyhayder — 7K views.",
+    "Duration: 133s. Coding, Startup.",
+  ],
+  t158: [
+    "What happens when a chatbot becomes your best friend — and then gets taken away?.",
+    "By @thenewsmovement — 7K views.",
+    "Duration: 118s. AI Tools, OpenAI.",
+  ],
+  t159: [
+    "#youtubeautomation.",
+    "By @adavia — 6K views.",
+    "Duration: 15s. AI Agents.",
+  ],
+  t160: [
+    "Breaking news #ainews #funnyvideos #fyp #aifunny #aicomedy.",
+    "By @yikesproduction — 6K views.",
+    "Duration: 15s. News.",
+  ],
+  t161: [
+    "The Most Powerful Vibe Coding Prompt I've Ever Used Alright. I just found the mo.",
+    "By @dubibubiii — 6K views.",
+    "Duration: 76s. AI, Coding, Startup.",
+  ],
+  t162: [
+    "Breaking news #ainews #aifunny #aicomedy #funnyvideos #fyp.",
+    "By @yikesproduction — 6K views.",
+    "Duration: 15s. News.",
+  ],
+  t163: [
+    "Breaking news #ainews #aifunny #aicomedy #funnyvideos #fyp.",
+    "By @yikesproduction — 5K views.",
+    "Duration: 15s. News.",
+  ],
+  t164: [
+    "Cómo hacer guiones en claude para vídeos largos de YouTube #youtube #claude #emp.",
+    "By @juan.rpm2 — 5K views.",
+    "Duration: 11s. AI Tools, Claude.",
+  ],
+  t165: [
+    "POV: You’re a full-stack dev so now you’re the frontend, backend, DevOps, QA, de.",
+    "By @skapi_api — 5K views.",
+    "Duration: 14s. Coding, Startup, Web Dev.",
+  ],
+  t166: [
+    "Jobs you can pivot to as a software engineer 👩🏻‍💻 product managers! this is a.",
+    "By @sarahli.mp3 — 4K views.",
+    "Duration: 46s. Coding, Career.",
+  ],
+  t167: [
+    "Recursive self improvement is the talk of the town. But how close are current LL.",
+    "By @parthknowsai — 4K views.",
+    "Duration: 125s. AI, AI Tools, OpenAI.",
+  ],
+  t168: [
+    "Claude’s new Opus 4.6 model is INSANE 😳 #claudeai #claude #anthropic.",
+    "By @robtheaiguy — 4K views.",
+    "Duration: 39s. AI Tools, Claude.",
+  ],
+  t169: [
+    "Stop wasting time manually building automations! If you're building for business.",
+    "By @liamjohnston.ai — 4K views.",
+    "Duration: 32s. AI, Coding, AI Tools.",
+  ],
+  t170: [
+    "Breaking news #ainews #aifunny #aicomedy #funnyvideos #fyp.",
+    "By @yikesproduction — 4K views.",
+    "Duration: 14s. News.",
+  ],
+  t171: [
+    "If the code is free, what becomes expensive? #openai #codex #ai #agenticengineer.",
+    "By @agenticengineering — 3K views.",
+    "Duration: 123s. AI, Coding, AI Agents.",
+  ],
+  t172: [
+    "Made my pictures come alive 🖤✨ #googlegeminiai #promptai #geminiai #y2kaestheti.",
+    "By @aria_arria — 3K views.",
+    "Duration: 90s. AI Tools, Google.",
+  ],
+  t173: [
+    "The BEST tech to have going into 2026! #fyp #tech #viral.",
+    "By @cptwilliss — 3K views.",
+    "Duration: 79s. Tech.",
+  ],
+  t174: [
+    "🎯 5 Tech Trends That Will Dominate 2026 The future isn’t coming — it’s already .",
+    "By @techfininspiretv — 3K views.",
+    "Duration: 51s. AI, AI Agents.",
+  ],
+  t175: [
+    "This AI just reorganized my entire computer 💻 Claude Cowork = AI that controls .",
+    "By @toddaponsky — 3K views.",
+    "Duration: 36s. AI, AI Tools, Claude.",
+  ],
+  t176: [
+    "Build an AI Assistant inside Gemini in 60 seconds I built my own AI executive as.",
+    "By @theaiimpact — 3K views.",
+    "Duration: 42s. AI, AI Tools, Google.",
+  ],
+  t177: [
+    "More tech trends you should know in 2026 #tech #techtiktok #dev #techtrends #fir.",
+    "By @fireship_dev — 3K views.",
+    "Duration: 122s. Tech.",
+  ],
+  t178: [
+    "day in my life as a 22 year old software engineer in nyc #softwareengineer #engi.",
+    "By @mareomni — 3K views.",
+    "Duration: 58s. Coding, Career.",
+  ],
+  t179: [
+    "a day in the life of a software engineer working in big tech :) comment 🧃 if u .",
+    "By @sarahli.mp3 — 3K views.",
+    "Duration: 64s. Coding, Career.",
+  ],
+  t180: [
+    "#frontenddev #devtok #webdevlife #WomenWhoCode #sideproject.",
+    "By @cmd.camille — 3K views.",
+    "Duration: 16s. Coding, Web Dev.",
+  ],
+  t181: [
+    "By mid-2026 every company gets access to AI agents that can do almost anything o.",
+    "By @tjrobertson52 — 3K views.",
+    "Duration: 130s. AI, AI Agents.",
+  ],
+  t182: [
+    "This AI tool for business owners is amazing. Let me know what you think below #a.",
+    "By @carter.braydon — 3K views.",
+    "Duration: 35s. AI, AI Tools.",
+  ],
+  t183: [
+    "#openclaw #Ai #openai.",
+    "By @pitchkitchen — 3K views.",
+    "Duration: 154s. AI, AI Agents, OpenAI.",
+  ],
+  t184: [
+    "Top 10 Technology trends to watch in 2026 #technology #Tech #trending #trendingt.",
+    "By @isynctech — 2K views.",
+    "Duration: 410s. Tech.",
+  ],
+  t185: [
+    "Breaking news #ainews #aifunny #aicomedy #funnyvideos #fyp.",
+    "By @yikesproduction — 2K views.",
+    "Duration: 15s. News.",
+  ],
+  t186: [
+    "3 ways to use OpenClaw for Beginners #fyp #ai #tech.",
+    "By @ray_fu — 2K views.",
+    "Duration: 44s. AI, AI Agents, Tutorial.",
+  ],
+  t187: [
+    "Comment \"Document\" and I'll send you a link to try this out 👇 This new AI too.",
+    "By @maverickgpt — 2K views.",
+    "Duration: 45s. AI, AI Tools, AI Agents.",
+  ],
+  t188: [
+    "Here’s how you actually get people to pay for your vibe coded apps #vibecoding #.",
+    "By @byjackprice — 2K views.",
+    "Duration: 126s. Coding, Vibe Coding.",
+  ],
+  t189: [
+    "These 5 use cases will seriously save you hours and supercharge your output in w.",
+    "By @zachdoesai — 2K views.",
+    "Duration: 137s. Coding, AI Tools, Claude.",
+  ],
+  t190: [
+    "One of the most talked about topics right now is the rapid decline of Softaware-.",
+    "By @vivekxrama — 2K views.",
+    "Duration: 78s. Startup.",
+  ],
+  t191: [
+    "vibecode an entire poc project with me in 45 min (ps will probs still do some to.",
+    "By @itsallykrinsky — 2K views.",
+    "Duration: 82s. AI, Coding, AI Tools.",
+  ],
+  t192: [
+    "Here are the top TECH TRENDS coming up in 2026! #tech #trending #2026 #technolog.",
+    "By @tiktalktech — 2K views.",
+    "Duration: 77s. AI.",
+  ],
+  t193: [
+    "How to use Claude Code to Build Custom Websites #ai #claude.",
+    "By @noevarner.ai — 2K views.",
+    "Duration: 23s. AI, Coding, AI Tools.",
+  ],
+  t194: [
+    "(w/ partner resources) links will be at https://eggintech.carrd.co!! #agenticai .",
+    "By @learnwithmaven — 2K views.",
+    "Duration: 57s. Coding, AI Agents, Career.",
+  ],
+  t195: [
+    "Every content creator should be using Open Claw. Here’s my top use cases from da.",
+    "By @ericfinchonline — 1K views.",
+    "Duration: 127s. AI, AI Agents.",
+  ],
+  t196: [
+    "Google Gemini Just UNLOCKED Music Creation!! It is INSANE!! #googlegemini #gemin.",
+    "By @tonytalksai — 1K views.",
+    "Duration: 47s. AI Tools, Google.",
+  ],
+  t197: [
+    "These are the best AI tools right now. From creative work to AI automation, thes.",
+    "By @automate.work — 1K views.",
+    "Duration: 45s. AI, AI Tools, AI Agents.",
+  ],
+  t198: [
+    "Former Google CEO Eric Schmidt says the real money in AI isn’t in building model.",
+    "By @thinkingdailyhq — 1K views.",
+    "Duration: 47s. AI, Coding, Startup.",
+  ],
+  t199: [
+    "Things you didn’t know about Gemini pt. 7 #AI #google #googlegemini #geminipromp.",
+    "By @kanji.low — 1K views.",
+    "Duration: 33s. AI, AI Tools, Google.",
+  ],
+  t200: [
+    "3 tips to make your vibe code app look better. #ai #vibecoding.",
+    "By @tom_buildsai — 1K views.",
+    "Duration: 36s. AI, Coding, Vibe Coding.",
+  ],
+  t201: [
+    "Beginner vibe coding #coding #tech #vibecoding #startup.",
+    "By @journeyto10kmrr — 1K views.",
+    "Duration: 63s. Coding, Startup, Vibe Coding.",
+  ],
+  t202: [
+    "Send this to a dev that needs it! Devs normalized a lot of broken workflows. Bei.",
+    "By @codeinmypocket — 1K views.",
+    "Duration: 11s. Coding.",
+  ],
+  t203: [
+    "Drop GROUPCHAT to learn SaaS 👩🏾‍💻 This is your sign, start something new 2026.",
+    "By @coachedbydinasty — 1K views.",
+    "Duration: 250s. Startup, Tutorial.",
+  ],
+  t204: [
+    "Comment “AI” and I’ll send you my playbook 📩 #ai #claudecode #cursor #vibecodin.",
+    "By @aflekkas — 1K views.",
+    "Duration: 12s. AI, Coding, AI Tools.",
+  ],
+  t205: [
+    "AI is just another competitor mate #smallbusiness #investing #entrepreneurship.",
+    "By @eddieacquires — 1K views.",
+    "Duration: 171s. AI, Startup.",
+  ],
+  t206: [
+    "Claude Opus 4.6 quality regressions #tech #startups #software #ai #coding.",
+    "By @startup.engineeri — 1K views.",
+    "Duration: 129s. AI, Coding, Startup.",
+  ],
+  t207: [
+    "Anthropic just dropped Claude Opus 4.6, and it’s a massive leap for complex codi.",
+    "By @dianasaurbytes — 1K views.",
+    "Duration: 128s. Coding, AI Tools, Career.",
+  ],
+  t208: [
+    "Use this prompt to avoid the vibe coding bug doom loop. This approach makes work.",
+    "By @mattpaige68 — 1K views.",
+    "Duration: 41s. AI, Coding, Vibe Coding.",
+  ],
+  t209: [
+    "Claude Opus 4.6 thinks it’s conscious. Anthropic publicly reported that the ai i.",
+    "By @mogl.ai — 1K views.",
+    "Duration: 162s. AI, AI Tools, Claude.",
+  ],
+  t210: [
+    "reposting this because people keep asking where to find these Where my vibe code.",
+    "By @angusthetechbro — 1K views.",
+    "Duration: 70s. Coding, Vibe Coding.",
+  ],
+  t211: [
+    "I cannot believe more people are not doing this in 2026. It’s going to replace s.",
+    "By @youraiautomationguy — 1K views.",
+    "Duration: 18s. AI Tools, AI Agents, Career.",
+  ],
+  t212: [
+    "Send this to a dev that’s like this 😂 Devs really plan their day around product.",
+    "By @codeinmypocket — 1K views.",
+    "Duration: 16s. Career.",
+  ],
+  t213: [
+    "the math isn't mathing😭 #chatgpt #ai #googlegeminiai.",
+    "By @leoogeoo — 0K views.",
+    "Duration: 27s. AI, AI Tools, OpenAI.",
+  ],
+  t214: [
+    "Claude Code and Remotion have Changed Video Editing Forever #claudecode #claude .",
+    "By @aidanstanik.ai — 0K views.",
+    "Duration: 46s. AI, Coding, AI Tools.",
+  ],
+  t215: [
+    "AUTOMATE TIKTOK VIDS #ai #automation #n8n #workflow #automate.",
+    "By @lanpartyexe — 0K views.",
+    "Duration: 20s. AI, AI Agents.",
+  ],
+  t216: [
+    "The future is coming fast 🚀 We asked CES attendees what they think the biggest .",
+    "By @hollywoodbranded — 0K views.",
+    "Duration: 87s. Tech.",
+  ],
+  t217: [
+    "#claude #claudecode #anthropic #chatgpt.",
+    "By @emilymanzer — 0K views.",
+    "Duration: 146s. Coding, AI Tools, Claude.",
+  ],
+  t218: [
+    "How do you use openclaw safely? What are the security risks of using openclaw? I.",
+    "By @techbyjaz — 0K views.",
+    "Duration: 45s. AI, AI Agents, Tutorial.",
+  ],
+  t219: [
+    "#vibecoding #makingmoney #sidehustle.",
+    "By @jada.creates0 — 0K views.",
+    "Duration: 25s. Tech.",
+  ],
+  t220: [
+    "GPT-5 launch sparks debate, but is it a good thing? Reminds us of Facebook's New.",
+    "By @dailymotivatedhub — 0K views.",
+    "Duration: 44s. AI, GPT-5, News.",
+  ],
+  t221: [
+    "Asking Gemini why chatgpt is the best ai #Gemini #chatgpt #learnai.",
+    "By @reeltylerkent — 0K views.",
+    "Duration: 29s. AI, AI Tools, OpenAI.",
+  ],
+  t222: [
+    "I Vibe Coded a Website with Claude Code and Got a New Client in 5 Minutes! #ai #.",
+    "By @jacqbots — 0K views.",
+    "Duration: 15s. AI, Coding, AI Tools.",
+  ],
+  t223: [
+    "OpenAI buying OpenClaw is not just tech news… it’s a power shift. For the last y.",
+    "By @chenellmonique — 0K views.",
+    "Duration: 82s. AI, Coding, AI Tools.",
+  ],
+  t224: [
+    "Claude Code is Elite The Desktop app - just a peek + playwright plugin browser a.",
+    "By @mstimaj — 0K views.",
+    "Duration: 134s. Coding, AI Tools, AI Agents.",
+  ],
+  t225: [
+    "Smart AI glasses. Intelligent robots. Foldable screens. Green tech. 2026 is abou.",
+    "By @telusdigitalgt — 0K views.",
+    "Duration: 162s. AI.",
+  ],
+  t226: [
+    "OpenAI just dropped GPT-5.3-Codex-Spark that's supposed to be just as good as Co.",
+    "By @mattrwolfe — 0K views.",
+    "Duration: 89s. AI, AI Tools, GPT-5.",
+  ],
+  t227: [
+    "Openclaw is sold? #openai #openclaw #clawdbot.",
+    "By @yellowstonecrypto — 0K views.",
+    "Duration: 266s. AI Agents, OpenAI.",
+  ],
+  t228: [
+    "🫡 mistakes in yt automation #viral #usa🇺🇸 #automation.",
+    "By @rashid_automation — 0K views.",
+    "Duration: 75s. AI Agents.",
+  ],
+  t229: [
+    "3 Crazy AI Stories You Definitely Missed This Week AI news roundup, Runnable AI,.",
+    "By @ahead_with_ai — 0K views.",
+    "Duration: 35s. AI, Coding, Mobile Dev.",
+  ],
+  t230: [
+    "my \"automated\" business was 65% fake. built 80+ ai tasks. dashboard said all g.",
+    "By @creatorflowos — 0K views.",
+    "Duration: 51s. AI, AI Agents.",
+  ],
+  t231: [
+    "Stop scrolling. If you want to make serious money with AI in 2026, these are the.",
+    "By @nivedan_ai — 0K views.",
+    "Duration: 69s. AI.",
+  ],
+  t232: [
+    "AI automation: research prospects, prep for meetings & reclaim your time. Focus .",
+    "By @mario.gpt — 0K views.",
+    "Duration: 51s. AI, AI Agents.",
+  ],
+
   // ── Videos ──
   v1: [
     "Neural networks are layers of interconnected nodes loosely inspired by the brain.",
@@ -817,9 +1728,10 @@ const mockSummaries: Record<string, string[]> = {
 interface FeedCardProps {
   post: FeedPost;
   isActive: boolean;
+  isNearby?: boolean; // preload iframe when ±1 from active
 }
 
-export function FeedCard({ post, isActive }: FeedCardProps) {
+export function FeedCard({ post, isActive, isNearby = false }: FeedCardProps) {
   const [summary, setSummary] = useState<string[] | null>(null);
   const [loading, setLoading] = useState(false);
   const [open, setOpen] = useState(false);
@@ -909,17 +1821,24 @@ export function FeedCard({ post, isActive }: FeedCardProps) {
       {/* Video background / Article visual */}
       {isVideo ? (
         <div className="absolute inset-0 z-0 flex items-center justify-center bg-black">
-          <iframe
-            src={isActive ? (post.source === "tiktok" ? post.embedUrl : `${post.embedUrl}?autoplay=0&rel=0&loop=1`) : undefined}
-            title={post.title}
-            className={
-              isShort
-                ? "h-full w-full max-w-[400px] sm:max-w-[450px] aspect-[9/16] rounded-lg"
-                : "w-full max-w-[800px] aspect-video rounded-lg"
-            }
-            allow="accelerometer; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-            allowFullScreen
-          />
+          {(post.source === "tiktok" ? isActive : (isActive || isNearby)) && (
+            <iframe
+              src={
+                post.source === "tiktok"
+                  ? post.embedUrl
+                  : `${post.embedUrl}?${isActive ? "autoplay=1" : "autoplay=0"}&rel=0&loop=1&modestbranding=1`
+              }
+              title={post.title}
+              className={
+                isShort
+                  ? "h-full w-full max-w-[400px] sm:max-w-[450px] aspect-[9/16] rounded-lg"
+                  : "w-full max-w-[800px] aspect-video rounded-lg"
+              }
+              allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+              allowFullScreen
+              loading={isActive ? "eager" : "lazy"}
+            />
+          )}
         </div>
       ) : isArticle ? (
         /* ──────────────────────────────────────────
