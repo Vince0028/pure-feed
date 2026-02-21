@@ -4184,7 +4184,10 @@ interface FeedCardProps {
 }
 
 export function FeedCard({ post, isActive, isNearby = false }: FeedCardProps) {
-  const [summary, setSummary] = useState<string[] | null>(null);
+  // Use explicitly provided summary, or fallback to the massive mock dictionary
+  const [summary, setSummary] = useState<string[] | null>(
+    post.summary && post.summary.length > 0 ? post.summary : (mockSummaries[post.id] || null)
+  );
   const [loading, setLoading] = useState(false);
   const [open, setOpen] = useState(false);
 

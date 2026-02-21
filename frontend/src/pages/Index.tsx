@@ -60,7 +60,7 @@ const Index = () => {
       // For mock posts without a fame score, generate a consistent pseudo-random score (10-95)
       // based on their ID, so they mix organically instead of clustering by date.
       const getFame = (p: typeof uniquePosts[0]) => {
-        if (p.fameScore !== undefined) return p.fameScore;
+        if (p.fameScore !== undefined && p.fameScore !== null) return p.fameScore;
         let hash = 0;
         for (let i = 0; i < p.id.length; i++) hash += p.id.charCodeAt(i);
         return 10 + (hash % 85);
