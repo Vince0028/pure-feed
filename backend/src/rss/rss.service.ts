@@ -41,8 +41,11 @@ export class RssService {
             contentType: 'article',
             sourceId: item.link || item.guid || '',
             embedUrl: '',
-            title: item.title || 'Untitled',
-            caption: this.stripHtml(item.contentSnippet || item.content || '').slice(0, 300),
+            title: this.decodeHtml(item.title || 'Untitled'),
+            snippet: this.stripHtml(item.contentSnippet || item.content || '').slice(0, 500),
+            caption: this.stripHtml(item.contentSnippet || item.content || '').slice(0, 120),
+            sourceName: feed.name,
+            publishedAt: item.isoDate || item.pubDate || new Date().toISOString(),
             tags: this.extractTags(item.title || '', item.categories || []),
           });
         }
@@ -56,11 +59,29 @@ export class RssService {
     return results;
   }
 
+  /** Decode HTML entities */
+  private decodeHtml(text: string): string {
+    if (!text) return '';
+    return text
+      .replace(/&amp;/g, '&')
+      .replace(/&lt;/g, '<')
+      .replace(/&gt;/g, '>')
+      .replace(/&quot;/g, '"')
+      .replace(/&#x27;/g, "'")
+      .replace(/&#x2F;/g, '/')
+      .replace(/&#39;/g, "'")
+      .replace(/&#8217;/g, "'")
+      .replace(/&#8220;/g, '"')
+      .replace(/&#8221;/g, '"')
+      .replace(/&apos;/g, "'");
+  }
+
   /**
    * Strip HTML tags from a string.
    */
   private stripHtml(html: string): string {
-    return html.replace(/<[^>]*>/g, '').trim();
+    const stripped = html.replace(/<[^>]*>/g, '').trim();
+    return this.decodeHtml(stripped);
   }
 
   /**

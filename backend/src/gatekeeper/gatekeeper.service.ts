@@ -62,14 +62,31 @@ ${isArticle ? 'Additionally, because this is an article, provide a FAME_SCORE fr
 
   /**
    * Filter an array of raw feed items, keeping only TECH posts.
+   * Preserves pre-computed fameScore from external APIs (HN, Dev.to, Lobsters).
+   * Applies a minimum fameScore threshold for articles to remove junk.
    */
   async filterFeed(items: RawFeedItem[]): Promise<RawFeedItem[]> {
     const results: RawFeedItem[] = [];
+    const MIN_ARTICLE_FAME = 15; // Skip articles below this threshold
 
     for (const item of items) {
+      // Add a 2-second delay between requests to avoid Groq (30 RPM) and Gemini (15 RPM) rate limits
+      await new Promise(resolve => setTimeout(resolve, 2000));
+
       const result = await this.classify(item);
       if (result.verdict === 'TECH') {
-        item.fameScore = result.fameScore;
+        // Only overwrite fameScore if the item doesn't already have one
+        // (external APIs like HN/Dev.to/Lobsters pre-compute from engagement)
+        if (item.fameScore == null && result.fameScore != null) {
+          item.fameScore = result.fameScore;
+        }
+
+        // Skip low-quality articles (1-point Lobsters posts, etc.)
+        if (item.contentType === 'article' && (item.fameScore || 0) < MIN_ARTICLE_FAME) {
+          this.logger.log(`🗑️ LOW FAME: ${item.title} (score: ${item.fameScore})`);
+          continue;
+        }
+
         results.push(item);
         this.logger.log(`✅ TECH: ${item.title} ${item.fameScore ? `(Score: ${item.fameScore})` : ''}`);
       } else {

@@ -54,9 +54,16 @@ const Index = () => {
       const youtube = uniquePosts.filter(p => p.source === "youtube").sort(() => Math.random() - 0.5);
       return [...tiktok, ...youtube];
     } else if (filter === "articles") {
-      // Articles are already sorted by Fame Score from the backend, so preserve that order.
-      // If any mock posts are mixed in, guarantee they fallback to descending Fame Score.
-      return uniquePosts.sort((a, b) => (b.fameScore || 50) - (a.fameScore || 50));
+      // Articles are already sorted by Fame Score from the backend.
+      // For mock posts without a fame score, generate a consistent pseudo-random score (10-95)
+      // based on their ID, so they mix organically instead of clustering by date.
+      const getFame = (p: typeof uniquePosts[0]) => {
+        if (p.fameScore !== undefined) return p.fameScore;
+        let hash = 0;
+        for (let i = 0; i < p.id.length; i++) hash += p.id.charCodeAt(i);
+        return 10 + (hash % 85);
+      };
+      return uniquePosts.sort((a, b) => getFame(b) - getFame(a));
     } else {
       // Always shuffle standard videos
       return [...uniquePosts].sort(() => Math.random() - 0.5);

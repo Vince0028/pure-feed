@@ -4205,7 +4205,9 @@ export function FeedCard({ post, isActive, isNearby = false }: FeedCardProps) {
     setLoading(true);
 
     try {
-      const backendSummary = await summarizePost(post.title, post.caption);
+      // Prioritize the snippet (article body) over the caption (which often just contains stats)
+      const contentToSummarize = post.snippet || post.caption;
+      const backendSummary = await summarizePost(post.title, contentToSummarize, post.sourceId);
       if (backendSummary && backendSummary.length > 0) {
         setSummary(backendSummary);
       } else {
@@ -4374,7 +4376,7 @@ export function FeedCard({ post, isActive, isNearby = false }: FeedCardProps) {
               </div>
 
               {/* Title — editorial style */}
-              <h1 className="text-2xl sm:text-3xl font-bold leading-tight tracking-tight text-foreground">
+              <h1 className="text-2xl sm:text-3xl font-bold leading-tight tracking-tight text-foreground break-words">
                 {post.title}
               </h1>
 
@@ -4383,7 +4385,7 @@ export function FeedCard({ post, isActive, isNearby = false }: FeedCardProps) {
 
               {/* Snippet with keyword highlights */}
               {post.snippet && (
-                <p className="text-sm sm:text-base leading-relaxed text-foreground/65 font-light">
+                <p className="text-sm sm:text-base leading-relaxed text-foreground/65 font-light line-clamp-[8] break-words overflow-hidden text-ellipsis">
                   {highlightKeywords}
                 </p>
               )}

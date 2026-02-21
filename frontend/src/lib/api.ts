@@ -23,13 +23,14 @@ export async function fetchFeed(): Promise<FeedPost[]> {
  */
 export async function summarizePost(
   title: string,
-  content?: string
+  content?: string,
+  url?: string
 ): Promise<string[]> {
   try {
     const res = await fetch(`${API_BASE}/summarize`, {
       method: "POST",
       headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({ title, content }),
+      body: JSON.stringify({ title, content, url }),
     });
     if (!res.ok) throw new Error(`Summarize failed: ${res.status}`);
     const data = await res.json();

@@ -2,7 +2,7 @@ export type ContentType = "short" | "video" | "article";
 
 export interface FeedPost {
   id: string;
-  source: "youtube" | "rss" | "tiktok";
+  source: "youtube" | "rss" | "tiktok" | "hackernews" | "devto" | "lobsters";
   contentType: ContentType;
   sourceId: string;
   embedUrl: string;
@@ -2625,7 +2625,7 @@ export const mockPosts: FeedPost[] = [
     title: "Stop talking to your AI. Start giving it a job.",
     caption: "The future of autonomous AI agents is here and it's wild",
     createdAt: "2026-02-16T20:00:00Z",
-    tags: ["AI Agents","AgenticAI"],
+    tags: ["AI Agents", "AgenticAI"],
   },
   {
     id: "s22",
@@ -2636,7 +2636,7 @@ export const mockPosts: FeedPost[] = [
     title: "Claude Opus 4.6 just dropped. 1M context window is a cheat code.",
     caption: "This changes everything about how we build software",
     createdAt: "2026-02-09T04:00:00Z",
-    tags: ["Claude","Anthropic"],
+    tags: ["Claude", "Anthropic"],
   },
   {
     id: "s23",
@@ -2647,7 +2647,7 @@ export const mockPosts: FeedPost[] = [
     title: "POV: Your AI agent finished your 8-hour project while you slept.",
     caption: "Broke down the latest AI drop in under 60 seconds",
     createdAt: "2025-12-11T23:00:00Z",
-    tags: ["OpenAI","GPT-5"],
+    tags: ["OpenAI", "GPT-5"],
   },
   {
     id: "s24",
@@ -2658,7 +2658,7 @@ export const mockPosts: FeedPost[] = [
     title: "Agentic workflows > Chatbots. The shift is finally here.",
     caption: "Pure tech breakdown, zero fluff, just facts",
     createdAt: "2026-01-07T20:00:00Z",
-    tags: ["Gemini","Google"],
+    tags: ["Gemini", "Google"],
   },
   {
     id: "s25",
@@ -2669,7 +2669,7 @@ export const mockPosts: FeedPost[] = [
     title: "Decomposing complex tasks in parallel. This is how 2026 builds.",
     caption: "Every developer needs to see this right now",
     createdAt: "2025-12-25T18:00:00Z",
-    tags: ["Sora","VideoGen"],
+    tags: ["Sora", "VideoGen"],
   },
   {
     id: "s26",
@@ -2680,7 +2680,7 @@ export const mockPosts: FeedPost[] = [
     title: "Plan Mode vs Act Mode — which one are you using today?",
     caption: "The AI landscape just shifted dramatically",
     createdAt: "2025-11-27T23:00:00Z",
-    tags: ["Vibecoding","AICoding"],
+    tags: ["Vibecoding", "AICoding"],
   },
   {
     id: "s27",
@@ -2691,7 +2691,7 @@ export const mockPosts: FeedPost[] = [
     title: "Giving my AI agent a Life OS. Full health integration enabled.",
     caption: "Quick technical breakdown of the biggest release this week",
     createdAt: "2025-12-03T11:00:00Z",
-    tags: ["BuildInPublic","Startup"],
+    tags: ["BuildInPublic", "Startup"],
   },
   {
     id: "s28",
@@ -2702,7 +2702,7 @@ export const mockPosts: FeedPost[] = [
     title: "OpenClaw just merged. The agentic race is officially heating up.",
     caption: "No one is talking about this but it's huge",
     createdAt: "2025-12-22T21:00:00Z",
-    tags: ["AINews","TechTrends"],
+    tags: ["AINews", "TechTrends"],
   },
   {
     id: "s29",
@@ -2713,7 +2713,7 @@ export const mockPosts: FeedPost[] = [
     title: "If your AI isn't using tools, it's living in 2024.",
     caption: "The tech stack that's dominating in 2026",
     createdAt: "2025-12-13T23:00:00Z",
-    tags: ["AITools","Productivity"],
+    tags: ["AITools", "Productivity"],
   },
   {
     id: "s30",
@@ -2724,7 +2724,7 @@ export const mockPosts: FeedPost[] = [
     title: "Digital coworkers are officially joining the workforce.",
     caption: "This is the kind of content NoFluff.ai was built for",
     createdAt: "2025-11-29T04:00:00Z",
-    tags: ["GenerativeAI","LLM"],
+    tags: ["GenerativeAI", "LLM"],
   },
   {
     id: "s31",
@@ -2735,7 +2735,7 @@ export const mockPosts: FeedPost[] = [
     title: "Repository Intelligence: AI that understands your entire codebase.",
     caption: "Distilled everything you need to know into one short",
     createdAt: "2026-01-21T03:00:00Z",
-    tags: ["MachineLearning","MLOps"],
+    tags: ["MachineLearning", "MLOps"],
   },
   {
     id: "s32",
@@ -2746,7 +2746,7 @@ export const mockPosts: FeedPost[] = [
     title: "Merging 10M pull requests per month. The scale of 2026 is wild.",
     caption: "The implications of this are massive for developers",
     createdAt: "2026-01-12T19:00:00Z",
-    tags: ["LLM","Transformer"],
+    tags: ["LLM", "Transformer"],
   },
   {
     id: "s33",
@@ -2757,7 +2757,7 @@ export const mockPosts: FeedPost[] = [
     title: "My 2026 tech stack: Next.js + NestJS + Gemini 1.5 Flash.",
     caption: "Building the future one commit at a time",
     createdAt: "2026-02-17T08:00:00Z",
-    tags: ["TechTrends2026","Future"],
+    tags: ["TechTrends2026", "Future"],
   },
   {
     id: "s34",
@@ -2768,7 +2768,7 @@ export const mockPosts: FeedPost[] = [
     title: "Stop writing boilerplate. Let the agent handle the Rework Tax.",
     caption: "This is why AI engineers are in such high demand",
     createdAt: "2026-02-02T03:00:00Z",
-    tags: ["SoftwareEngineering","Architecture"],
+    tags: ["SoftwareEngineering", "Architecture"],
   },
   {
     id: "s35",
@@ -2779,7 +2779,7 @@ export const mockPosts: FeedPost[] = [
     title: "Building in public: 100 videos, 0 fluff. Just pure code.",
     caption: "If you're not following this trend you're already behind",
     createdAt: "2026-02-08T05:00:00Z",
-    tags: ["DevTok","Coding"],
+    tags: ["DevTok", "Coding"],
   },
   {
     id: "s36",
@@ -2790,7 +2790,7 @@ export const mockPosts: FeedPost[] = [
     title: "This hackathon project is actually a startup in disguise.",
     caption: "The no-fluff breakdown of what actually matters",
     createdAt: "2025-11-27T01:00:00Z",
-    tags: ["Programming","Algorithms"],
+    tags: ["Programming", "Algorithms"],
   },
   {
     id: "s37",
@@ -2801,7 +2801,7 @@ export const mockPosts: FeedPost[] = [
     title: "Hybrid computing: When Quantum meets AI. Accuracy hits 100%.",
     caption: "Pure signal, zero noise",
     createdAt: "2026-01-15T08:00:00Z",
-    tags: ["SaaS","Cloud"],
+    tags: ["SaaS", "Cloud"],
   },
   {
     id: "s38",
@@ -2812,7 +2812,7 @@ export const mockPosts: FeedPost[] = [
     title: "Infrastructure matters. $650B being pumped into AI data centers.",
     caption: "The tech everyone will be using by next quarter",
     createdAt: "2026-01-18T05:00:00Z",
-    tags: ["Automation","Workflow"],
+    tags: ["Automation", "Workflow"],
   },
   {
     id: "s39",
@@ -2823,7 +2823,7 @@ export const mockPosts: FeedPost[] = [
     title: "Mixture of Experts (MoE) is making AI 20x cheaper. No excuses.",
     caption: "3 key takeaways from the latest AI announcement",
     createdAt: "2026-02-05T07:00:00Z",
-    tags: ["Python","DataScience"],
+    tags: ["Python", "DataScience"],
   },
   {
     id: "s40",
@@ -2834,7 +2834,7 @@ export const mockPosts: FeedPost[] = [
     title: "Code consistency check: Enforcing 2-space indentation with AI.",
     caption: "This changes the game for indie developers",
     createdAt: "2026-01-24T06:00:00Z",
-    tags: ["React","Frontend"],
+    tags: ["React", "Frontend"],
   },
   {
     id: "s41",
@@ -2845,7 +2845,7 @@ export const mockPosts: FeedPost[] = [
     title: "THIS IS NOT A DRILL: OpenAI just hired the OpenClaw founder.",
     caption: "The breakdown that saves you 30 minutes of research",
     createdAt: "2026-01-28T15:00:00Z",
-    tags: ["TypeScript","WebDev"],
+    tags: ["TypeScript", "WebDev"],
   },
   {
     id: "s42",
@@ -2856,7 +2856,7 @@ export const mockPosts: FeedPost[] = [
     title: "The $650B AI bet. Tech giants are going all in on 2026 infrastructure.",
     caption: "Why this matters more than people realize",
     createdAt: "2025-11-28T15:00:00Z",
-    tags: ["Next.js","Fullstack"],
+    tags: ["Next.js", "Fullstack"],
   },
   {
     id: "s43",
@@ -2867,7 +2867,7 @@ export const mockPosts: FeedPost[] = [
     title: "MiniMax just dropped a model at 1/20th the cost of Opus.",
     caption: "The technical deep dive in short form",
     createdAt: "2026-01-08T10:00:00Z",
-    tags: ["NestJS","Backend"],
+    tags: ["NestJS", "Backend"],
   },
   {
     id: "s44",
@@ -2878,7 +2878,7 @@ export const mockPosts: FeedPost[] = [
     title: "Trust AI is the new firewall. Authentic content only.",
     caption: "Production-ready insights in under a minute",
     createdAt: "2025-12-04T13:00:00Z",
-    tags: ["Docker","DevOps"],
+    tags: ["Docker", "DevOps"],
   },
   {
     id: "s45",
@@ -2889,7 +2889,7 @@ export const mockPosts: FeedPost[] = [
     title: "Emotion AI is reading your Micro-reactions. The algorithm is watching.",
     caption: "The AI tool that's replacing entire teams",
     createdAt: "2025-12-10T21:00:00Z",
-    tags: ["Kubernetes","Infrastructure"],
+    tags: ["Kubernetes", "Infrastructure"],
   },
   {
     id: "s46",
@@ -2900,7 +2900,7 @@ export const mockPosts: FeedPost[] = [
     title: "Singularity check: AI agents are building their own social network.",
     caption: "Quick update on the biggest shift in AI this week",
     createdAt: "2026-02-13T23:00:00Z",
-    tags: ["RAG","VectorDB"],
+    tags: ["RAG", "VectorDB"],
   },
   {
     id: "s47",
@@ -2911,7 +2911,7 @@ export const mockPosts: FeedPost[] = [
     title: "Microsoft predicts the health gap closes this year with AI triage.",
     caption: "Everything you need to know, nothing you don't",
     createdAt: "2025-12-04T09:00:00Z",
-    tags: ["PromptEngineering","LLM"],
+    tags: ["PromptEngineering", "LLM"],
   },
   {
     id: "s48",
@@ -2922,7 +2922,7 @@ export const mockPosts: FeedPost[] = [
     title: "New phase unlocked: AI as a partner, not an instrument.",
     caption: "The simplest explanation of this complex topic",
     createdAt: "2026-02-07T21:00:00Z",
-    tags: ["OpenSource","GitHub"],
+    tags: ["OpenSource", "GitHub"],
   },
   {
     id: "s49",
@@ -2933,7 +2933,7 @@ export const mockPosts: FeedPost[] = [
     title: "The death of AI slop. We only want the high-caliber output.",
     caption: "This is what peak developer productivity looks like",
     createdAt: "2025-12-11T01:00:00Z",
-    tags: ["Cybersecurity","InfoSec"],
+    tags: ["Cybersecurity", "InfoSec"],
   },
   {
     id: "s50",
@@ -2944,7 +2944,7 @@ export const mockPosts: FeedPost[] = [
     title: "Quantum advantage is closer than you think. Years, not decades.",
     caption: "Here's what changed and why you should care",
     createdAt: "2026-02-12T07:00:00Z",
-    tags: ["QuantumComputing","Research"],
+    tags: ["QuantumComputing", "Research"],
   },
   {
     id: "s51",
@@ -2955,7 +2955,7 @@ export const mockPosts: FeedPost[] = [
     title: "Pure tech. 0% filler.",
     caption: "The future of autonomous AI agents is here and it's wild",
     createdAt: "2025-12-19T06:00:00Z",
-    tags: ["Robotics","Hardware"],
+    tags: ["Robotics", "Hardware"],
   },
   {
     id: "s52",
@@ -2966,7 +2966,7 @@ export const mockPosts: FeedPost[] = [
     title: "Read the summary, skip the video. You're welcome.",
     caption: "This changes everything about how we build software",
     createdAt: "2025-11-30T21:00:00Z",
-    tags: ["EdgeAI","IoT"],
+    tags: ["EdgeAI", "IoT"],
   },
   {
     id: "s53",
@@ -2977,7 +2977,7 @@ export const mockPosts: FeedPost[] = [
     title: "The technical specs you actually need.",
     caption: "Broke down the latest AI drop in under 60 seconds",
     createdAt: "2025-12-30T12:00:00Z",
-    tags: ["DataEngineering","ETL"],
+    tags: ["DataEngineering", "ETL"],
   },
   {
     id: "s54",
@@ -2988,7 +2988,7 @@ export const mockPosts: FeedPost[] = [
     title: "No lifestyle vlogs here. Just hard news.",
     caption: "Pure tech breakdown, zero fluff, just facts",
     createdAt: "2025-11-22T04:00:00Z",
-    tags: ["WebAssembly","Performance"],
+    tags: ["WebAssembly", "Performance"],
   },
   {
     id: "s55",
@@ -2999,7 +2999,7 @@ export const mockPosts: FeedPost[] = [
     title: "3 bullet points > 1 minute of rambling.",
     caption: "Every developer needs to see this right now",
     createdAt: "2025-11-28T05:00:00Z",
-    tags: ["Rust","SystemsProgramming"],
+    tags: ["Rust", "SystemsProgramming"],
   },
   {
     id: "s56",
@@ -3010,7 +3010,7 @@ export const mockPosts: FeedPost[] = [
     title: "Distilled intelligence.",
     caption: "The AI landscape just shifted dramatically",
     createdAt: "2025-12-04T19:00:00Z",
-    tags: ["AI Agents","AgenticAI"],
+    tags: ["AI Agents", "AgenticAI"],
   },
   {
     id: "s57",
@@ -3021,7 +3021,7 @@ export const mockPosts: FeedPost[] = [
     title: "Kill the scroller's fatigue.",
     caption: "Quick technical breakdown of the biggest release this week",
     createdAt: "2025-12-25T21:00:00Z",
-    tags: ["Claude","Anthropic"],
+    tags: ["Claude", "Anthropic"],
   },
   {
     id: "s58",
@@ -3032,7 +3032,7 @@ export const mockPosts: FeedPost[] = [
     title: "Intentional content for intentional builders.",
     caption: "No one is talking about this but it's huge",
     createdAt: "2025-12-22T10:00:00Z",
-    tags: ["OpenAI","GPT-5"],
+    tags: ["OpenAI", "GPT-5"],
   },
   {
     id: "s59",
@@ -3043,7 +3043,7 @@ export const mockPosts: FeedPost[] = [
     title: "Caliber over clout.",
     caption: "The tech stack that's dominating in 2026",
     createdAt: "2025-12-02T18:00:00Z",
-    tags: ["Gemini","Google"],
+    tags: ["Gemini", "Google"],
   },
   {
     id: "s60",
@@ -3054,7 +3054,7 @@ export const mockPosts: FeedPost[] = [
     title: "The anti-filler feed.",
     caption: "This is the kind of content NoFluff.ai was built for",
     createdAt: "2025-12-11T03:00:00Z",
-    tags: ["Sora","VideoGen"],
+    tags: ["Sora", "VideoGen"],
   },
   {
     id: "s61",
@@ -3065,7 +3065,7 @@ export const mockPosts: FeedPost[] = [
     title: "Claude Code just shipped multi-file editing. Cursor is shaking.",
     caption: "Distilled everything you need to know into one short",
     createdAt: "2026-02-07T12:00:00Z",
-    tags: ["Vibecoding","AICoding"],
+    tags: ["Vibecoding", "AICoding"],
   },
   {
     id: "s62",
@@ -3076,7 +3076,7 @@ export const mockPosts: FeedPost[] = [
     title: "GPT-5 chain-of-thought reasoning is insane in production.",
     caption: "The implications of this are massive for developers",
     createdAt: "2025-12-11T21:00:00Z",
-    tags: ["BuildInPublic","Startup"],
+    tags: ["BuildInPublic", "Startup"],
   },
   {
     id: "s63",
@@ -3087,7 +3087,7 @@ export const mockPosts: FeedPost[] = [
     title: "This RAG pipeline reduced hallucinations by 90%.",
     caption: "Building the future one commit at a time",
     createdAt: "2025-11-23T20:00:00Z",
-    tags: ["AINews","TechTrends"],
+    tags: ["AINews", "TechTrends"],
   },
   {
     id: "s64",
@@ -3098,7 +3098,7 @@ export const mockPosts: FeedPost[] = [
     title: "Every SaaS app will have an AI agent by end of 2026.",
     caption: "This is why AI engineers are in such high demand",
     createdAt: "2026-02-15T22:00:00Z",
-    tags: ["AITools","Productivity"],
+    tags: ["AITools", "Productivity"],
   },
   {
     id: "s65",
@@ -3109,7 +3109,7 @@ export const mockPosts: FeedPost[] = [
     title: "Fine-tuning vs prompting: the cost breakdown nobody shows you.",
     caption: "If you're not following this trend you're already behind",
     createdAt: "2026-01-25T09:00:00Z",
-    tags: ["GenerativeAI","LLM"],
+    tags: ["GenerativeAI", "LLM"],
   },
   {
     id: "s66",
@@ -3120,7 +3120,7 @@ export const mockPosts: FeedPost[] = [
     title: "AI-generated code just passed 60% of all new GitHub commits.",
     caption: "The no-fluff breakdown of what actually matters",
     createdAt: "2026-01-20T23:00:00Z",
-    tags: ["MachineLearning","MLOps"],
+    tags: ["MachineLearning", "MLOps"],
   },
   {
     id: "s67",
@@ -3131,7 +3131,7 @@ export const mockPosts: FeedPost[] = [
     title: "The real reason senior devs aren't scared of AI.",
     caption: "Pure signal, zero noise",
     createdAt: "2025-11-23T03:00:00Z",
-    tags: ["LLM","Transformer"],
+    tags: ["LLM", "Transformer"],
   },
   {
     id: "s68",
@@ -3142,7 +3142,7 @@ export const mockPosts: FeedPost[] = [
     title: "Building MCP servers from scratch — the full guide.",
     caption: "The tech everyone will be using by next quarter",
     createdAt: "2025-12-14T16:00:00Z",
-    tags: ["TechTrends2026","Future"],
+    tags: ["TechTrends2026", "Future"],
   },
   {
     id: "s69",
@@ -3153,7 +3153,7 @@ export const mockPosts: FeedPost[] = [
     title: "Your Python script is 100x slower than it needs to be.",
     caption: "3 key takeaways from the latest AI announcement",
     createdAt: "2026-01-05T23:00:00Z",
-    tags: ["SoftwareEngineering","Architecture"],
+    tags: ["SoftwareEngineering", "Architecture"],
   },
   {
     id: "s70",
@@ -3164,7 +3164,7 @@ export const mockPosts: FeedPost[] = [
     title: "TypeScript 6.0 just dropped. Here's what changed.",
     caption: "This changes the game for indie developers",
     createdAt: "2025-11-22T02:00:00Z",
-    tags: ["DevTok","Coding"],
+    tags: ["DevTok", "Coding"],
   },
   {
     id: "s71",
@@ -3175,7 +3175,7 @@ export const mockPosts: FeedPost[] = [
     title: "NestJS + Gemini = the fastest AI backend you can build.",
     caption: "The breakdown that saves you 30 minutes of research",
     createdAt: "2025-12-13T16:00:00Z",
-    tags: ["Programming","Algorithms"],
+    tags: ["Programming", "Algorithms"],
   },
   {
     id: "s72",
@@ -3186,7 +3186,7 @@ export const mockPosts: FeedPost[] = [
     title: "React Server Components explained in 60 seconds.",
     caption: "Why this matters more than people realize",
     createdAt: "2026-02-03T18:00:00Z",
-    tags: ["SaaS","Cloud"],
+    tags: ["SaaS", "Cloud"],
   },
   {
     id: "s73",
@@ -3197,7 +3197,7 @@ export const mockPosts: FeedPost[] = [
     title: "Tailwind CSS 4.0 rewrites everything. Here's the migration path.",
     caption: "The technical deep dive in short form",
     createdAt: "2026-02-02T10:00:00Z",
-    tags: ["Automation","Workflow"],
+    tags: ["Automation", "Workflow"],
   },
   {
     id: "s74",
@@ -3208,7 +3208,7 @@ export const mockPosts: FeedPost[] = [
     title: "Why every startup is switching to Bun from Node.js.",
     caption: "Production-ready insights in under a minute",
     createdAt: "2025-12-01T20:00:00Z",
-    tags: ["Python","DataScience"],
+    tags: ["Python", "DataScience"],
   },
   {
     id: "s75",
@@ -3219,7 +3219,7 @@ export const mockPosts: FeedPost[] = [
     title: "Vercel's edge runtime just got AI inference built in.",
     caption: "The AI tool that's replacing entire teams",
     createdAt: "2026-02-03T20:00:00Z",
-    tags: ["React","Frontend"],
+    tags: ["React", "Frontend"],
   },
   {
     id: "s76",
@@ -3230,7 +3230,7 @@ export const mockPosts: FeedPost[] = [
     title: "The AI coding assistant tier list for 2026.",
     caption: "Quick update on the biggest shift in AI this week",
     createdAt: "2025-12-07T15:00:00Z",
-    tags: ["TypeScript","WebDev"],
+    tags: ["TypeScript", "WebDev"],
   },
   {
     id: "s77",
@@ -3241,7 +3241,7 @@ export const mockPosts: FeedPost[] = [
     title: "Kubernetes autoscaling for LLM inference workloads.",
     caption: "Everything you need to know, nothing you don't",
     createdAt: "2025-11-25T08:00:00Z",
-    tags: ["Next.js","Fullstack"],
+    tags: ["Next.js", "Fullstack"],
   },
   {
     id: "s78",
@@ -3252,7 +3252,7 @@ export const mockPosts: FeedPost[] = [
     title: "Serverless GPUs are killing reserved instances.",
     caption: "The simplest explanation of this complex topic",
     createdAt: "2026-01-25T15:00:00Z",
-    tags: ["NestJS","Backend"],
+    tags: ["NestJS", "Backend"],
   },
   {
     id: "s79",
@@ -3263,7 +3263,7 @@ export const mockPosts: FeedPost[] = [
     title: "How to build a vector database from scratch.",
     caption: "This is what peak developer productivity looks like",
     createdAt: "2025-11-23T15:00:00Z",
-    tags: ["Docker","DevOps"],
+    tags: ["Docker", "DevOps"],
   },
   {
     id: "s80",
@@ -3274,7 +3274,7 @@ export const mockPosts: FeedPost[] = [
     title: "LangChain vs LlamaIndex: which one actually scales?",
     caption: "Here's what changed and why you should care",
     createdAt: "2026-01-27T23:00:00Z",
-    tags: ["Kubernetes","Infrastructure"],
+    tags: ["Kubernetes", "Infrastructure"],
   },
   {
     id: "s81",
@@ -3285,7 +3285,7 @@ export const mockPosts: FeedPost[] = [
     title: "Your AI agent needs guardrails. Here's how to add them.",
     caption: "The future of autonomous AI agents is here and it's wild",
     createdAt: "2025-12-17T18:00:00Z",
-    tags: ["RAG","VectorDB"],
+    tags: ["RAG", "VectorDB"],
   },
   {
     id: "s82",
@@ -3296,7 +3296,7 @@ export const mockPosts: FeedPost[] = [
     title: "The prompt engineering tricks that actually work in production.",
     caption: "This changes everything about how we build software",
     createdAt: "2025-12-14T22:00:00Z",
-    tags: ["PromptEngineering","LLM"],
+    tags: ["PromptEngineering", "LLM"],
   },
   {
     id: "s83",
@@ -3307,7 +3307,7 @@ export const mockPosts: FeedPost[] = [
     title: "Streaming LLM responses: the architecture deep dive.",
     caption: "Broke down the latest AI drop in under 60 seconds",
     createdAt: "2025-12-30T10:00:00Z",
-    tags: ["OpenSource","GitHub"],
+    tags: ["OpenSource", "GitHub"],
   },
   {
     id: "s84",
@@ -3318,7 +3318,7 @@ export const mockPosts: FeedPost[] = [
     title: "Why WebAssembly is the future of edge computing.",
     caption: "Pure tech breakdown, zero fluff, just facts",
     createdAt: "2025-12-29T02:00:00Z",
-    tags: ["Cybersecurity","InfoSec"],
+    tags: ["Cybersecurity", "InfoSec"],
   },
   {
     id: "s85",
@@ -3329,7 +3329,7 @@ export const mockPosts: FeedPost[] = [
     title: "Rust is eating Python's lunch in ML inference.",
     caption: "Every developer needs to see this right now",
     createdAt: "2025-11-24T20:00:00Z",
-    tags: ["QuantumComputing","Research"],
+    tags: ["QuantumComputing", "Research"],
   },
   {
     id: "s86",
@@ -3340,7 +3340,7 @@ export const mockPosts: FeedPost[] = [
     title: "Docker containers for AI: the complete 2026 setup.",
     caption: "The AI landscape just shifted dramatically",
     createdAt: "2026-01-17T07:00:00Z",
-    tags: ["Robotics","Hardware"],
+    tags: ["Robotics", "Hardware"],
   },
   {
     id: "s87",
@@ -3351,7 +3351,7 @@ export const mockPosts: FeedPost[] = [
     title: "CI/CD pipelines with AI code review built in.",
     caption: "Quick technical breakdown of the biggest release this week",
     createdAt: "2026-02-01T05:00:00Z",
-    tags: ["EdgeAI","IoT"],
+    tags: ["EdgeAI", "IoT"],
   },
   {
     id: "s88",
@@ -3362,7 +3362,7 @@ export const mockPosts: FeedPost[] = [
     title: "GraphQL vs tRPC vs REST: the 2026 verdict.",
     caption: "No one is talking about this but it's huge",
     createdAt: "2026-01-08T18:00:00Z",
-    tags: ["DataEngineering","ETL"],
+    tags: ["DataEngineering", "ETL"],
   },
   {
     id: "s89",
@@ -3373,7 +3373,7 @@ export const mockPosts: FeedPost[] = [
     title: "Edge AI is processing 1B requests per day without cloud.",
     caption: "The tech stack that's dominating in 2026",
     createdAt: "2026-01-25T10:00:00Z",
-    tags: ["WebAssembly","Performance"],
+    tags: ["WebAssembly", "Performance"],
   },
   {
     id: "s90",
@@ -3384,7 +3384,7 @@ export const mockPosts: FeedPost[] = [
     title: "The $0 AI stack: build production apps for free.",
     caption: "This is the kind of content NoFluff.ai was built for",
     createdAt: "2026-01-05T03:00:00Z",
-    tags: ["Rust","SystemsProgramming"],
+    tags: ["Rust", "SystemsProgramming"],
   },
   {
     id: "s91",
@@ -3395,7 +3395,7 @@ export const mockPosts: FeedPost[] = [
     title: "How to deploy LLMs on a $5/month VPS.",
     caption: "Distilled everything you need to know into one short",
     createdAt: "2025-12-29T11:00:00Z",
-    tags: ["AI Agents","AgenticAI"],
+    tags: ["AI Agents", "AgenticAI"],
   },
   {
     id: "s92",
@@ -3406,7 +3406,7 @@ export const mockPosts: FeedPost[] = [
     title: "AI pair programming increased my output by 3x.",
     caption: "The implications of this are massive for developers",
     createdAt: "2026-02-14T20:00:00Z",
-    tags: ["Claude","Anthropic"],
+    tags: ["Claude", "Anthropic"],
   },
   {
     id: "s93",
@@ -3417,7 +3417,7 @@ export const mockPosts: FeedPost[] = [
     title: "The security risks of AI-generated code nobody talks about.",
     caption: "Building the future one commit at a time",
     createdAt: "2025-12-06T22:00:00Z",
-    tags: ["OpenAI","GPT-5"],
+    tags: ["OpenAI", "GPT-5"],
   },
   {
     id: "s94",
@@ -3428,7 +3428,7 @@ export const mockPosts: FeedPost[] = [
     title: "MCP protocol explained: how agents connect to tools.",
     caption: "This is why AI engineers are in such high demand",
     createdAt: "2026-01-12T21:00:00Z",
-    tags: ["Gemini","Google"],
+    tags: ["Gemini", "Google"],
   },
   {
     id: "s95",
@@ -3439,7 +3439,7 @@ export const mockPosts: FeedPost[] = [
     title: "Building AI agents that can browse the web autonomously.",
     caption: "If you're not following this trend you're already behind",
     createdAt: "2025-12-24T06:00:00Z",
-    tags: ["Sora","VideoGen"],
+    tags: ["Sora", "VideoGen"],
   },
   {
     id: "s96",
@@ -3450,7 +3450,7 @@ export const mockPosts: FeedPost[] = [
     title: "Voice AI just hit human-level latency. 200ms response time.",
     caption: "The no-fluff breakdown of what actually matters",
     createdAt: "2026-01-04T09:00:00Z",
-    tags: ["Vibecoding","AICoding"],
+    tags: ["Vibecoding", "AICoding"],
   },
   {
     id: "s97",
@@ -3461,7 +3461,7 @@ export const mockPosts: FeedPost[] = [
     title: "This open-source model beats GPT-4 on coding benchmarks.",
     caption: "Pure signal, zero noise",
     createdAt: "2026-01-04T15:00:00Z",
-    tags: ["BuildInPublic","Startup"],
+    tags: ["BuildInPublic", "Startup"],
   },
   {
     id: "s98",
@@ -3472,7 +3472,7 @@ export const mockPosts: FeedPost[] = [
     title: "Why your AI startup needs a data moat, not a model.",
     caption: "The tech everyone will be using by next quarter",
     createdAt: "2026-01-01T11:00:00Z",
-    tags: ["AINews","TechTrends"],
+    tags: ["AINews", "TechTrends"],
   },
   {
     id: "s99",
@@ -3483,7 +3483,7 @@ export const mockPosts: FeedPost[] = [
     title: "The transformer architecture is 8 years old. What's next?",
     caption: "3 key takeaways from the latest AI announcement",
     createdAt: "2025-12-30T04:00:00Z",
-    tags: ["AITools","Productivity"],
+    tags: ["AITools", "Productivity"],
   },
   {
     id: "s100",
@@ -3494,7 +3494,7 @@ export const mockPosts: FeedPost[] = [
     title: "Mixture of Experts: how to serve 100B params on consumer GPUs.",
     caption: "This changes the game for indie developers",
     createdAt: "2025-12-29T19:00:00Z",
-    tags: ["GenerativeAI","LLM"],
+    tags: ["GenerativeAI", "LLM"],
   },
   {
     id: "s101",
@@ -3505,7 +3505,7 @@ export const mockPosts: FeedPost[] = [
     title: "AI is writing 40% of Google's new code internally.",
     caption: "The breakdown that saves you 30 minutes of research",
     createdAt: "2026-01-30T11:00:00Z",
-    tags: ["MachineLearning","MLOps"],
+    tags: ["MachineLearning", "MLOps"],
   },
   {
     id: "s102",
@@ -3516,7 +3516,7 @@ export const mockPosts: FeedPost[] = [
     title: "The complete guide to AI agent memory systems.",
     caption: "Why this matters more than people realize",
     createdAt: "2026-02-02T19:00:00Z",
-    tags: ["LLM","Transformer"],
+    tags: ["LLM", "Transformer"],
   },
   {
     id: "s103",
@@ -3527,7 +3527,7 @@ export const mockPosts: FeedPost[] = [
     title: "Building production-grade chatbots with Anthropic's API.",
     caption: "The technical deep dive in short form",
     createdAt: "2025-11-21T07:00:00Z",
-    tags: ["TechTrends2026","Future"],
+    tags: ["TechTrends2026", "Future"],
   },
   {
     id: "s104",
@@ -3538,7 +3538,7 @@ export const mockPosts: FeedPost[] = [
     title: "Sora just generated a 60-second film from a text prompt.",
     caption: "Production-ready insights in under a minute",
     createdAt: "2025-12-23T17:00:00Z",
-    tags: ["SoftwareEngineering","Architecture"],
+    tags: ["SoftwareEngineering", "Architecture"],
   },
   {
     id: "s105",
@@ -3549,7 +3549,7 @@ export const mockPosts: FeedPost[] = [
     title: "Why every dev should learn prompt engineering in 2026.",
     caption: "The AI tool that's replacing entire teams",
     createdAt: "2026-01-14T00:00:00Z",
-    tags: ["DevTok","Coding"],
+    tags: ["DevTok", "Coding"],
   },
   {
     id: "s106",
@@ -3560,7 +3560,7 @@ export const mockPosts: FeedPost[] = [
     title: "The 3 AI papers you MUST read this month.",
     caption: "Quick update on the biggest shift in AI this week",
     createdAt: "2026-01-12T01:00:00Z",
-    tags: ["Programming","Algorithms"],
+    tags: ["Programming", "Algorithms"],
   },
   {
     id: "s107",
@@ -3571,7 +3571,7 @@ export const mockPosts: FeedPost[] = [
     title: "Tech layoffs are fake. AI engineering jobs are exploding.",
     caption: "Everything you need to know, nothing you don't",
     createdAt: "2025-12-17T18:00:00Z",
-    tags: ["SaaS","Cloud"],
+    tags: ["SaaS", "Cloud"],
   },
   {
     id: "s108",
@@ -3582,7 +3582,7 @@ export const mockPosts: FeedPost[] = [
     title: "Multi-modal AI: text + image + video in one model.",
     caption: "The simplest explanation of this complex topic",
     createdAt: "2025-12-01T18:00:00Z",
-    tags: ["Automation","Workflow"],
+    tags: ["Automation", "Workflow"],
   },
   {
     id: "s109",
@@ -3593,7 +3593,7 @@ export const mockPosts: FeedPost[] = [
     title: "From junior dev to AI engineer in 6 months. My roadmap.",
     caption: "This is what peak developer productivity looks like",
     createdAt: "2025-11-29T11:00:00Z",
-    tags: ["Python","DataScience"],
+    tags: ["Python", "DataScience"],
   },
   {
     id: "s110",
@@ -3604,7 +3604,7 @@ export const mockPosts: FeedPost[] = [
     title: "The real cost of running LLMs in production.",
     caption: "Here's what changed and why you should care",
     createdAt: "2025-11-29T13:00:00Z",
-    tags: ["React","Frontend"],
+    tags: ["React", "Frontend"],
   },
   {
     id: "s111",
@@ -3615,7 +3615,7 @@ export const mockPosts: FeedPost[] = [
     title: "AI-powered debugging found bugs human devs missed for years.",
     caption: "The future of autonomous AI agents is here and it's wild",
     createdAt: "2026-01-16T05:00:00Z",
-    tags: ["TypeScript","WebDev"],
+    tags: ["TypeScript", "WebDev"],
   },
   {
     id: "s112",
@@ -3626,7 +3626,7 @@ export const mockPosts: FeedPost[] = [
     title: "Next.js 16 + AI: server actions meet intelligent routing.",
     caption: "This changes everything about how we build software",
     createdAt: "2026-01-28T13:00:00Z",
-    tags: ["Next.js","Fullstack"],
+    tags: ["Next.js", "Fullstack"],
   },
   {
     id: "s113",
@@ -3637,7 +3637,7 @@ export const mockPosts: FeedPost[] = [
     title: "Python 3.14 drops the GIL. Performance is finally here.",
     caption: "Broke down the latest AI drop in under 60 seconds",
     createdAt: "2025-12-24T23:00:00Z",
-    tags: ["NestJS","Backend"],
+    tags: ["NestJS", "Backend"],
   },
   {
     id: "s114",
@@ -3648,7 +3648,7 @@ export const mockPosts: FeedPost[] = [
     title: "Attention mechanism explained with zero math.",
     caption: "Pure tech breakdown, zero fluff, just facts",
     createdAt: "2025-12-04T12:00:00Z",
-    tags: ["Docker","DevOps"],
+    tags: ["Docker", "DevOps"],
   },
   {
     id: "s115",
@@ -3659,7 +3659,7 @@ export const mockPosts: FeedPost[] = [
     title: "Why your database needs vector search in 2026.",
     caption: "Every developer needs to see this right now",
     createdAt: "2025-11-19T23:00:00Z",
-    tags: ["Kubernetes","Infrastructure"],
+    tags: ["Kubernetes", "Infrastructure"],
   },
   {
     id: "s116",
@@ -3670,7 +3670,7 @@ export const mockPosts: FeedPost[] = [
     title: "AI agents are replacing entire QA teams.",
     caption: "The AI landscape just shifted dramatically",
     createdAt: "2025-12-12T15:00:00Z",
-    tags: ["RAG","VectorDB"],
+    tags: ["RAG", "VectorDB"],
   },
   {
     id: "s117",
@@ -3681,7 +3681,7 @@ export const mockPosts: FeedPost[] = [
     title: "The no-code AI app builder that actually works.",
     caption: "Quick technical breakdown of the biggest release this week",
     createdAt: "2026-02-03T11:00:00Z",
-    tags: ["PromptEngineering","LLM"],
+    tags: ["PromptEngineering", "LLM"],
   },
   {
     id: "s118",
@@ -3692,7 +3692,7 @@ export const mockPosts: FeedPost[] = [
     title: "Self-healing infrastructure: AI managing your servers 24/7.",
     caption: "No one is talking about this but it's huge",
     createdAt: "2025-12-27T14:00:00Z",
-    tags: ["OpenSource","GitHub"],
+    tags: ["OpenSource", "GitHub"],
   },
   {
     id: "s119",
@@ -3703,7 +3703,7 @@ export const mockPosts: FeedPost[] = [
     title: "How Stripe uses AI to prevent 99.9% of fraud.",
     caption: "The tech stack that's dominating in 2026",
     createdAt: "2025-12-31T11:00:00Z",
-    tags: ["Cybersecurity","InfoSec"],
+    tags: ["Cybersecurity", "InfoSec"],
   },
   {
     id: "s120",
@@ -3714,7 +3714,7 @@ export const mockPosts: FeedPost[] = [
     title: "The biggest AI acquisitions of 2026 so far.",
     caption: "This is the kind of content NoFluff.ai was built for",
     createdAt: "2026-01-16T03:00:00Z",
-    tags: ["QuantumComputing","Research"],
+    tags: ["QuantumComputing", "Research"],
   },
   {
     id: "s121",
@@ -3725,7 +3725,7 @@ export const mockPosts: FeedPost[] = [
     title: "Building real-time AI features with WebSockets.",
     caption: "Distilled everything you need to know into one short",
     createdAt: "2025-12-05T19:00:00Z",
-    tags: ["Robotics","Hardware"],
+    tags: ["Robotics", "Hardware"],
   },
   {
     id: "s122",
@@ -3736,7 +3736,7 @@ export const mockPosts: FeedPost[] = [
     title: "Open-source LLMs are finally beating proprietary models.",
     caption: "The implications of this are massive for developers",
     createdAt: "2025-12-07T00:00:00Z",
-    tags: ["EdgeAI","IoT"],
+    tags: ["EdgeAI", "IoT"],
   },
   {
     id: "s123",
@@ -3747,7 +3747,7 @@ export const mockPosts: FeedPost[] = [
     title: "The AI engineer salary guide: $200K-$500K in 2026.",
     caption: "Building the future one commit at a time",
     createdAt: "2026-02-03T20:00:00Z",
-    tags: ["DataEngineering","ETL"],
+    tags: ["DataEngineering", "ETL"],
   },
   {
     id: "s124",
@@ -3758,7 +3758,7 @@ export const mockPosts: FeedPost[] = [
     title: "GitHub Copilot Workspace: from issue to PR automatically.",
     caption: "This is why AI engineers are in such high demand",
     createdAt: "2025-12-26T16:00:00Z",
-    tags: ["WebAssembly","Performance"],
+    tags: ["WebAssembly", "Performance"],
   },
   {
     id: "s125",
@@ -3769,7 +3769,7 @@ export const mockPosts: FeedPost[] = [
     title: "Why you should care about AI safety research.",
     caption: "If you're not following this trend you're already behind",
     createdAt: "2025-12-13T05:00:00Z",
-    tags: ["Rust","SystemsProgramming"],
+    tags: ["Rust", "SystemsProgramming"],
   },
   {
     id: "s126",
@@ -3780,7 +3780,7 @@ export const mockPosts: FeedPost[] = [
     title: "Federated learning: training AI without sharing data.",
     caption: "The no-fluff breakdown of what actually matters",
     createdAt: "2026-01-21T06:00:00Z",
-    tags: ["AI Agents","AgenticAI"],
+    tags: ["AI Agents", "AgenticAI"],
   },
   {
     id: "s127",
@@ -3791,7 +3791,7 @@ export const mockPosts: FeedPost[] = [
     title: "The 5 Python libraries every AI engineer needs.",
     caption: "Pure signal, zero noise",
     createdAt: "2025-11-25T20:00:00Z",
-    tags: ["Claude","Anthropic"],
+    tags: ["Claude", "Anthropic"],
   },
   {
     id: "s128",
@@ -3802,7 +3802,7 @@ export const mockPosts: FeedPost[] = [
     title: "React Native + on-device LLMs = offline AI apps.",
     caption: "The tech everyone will be using by next quarter",
     createdAt: "2026-02-04T16:00:00Z",
-    tags: ["OpenAI","GPT-5"],
+    tags: ["OpenAI", "GPT-5"],
   },
   {
     id: "s129",
@@ -3813,7 +3813,7 @@ export const mockPosts: FeedPost[] = [
     title: "How Tesla's FSD uses neural networks for self-driving.",
     caption: "3 key takeaways from the latest AI announcement",
     createdAt: "2025-11-30T10:00:00Z",
-    tags: ["Gemini","Google"],
+    tags: ["Gemini", "Google"],
   },
   {
     id: "s130",
@@ -3824,7 +3824,7 @@ export const mockPosts: FeedPost[] = [
     title: "AI just wrote a scientific paper that passed peer review.",
     caption: "This changes the game for indie developers",
     createdAt: "2026-01-20T08:00:00Z",
-    tags: ["Sora","VideoGen"],
+    tags: ["Sora", "VideoGen"],
   },
   {
     id: "s131",
@@ -3835,7 +3835,7 @@ export const mockPosts: FeedPost[] = [
     title: "The complete LLM fine-tuning tutorial in 10 minutes.",
     caption: "The breakdown that saves you 30 minutes of research",
     createdAt: "2025-11-30T09:00:00Z",
-    tags: ["Vibecoding","AICoding"],
+    tags: ["Vibecoding", "AICoding"],
   },
   {
     id: "s132",
@@ -3846,7 +3846,7 @@ export const mockPosts: FeedPost[] = [
     title: "Why agentic AI will kill SaaS as we know it.",
     caption: "Why this matters more than people realize",
     createdAt: "2026-02-09T02:00:00Z",
-    tags: ["BuildInPublic","Startup"],
+    tags: ["BuildInPublic", "Startup"],
   },
   {
     id: "s133",
@@ -3857,7 +3857,7 @@ export const mockPosts: FeedPost[] = [
     title: "Building AI features users actually want to use.",
     caption: "The technical deep dive in short form",
     createdAt: "2026-01-27T16:00:00Z",
-    tags: ["AINews","TechTrends"],
+    tags: ["AINews", "TechTrends"],
   },
   {
     id: "s134",
@@ -3868,7 +3868,7 @@ export const mockPosts: FeedPost[] = [
     title: "The infrastructure behind serving 1M AI requests per second.",
     caption: "Production-ready insights in under a minute",
     createdAt: "2026-02-10T21:00:00Z",
-    tags: ["AITools","Productivity"],
+    tags: ["AITools", "Productivity"],
   },
   {
     id: "s135",
@@ -3879,7 +3879,7 @@ export const mockPosts: FeedPost[] = [
     title: "Web scraping with AI: 10x faster, 10x smarter.",
     caption: "The AI tool that's replacing entire teams",
     createdAt: "2026-01-01T16:00:00Z",
-    tags: ["GenerativeAI","LLM"],
+    tags: ["GenerativeAI", "LLM"],
   },
   {
     id: "s136",
@@ -3890,7 +3890,7 @@ export const mockPosts: FeedPost[] = [
     title: "How to build your own ChatGPT clone from scratch.",
     caption: "Quick update on the biggest shift in AI this week",
     createdAt: "2026-02-09T09:00:00Z",
-    tags: ["MachineLearning","MLOps"],
+    tags: ["MachineLearning", "MLOps"],
   },
   {
     id: "s137",
@@ -3901,7 +3901,7 @@ export const mockPosts: FeedPost[] = [
     title: "AI-driven code migration: Python 2 to 3 in minutes.",
     caption: "Everything you need to know, nothing you don't",
     createdAt: "2026-02-17T11:00:00Z",
-    tags: ["LLM","Transformer"],
+    tags: ["LLM", "Transformer"],
   },
   {
     id: "s138",
@@ -3912,7 +3912,7 @@ export const mockPosts: FeedPost[] = [
     title: "The state of AI in healthcare: 2026 report.",
     caption: "The simplest explanation of this complex topic",
     createdAt: "2026-01-30T19:00:00Z",
-    tags: ["TechTrends2026","Future"],
+    tags: ["TechTrends2026", "Future"],
   },
   {
     id: "s139",
@@ -3923,7 +3923,7 @@ export const mockPosts: FeedPost[] = [
     title: "Building multi-agent systems with LangGraph.",
     caption: "This is what peak developer productivity looks like",
     createdAt: "2026-02-04T00:00:00Z",
-    tags: ["SoftwareEngineering","Architecture"],
+    tags: ["SoftwareEngineering", "Architecture"],
   },
   {
     id: "s140",
@@ -3934,7 +3934,7 @@ export const mockPosts: FeedPost[] = [
     title: "AI is rewriting the rules of software testing.",
     caption: "Here's what changed and why you should care",
     createdAt: "2025-12-24T07:00:00Z",
-    tags: ["DevTok","Coding"],
+    tags: ["DevTok", "Coding"],
   },
   {
     id: "s141",
@@ -3945,7 +3945,7 @@ export const mockPosts: FeedPost[] = [
     title: "Your next framework will be chosen by an AI agent.",
     caption: "The future of autonomous AI agents is here and it's wild",
     createdAt: "2026-01-04T05:00:00Z",
-    tags: ["Programming","Algorithms"],
+    tags: ["Programming", "Algorithms"],
   },
   {
     id: "s142",
@@ -3956,7 +3956,7 @@ export const mockPosts: FeedPost[] = [
     title: "Embedding models explained: the backbone of semantic search.",
     caption: "This changes everything about how we build software",
     createdAt: "2026-01-29T11:00:00Z",
-    tags: ["SaaS","Cloud"],
+    tags: ["SaaS", "Cloud"],
   },
   {
     id: "s143",
@@ -3967,7 +3967,7 @@ export const mockPosts: FeedPost[] = [
     title: "How to monetize AI features in your SaaS product.",
     caption: "Broke down the latest AI drop in under 60 seconds",
     createdAt: "2026-01-01T15:00:00Z",
-    tags: ["Automation","Workflow"],
+    tags: ["Automation", "Workflow"],
   },
   {
     id: "s144",
@@ -3978,7 +3978,7 @@ export const mockPosts: FeedPost[] = [
     title: "The rise of AI-native programming languages.",
     caption: "Pure tech breakdown, zero fluff, just facts",
     createdAt: "2025-12-25T23:00:00Z",
-    tags: ["Python","DataScience"],
+    tags: ["Python", "DataScience"],
   },
   {
     id: "s145",
@@ -3989,7 +3989,7 @@ export const mockPosts: FeedPost[] = [
     title: "GPU shortage update: when will supply meet demand?",
     caption: "Every developer needs to see this right now",
     createdAt: "2026-01-06T03:00:00Z",
-    tags: ["React","Frontend"],
+    tags: ["React", "Frontend"],
   },
   {
     id: "s146",
@@ -4000,7 +4000,7 @@ export const mockPosts: FeedPost[] = [
     title: "Building AI-powered VS Code extensions from scratch.",
     caption: "The AI landscape just shifted dramatically",
     createdAt: "2026-01-24T04:00:00Z",
-    tags: ["TypeScript","WebDev"],
+    tags: ["TypeScript", "WebDev"],
   },
   {
     id: "s147",
@@ -4011,7 +4011,7 @@ export const mockPosts: FeedPost[] = [
     title: "The complete guide to running Llama 3 locally.",
     caption: "Quick technical breakdown of the biggest release this week",
     createdAt: "2025-12-11T00:00:00Z",
-    tags: ["Next.js","Fullstack"],
+    tags: ["Next.js", "Fullstack"],
   },
   {
     id: "s148",
@@ -4022,7 +4022,7 @@ export const mockPosts: FeedPost[] = [
     title: "AI observability: monitoring your LLM in production.",
     caption: "No one is talking about this but it's huge",
     createdAt: "2026-01-07T07:00:00Z",
-    tags: ["NestJS","Backend"],
+    tags: ["NestJS", "Backend"],
   },
   {
     id: "s149",
@@ -4033,7 +4033,7 @@ export const mockPosts: FeedPost[] = [
     title: "Why GraphRAG is replacing traditional RAG pipelines.",
     caption: "The tech stack that's dominating in 2026",
     createdAt: "2025-11-20T06:00:00Z",
-    tags: ["Docker","DevOps"],
+    tags: ["Docker", "DevOps"],
   },
   {
     id: "s150",
@@ -4044,7 +4044,7 @@ export const mockPosts: FeedPost[] = [
     title: "The fastest way to prototype with AI in 2026.",
     caption: "This is the kind of content NoFluff.ai was built for",
     createdAt: "2026-01-29T09:00:00Z",
-    tags: ["Kubernetes","Infrastructure"],
+    tags: ["Kubernetes", "Infrastructure"],
   },
   {
     id: "s151",
@@ -4055,7 +4055,7 @@ export const mockPosts: FeedPost[] = [
     title: "Neural architecture search: AI designing better AI.",
     caption: "Distilled everything you need to know into one short",
     createdAt: "2025-11-22T13:00:00Z",
-    tags: ["RAG","VectorDB"],
+    tags: ["RAG", "VectorDB"],
   },
   {
     id: "s152",
@@ -4066,7 +4066,7 @@ export const mockPosts: FeedPost[] = [
     title: "How to build an AI agent marketplace.",
     caption: "The implications of this are massive for developers",
     createdAt: "2026-02-12T11:00:00Z",
-    tags: ["PromptEngineering","LLM"],
+    tags: ["PromptEngineering", "LLM"],
   },
   {
     id: "s153",
@@ -4077,7 +4077,7 @@ export const mockPosts: FeedPost[] = [
     title: "The deepfake detection arms race: 2026 update.",
     caption: "Building the future one commit at a time",
     createdAt: "2025-12-25T17:00:00Z",
-    tags: ["OpenSource","GitHub"],
+    tags: ["OpenSource", "GitHub"],
   },
   {
     id: "s154",
@@ -4088,7 +4088,7 @@ export const mockPosts: FeedPost[] = [
     title: "AI just optimized a SQL query 1000x faster than a DBA.",
     caption: "This is why AI engineers are in such high demand",
     createdAt: "2026-02-05T18:00:00Z",
-    tags: ["Cybersecurity","InfoSec"],
+    tags: ["Cybersecurity", "InfoSec"],
   },
   {
     id: "s155",
@@ -4099,7 +4099,7 @@ export const mockPosts: FeedPost[] = [
     title: "Building consent-aware AI: the ethical framework.",
     caption: "If you're not following this trend you're already behind",
     createdAt: "2026-01-28T23:00:00Z",
-    tags: ["QuantumComputing","Research"],
+    tags: ["QuantumComputing", "Research"],
   },
   {
     id: "s156",
@@ -4110,7 +4110,7 @@ export const mockPosts: FeedPost[] = [
     title: "How to reduce LLM hallucinations by 80% in production.",
     caption: "The no-fluff breakdown of what actually matters",
     createdAt: "2026-01-14T02:00:00Z",
-    tags: ["Robotics","Hardware"],
+    tags: ["Robotics", "Hardware"],
   },
   {
     id: "s157",
@@ -4121,7 +4121,7 @@ export const mockPosts: FeedPost[] = [
     title: "The WASM + AI stack: compile-anywhere intelligence.",
     caption: "Pure signal, zero noise",
     createdAt: "2025-12-29T23:00:00Z",
-    tags: ["EdgeAI","IoT"],
+    tags: ["EdgeAI", "IoT"],
   },
   {
     id: "s158",
@@ -4132,7 +4132,7 @@ export const mockPosts: FeedPost[] = [
     title: "Edge AI chips are outselling cloud GPUs 3 to 1.",
     caption: "The tech everyone will be using by next quarter",
     createdAt: "2026-02-07T10:00:00Z",
-    tags: ["DataEngineering","ETL"],
+    tags: ["DataEngineering", "ETL"],
   },
   {
     id: "s159",
@@ -4143,7 +4143,7 @@ export const mockPosts: FeedPost[] = [
     title: "Building AI that explains its reasoning step by step.",
     caption: "3 key takeaways from the latest AI announcement",
     createdAt: "2026-01-27T13:00:00Z",
-    tags: ["WebAssembly","Performance"],
+    tags: ["WebAssembly", "Performance"],
   },
   {
     id: "s160",
@@ -4154,7 +4154,7 @@ export const mockPosts: FeedPost[] = [
     title: "The 2026 state of DevOps: AI is everywhere.",
     caption: "This changes the game for indie developers",
     createdAt: "2025-12-25T15:00:00Z",
-    tags: ["Rust","SystemsProgramming"],
+    tags: ["Rust", "SystemsProgramming"],
   },
   {
     id: "s161",
@@ -4165,7 +4165,7 @@ export const mockPosts: FeedPost[] = [
     title: "How to build a personal AI assistant in a weekend.",
     caption: "The breakdown that saves you 30 minutes of research",
     createdAt: "2026-01-20T02:00:00Z",
-    tags: ["AI Agents","AgenticAI"],
+    tags: ["AI Agents", "AgenticAI"],
   },
   {
     id: "s162",
@@ -4176,7 +4176,7 @@ export const mockPosts: FeedPost[] = [
     title: "Zero-shot learning: how AI understands tasks it never trained on.",
     caption: "Why this matters more than people realize",
     createdAt: "2025-11-20T23:00:00Z",
-    tags: ["Claude","Anthropic"],
+    tags: ["Claude", "Anthropic"],
   },
   {
     id: "s163",
@@ -4187,7 +4187,7 @@ export const mockPosts: FeedPost[] = [
     title: "The API economy meets AI: building intelligent endpoints.",
     caption: "The technical deep dive in short form",
     createdAt: "2025-11-24T00:00:00Z",
-    tags: ["OpenAI","GPT-5"],
+    tags: ["OpenAI", "GPT-5"],
   },
   {
     id: "s164",
@@ -4198,7 +4198,7 @@ export const mockPosts: FeedPost[] = [
     title: "AI coding agents: from autocomplete to full feature implementation.",
     caption: "Production-ready insights in under a minute",
     createdAt: "2025-12-11T01:00:00Z",
-    tags: ["Gemini","Google"],
+    tags: ["Gemini", "Google"],
   },
   {
     id: "s165",
@@ -4209,7 +4209,7 @@ export const mockPosts: FeedPost[] = [
     title: "How to evaluate LLM outputs at scale.",
     caption: "The AI tool that's replacing entire teams",
     createdAt: "2026-02-13T09:00:00Z",
-    tags: ["Sora","VideoGen"],
+    tags: ["Sora", "VideoGen"],
   },
   {
     id: "s166",
@@ -4220,7 +4220,7 @@ export const mockPosts: FeedPost[] = [
     title: "The future of search: AI-first, link-second.",
     caption: "Quick update on the biggest shift in AI this week",
     createdAt: "2026-02-16T21:00:00Z",
-    tags: ["Vibecoding","AICoding"],
+    tags: ["Vibecoding", "AICoding"],
   },
   {
     id: "s167",
@@ -4231,7 +4231,7 @@ export const mockPosts: FeedPost[] = [
     title: "Building production-grade voice assistants with AI.",
     caption: "Everything you need to know, nothing you don't",
     createdAt: "2026-01-20T21:00:00Z",
-    tags: ["BuildInPublic","Startup"],
+    tags: ["BuildInPublic", "Startup"],
   },
   {
     id: "s168",
@@ -4242,7 +4242,7 @@ export const mockPosts: FeedPost[] = [
     title: "Reinforcement learning from human feedback explained simply.",
     caption: "The simplest explanation of this complex topic",
     createdAt: "2026-01-11T08:00:00Z",
-    tags: ["AINews","TechTrends"],
+    tags: ["AINews", "TechTrends"],
   },
   {
     id: "s169",
@@ -4253,7 +4253,7 @@ export const mockPosts: FeedPost[] = [
     title: "Why every database company is adding AI features.",
     caption: "This is what peak developer productivity looks like",
     createdAt: "2025-12-15T17:00:00Z",
-    tags: ["AITools","Productivity"],
+    tags: ["AITools", "Productivity"],
   },
   {
     id: "s170",
@@ -4264,7 +4264,7 @@ export const mockPosts: FeedPost[] = [
     title: "The complete Hugging Face deployment guide for 2026.",
     caption: "Here's what changed and why you should care",
     createdAt: "2025-12-11T11:00:00Z",
-    tags: ["GenerativeAI","LLM"],
+    tags: ["GenerativeAI", "LLM"],
   },
   {
     id: "s171",
@@ -4275,7 +4275,7 @@ export const mockPosts: FeedPost[] = [
     title: "AI-powered analytics: from data to insights in seconds.",
     caption: "The future of autonomous AI agents is here and it's wild",
     createdAt: "2025-12-27T12:00:00Z",
-    tags: ["MachineLearning","MLOps"],
+    tags: ["MachineLearning", "MLOps"],
   },
   {
     id: "s172",
@@ -4286,7 +4286,7 @@ export const mockPosts: FeedPost[] = [
     title: "How to build a real-time AI translation service.",
     caption: "This changes everything about how we build software",
     createdAt: "2025-12-26T16:00:00Z",
-    tags: ["LLM","Transformer"],
+    tags: ["LLM", "Transformer"],
   },
   {
     id: "s173",
@@ -4297,7 +4297,7 @@ export const mockPosts: FeedPost[] = [
     title: "The environmental cost of AI: energy usage in 2026.",
     caption: "Broke down the latest AI drop in under 60 seconds",
     createdAt: "2026-01-11T23:00:00Z",
-    tags: ["TechTrends2026","Future"],
+    tags: ["TechTrends2026", "Future"],
   },
   {
     id: "s174",
@@ -4308,7 +4308,7 @@ export const mockPosts: FeedPost[] = [
     title: "Building AI features that work offline.",
     caption: "Pure tech breakdown, zero fluff, just facts",
     createdAt: "2026-01-26T12:00:00Z",
-    tags: ["SoftwareEngineering","Architecture"],
+    tags: ["SoftwareEngineering", "Architecture"],
   },
   {
     id: "s175",
@@ -4319,7 +4319,7 @@ export const mockPosts: FeedPost[] = [
     title: "The complete intro to AI alignment research.",
     caption: "Every developer needs to see this right now",
     createdAt: "2025-11-28T01:00:00Z",
-    tags: ["DevTok","Coding"],
+    tags: ["DevTok", "Coding"],
   },
   {
     id: "s176",
@@ -4330,7 +4330,7 @@ export const mockPosts: FeedPost[] = [
     title: "How to land an AI engineering job in 2026.",
     caption: "The AI landscape just shifted dramatically",
     createdAt: "2025-12-14T12:00:00Z",
-    tags: ["Programming","Algorithms"],
+    tags: ["Programming", "Algorithms"],
   },
   {
     id: "s177",
@@ -4341,7 +4341,7 @@ export const mockPosts: FeedPost[] = [
     title: "Token economics: why context window size matters.",
     caption: "Quick technical breakdown of the biggest release this week",
     createdAt: "2025-12-17T23:00:00Z",
-    tags: ["SaaS","Cloud"],
+    tags: ["SaaS", "Cloud"],
   },
   {
     id: "s178",
@@ -4352,7 +4352,7 @@ export const mockPosts: FeedPost[] = [
     title: "AI just designed a chip that outperforms human designs.",
     caption: "No one is talking about this but it's huge",
     createdAt: "2025-12-19T15:00:00Z",
-    tags: ["Automation","Workflow"],
+    tags: ["Automation", "Workflow"],
   },
   {
     id: "s179",
@@ -4363,7 +4363,7 @@ export const mockPosts: FeedPost[] = [
     title: "Building cross-platform AI apps with React Native.",
     caption: "The tech stack that's dominating in 2026",
     createdAt: "2025-12-21T04:00:00Z",
-    tags: ["Python","DataScience"],
+    tags: ["Python", "DataScience"],
   },
   {
     id: "s180",
@@ -4374,7 +4374,7 @@ export const mockPosts: FeedPost[] = [
     title: "The complete guide to AI-powered content moderation.",
     caption: "This is the kind of content NoFluff.ai was built for",
     createdAt: "2026-02-05T09:00:00Z",
-    tags: ["React","Frontend"],
+    tags: ["React", "Frontend"],
   },
   {
     id: "s181",
@@ -4385,7 +4385,7 @@ export const mockPosts: FeedPost[] = [
     title: "How OpenAI's o3 model thinks step by step.",
     caption: "Distilled everything you need to know into one short",
     createdAt: "2026-01-24T15:00:00Z",
-    tags: ["TypeScript","WebDev"],
+    tags: ["TypeScript", "WebDev"],
   },
   {
     id: "s182",
@@ -4396,7 +4396,7 @@ export const mockPosts: FeedPost[] = [
     title: "The best AI tools for indie developers in 2026.",
     caption: "The implications of this are massive for developers",
     createdAt: "2025-12-13T17:00:00Z",
-    tags: ["Next.js","Fullstack"],
+    tags: ["Next.js", "Fullstack"],
   },
   {
     id: "s183",
@@ -4407,7 +4407,7 @@ export const mockPosts: FeedPost[] = [
     title: "Synthetic data: training AI without real user data.",
     caption: "Building the future one commit at a time",
     createdAt: "2026-01-27T01:00:00Z",
-    tags: ["NestJS","Backend"],
+    tags: ["NestJS", "Backend"],
   },
   {
     id: "s184",
@@ -4418,7 +4418,7 @@ export const mockPosts: FeedPost[] = [
     title: "How to build an AI-powered recommendation engine.",
     caption: "This is why AI engineers are in such high demand",
     createdAt: "2026-02-03T06:00:00Z",
-    tags: ["Docker","DevOps"],
+    tags: ["Docker", "DevOps"],
   },
   {
     id: "s185",
@@ -4429,7 +4429,7 @@ export const mockPosts: FeedPost[] = [
     title: "The privacy-first approach to AI: differential privacy explained.",
     caption: "If you're not following this trend you're already behind",
     createdAt: "2025-11-23T04:00:00Z",
-    tags: ["Kubernetes","Infrastructure"],
+    tags: ["Kubernetes", "Infrastructure"],
   },
   {
     id: "s186",
@@ -4440,7 +4440,7 @@ export const mockPosts: FeedPost[] = [
     title: "AI agents coordinating across multiple codebases.",
     caption: "The no-fluff breakdown of what actually matters",
     createdAt: "2026-01-23T15:00:00Z",
-    tags: ["RAG","VectorDB"],
+    tags: ["RAG", "VectorDB"],
   },
   {
     id: "s187",
@@ -4451,7 +4451,7 @@ export const mockPosts: FeedPost[] = [
     title: "How to build a real-time AI dashboard.",
     caption: "Pure signal, zero noise",
     createdAt: "2025-12-29T00:00:00Z",
-    tags: ["PromptEngineering","LLM"],
+    tags: ["PromptEngineering", "LLM"],
   },
   {
     id: "s188",
@@ -4462,7 +4462,7 @@ export const mockPosts: FeedPost[] = [
     title: "The complete guide to model distillation.",
     caption: "The tech everyone will be using by next quarter",
     createdAt: "2025-12-15T22:00:00Z",
-    tags: ["OpenSource","GitHub"],
+    tags: ["OpenSource", "GitHub"],
   },
   {
     id: "s189",
@@ -4473,7 +4473,7 @@ export const mockPosts: FeedPost[] = [
     title: "AI is writing commit messages now. And they're actually good.",
     caption: "3 key takeaways from the latest AI announcement",
     createdAt: "2025-12-15T13:00:00Z",
-    tags: ["Cybersecurity","InfoSec"],
+    tags: ["Cybersecurity", "InfoSec"],
   },
   {
     id: "s190",
@@ -4484,7 +4484,7 @@ export const mockPosts: FeedPost[] = [
     title: "Building trustworthy AI: verification and validation.",
     caption: "This changes the game for indie developers",
     createdAt: "2026-01-08T00:00:00Z",
-    tags: ["QuantumComputing","Research"],
+    tags: ["QuantumComputing", "Research"],
   },
   {
     id: "s191",
@@ -4495,7 +4495,7 @@ export const mockPosts: FeedPost[] = [
     title: "Why small language models are winning in production.",
     caption: "The breakdown that saves you 30 minutes of research",
     createdAt: "2026-01-26T19:00:00Z",
-    tags: ["Robotics","Hardware"],
+    tags: ["Robotics", "Hardware"],
   },
   {
     id: "s192",
@@ -4506,7 +4506,7 @@ export const mockPosts: FeedPost[] = [
     title: "How to build an AI-powered customer support bot.",
     caption: "Why this matters more than people realize",
     createdAt: "2025-12-17T07:00:00Z",
-    tags: ["EdgeAI","IoT"],
+    tags: ["EdgeAI", "IoT"],
   },
   {
     id: "s193",
@@ -4517,7 +4517,7 @@ export const mockPosts: FeedPost[] = [
     title: "The state of computer vision in 2026.",
     caption: "The technical deep dive in short form",
     createdAt: "2026-02-15T12:00:00Z",
-    tags: ["DataEngineering","ETL"],
+    tags: ["DataEngineering", "ETL"],
   },
   {
     id: "s194",
@@ -4528,7 +4528,7 @@ export const mockPosts: FeedPost[] = [
     title: "Neural network pruning: making AI 10x lighter.",
     caption: "Production-ready insights in under a minute",
     createdAt: "2026-01-14T10:00:00Z",
-    tags: ["WebAssembly","Performance"],
+    tags: ["WebAssembly", "Performance"],
   },
   {
     id: "s195",
@@ -4539,7 +4539,7 @@ export const mockPosts: FeedPost[] = [
     title: "AI-powered code refactoring at enterprise scale.",
     caption: "The AI tool that's replacing entire teams",
     createdAt: "2026-01-22T21:00:00Z",
-    tags: ["Rust","SystemsProgramming"],
+    tags: ["Rust", "SystemsProgramming"],
   },
   {
     id: "s196",
@@ -4550,7 +4550,7 @@ export const mockPosts: FeedPost[] = [
     title: "How to build an AI agent with persistent memory.",
     caption: "Quick update on the biggest shift in AI this week",
     createdAt: "2026-01-03T19:00:00Z",
-    tags: ["AI Agents","AgenticAI"],
+    tags: ["AI Agents", "AgenticAI"],
   },
   {
     id: "s197",
@@ -4561,7 +4561,7 @@ export const mockPosts: FeedPost[] = [
     title: "The economics of AI inference at scale.",
     caption: "Everything you need to know, nothing you don't",
     createdAt: "2026-02-04T21:00:00Z",
-    tags: ["Claude","Anthropic"],
+    tags: ["Claude", "Anthropic"],
   },
   {
     id: "s198",
@@ -4572,7 +4572,7 @@ export const mockPosts: FeedPost[] = [
     title: "Building AI assistants for non-technical users.",
     caption: "The simplest explanation of this complex topic",
     createdAt: "2025-12-11T22:00:00Z",
-    tags: ["OpenAI","GPT-5"],
+    tags: ["OpenAI", "GPT-5"],
   },
   {
     id: "s199",
@@ -4583,7 +4583,7 @@ export const mockPosts: FeedPost[] = [
     title: "Stop talking to your AI. Start giving it a job.",
     caption: "This is what peak developer productivity looks like",
     createdAt: "2025-12-30T23:00:00Z",
-    tags: ["Gemini","Google"],
+    tags: ["Gemini", "Google"],
   },
   {
     id: "s200",
@@ -4594,7 +4594,7 @@ export const mockPosts: FeedPost[] = [
     title: "Claude Opus 4.6 just dropped. 1M context window is a cheat code.",
     caption: "Here's what changed and why you should care",
     createdAt: "2025-12-07T15:00:00Z",
-    tags: ["Sora","VideoGen"],
+    tags: ["Sora", "VideoGen"],
   },
 
 
@@ -4831,7 +4831,7 @@ export const mockPosts: FeedPost[] = [
     title: "Building an AI Agent from Scratch: Complete Tutorial",
     caption: "Complete walkthrough from zero to production deployment",
     createdAt: "2025-12-02T19:00:00Z",
-    tags: ["AI Agents","AgenticAI"],
+    tags: ["AI Agents", "AgenticAI"],
   },
   {
     id: "v22",
@@ -4842,7 +4842,7 @@ export const mockPosts: FeedPost[] = [
     title: "The Architecture Behind GPT-5: Technical Deep Dive",
     caption: "Deep dive into the architecture that powers modern AI",
     createdAt: "2025-12-17T09:00:00Z",
-    tags: ["Claude","Anthropic"],
+    tags: ["Claude", "Anthropic"],
   },
   {
     id: "v23",
@@ -4853,7 +4853,7 @@ export const mockPosts: FeedPost[] = [
     title: "Full Stack AI App: React + NestJS + Gemini in 2 Hours",
     caption: "Building the full stack with the latest 2026 tools",
     createdAt: "2025-12-18T22:00:00Z",
-    tags: ["OpenAI","GPT-5"],
+    tags: ["OpenAI", "GPT-5"],
   },
   {
     id: "v24",
@@ -4864,7 +4864,7 @@ export const mockPosts: FeedPost[] = [
     title: "Understanding Transformers: The Math You Actually Need",
     caption: "The math and intuition behind how it actually works",
     createdAt: "2025-12-06T06:00:00Z",
-    tags: ["Gemini","Google"],
+    tags: ["Gemini", "Google"],
   },
   {
     id: "v25",
@@ -4875,7 +4875,7 @@ export const mockPosts: FeedPost[] = [
     title: "RAG Pipeline Architecture: From Zero to Production",
     caption: "From concept to production-ready implementation",
     createdAt: "2026-01-04T19:00:00Z",
-    tags: ["Sora","VideoGen"],
+    tags: ["Sora", "VideoGen"],
   },
   {
     id: "v26",
@@ -4886,7 +4886,7 @@ export const mockPosts: FeedPost[] = [
     title: "Building MCP Servers: The Complete Guide",
     caption: "Everything you need to build this yourself from scratch",
     createdAt: "2026-01-10T02:00:00Z",
-    tags: ["Vibecoding","AICoding"],
+    tags: ["Vibecoding", "AICoding"],
   },
   {
     id: "v27",
@@ -4897,7 +4897,7 @@ export const mockPosts: FeedPost[] = [
     title: "Claude Code vs Cursor vs Copilot: Full Comparison",
     caption: "Head-to-head comparison with real benchmarks and code",
     createdAt: "2026-02-04T05:00:00Z",
-    tags: ["BuildInPublic","Startup"],
+    tags: ["BuildInPublic", "Startup"],
   },
   {
     id: "v28",
@@ -4908,7 +4908,7 @@ export const mockPosts: FeedPost[] = [
     title: "LLM Fine-Tuning Masterclass: LoRA, QLoRA, and PEFT",
     caption: "Master the techniques used by top AI engineers",
     createdAt: "2025-11-27T20:00:00Z",
-    tags: ["AINews","TechTrends"],
+    tags: ["AINews", "TechTrends"],
   },
   {
     id: "v29",
@@ -4919,7 +4919,7 @@ export const mockPosts: FeedPost[] = [
     title: "Building AI Agents with LangGraph: Complete Walkthrough",
     caption: "Step-by-step guide with full source code on GitHub",
     createdAt: "2025-12-18T15:00:00Z",
-    tags: ["AITools","Productivity"],
+    tags: ["AITools", "Productivity"],
   },
   {
     id: "v30",
@@ -4930,7 +4930,7 @@ export const mockPosts: FeedPost[] = [
     title: "Multi-Agent Systems: Coordination and Communication",
     caption: "Understanding the systems that power billion-dollar products",
     createdAt: "2025-12-15T05:00:00Z",
-    tags: ["GenerativeAI","LLM"],
+    tags: ["GenerativeAI", "LLM"],
   },
   {
     id: "v31",
@@ -4941,7 +4941,7 @@ export const mockPosts: FeedPost[] = [
     title: "Vector Databases Explained: Pinecone vs Weaviate vs ChromaDB",
     caption: "The architecture patterns every AI engineer should know",
     createdAt: "2025-12-02T22:00:00Z",
-    tags: ["MachineLearning","MLOps"],
+    tags: ["MachineLearning", "MLOps"],
   },
   {
     id: "v32",
@@ -4952,7 +4952,7 @@ export const mockPosts: FeedPost[] = [
     title: "The Complete Prompt Engineering Course",
     caption: "From beginner to advanced in one comprehensive tutorial",
     createdAt: "2026-02-01T03:00:00Z",
-    tags: ["LLM","Transformer"],
+    tags: ["LLM", "Transformer"],
   },
   {
     id: "v33",
@@ -4963,7 +4963,7 @@ export const mockPosts: FeedPost[] = [
     title: "Building a ChatGPT Clone from Scratch with TypeScript",
     caption: "Building scalable AI infrastructure the right way",
     createdAt: "2025-12-15T14:00:00Z",
-    tags: ["TechTrends2026","Future"],
+    tags: ["TechTrends2026", "Future"],
   },
   {
     id: "v34",
@@ -4974,7 +4974,7 @@ export const mockPosts: FeedPost[] = [
     title: "AI-Powered Code Review: Setting Up Your Pipeline",
     caption: "The techniques that separate hobby projects from production",
     createdAt: "2026-01-17T07:00:00Z",
-    tags: ["SoftwareEngineering","Architecture"],
+    tags: ["SoftwareEngineering", "Architecture"],
   },
   {
     id: "v35",
@@ -4985,7 +4985,7 @@ export const mockPosts: FeedPost[] = [
     title: "Streaming LLM Responses: WebSocket Architecture Deep Dive",
     caption: "Full build log with every decision explained",
     createdAt: "2025-12-20T10:00:00Z",
-    tags: ["DevTok","Coding"],
+    tags: ["DevTok", "Coding"],
   },
   {
     id: "v36",
@@ -4996,7 +4996,7 @@ export const mockPosts: FeedPost[] = [
     title: "Deploying LLMs to Production: The Complete Stack",
     caption: "The practical guide that skips the theory and shows code",
     createdAt: "2026-01-18T06:00:00Z",
-    tags: ["Programming","Algorithms"],
+    tags: ["Programming", "Algorithms"],
   },
   {
     id: "v37",
@@ -5007,7 +5007,7 @@ export const mockPosts: FeedPost[] = [
     title: "Building AI Features in Next.js 16",
     caption: "Enterprise-grade patterns for modern AI applications",
     createdAt: "2025-11-23T22:00:00Z",
-    tags: ["SaaS","Cloud"],
+    tags: ["SaaS", "Cloud"],
   },
   {
     id: "v38",
@@ -5018,7 +5018,7 @@ export const mockPosts: FeedPost[] = [
     title: "Python for AI Engineers: Advanced Patterns",
     caption: "How the best teams in the world build AI products",
     createdAt: "2026-01-31T19:00:00Z",
-    tags: ["Automation","Workflow"],
+    tags: ["Automation", "Workflow"],
   },
   {
     id: "v39",
@@ -5029,7 +5029,7 @@ export const mockPosts: FeedPost[] = [
     title: "Building Real-Time AI Applications with WebSockets",
     caption: "The complete reference guide for 2026 AI development",
     createdAt: "2025-11-23T12:00:00Z",
-    tags: ["Python","DataScience"],
+    tags: ["Python", "DataScience"],
   },
   {
     id: "v40",
@@ -5040,7 +5040,7 @@ export const mockPosts: FeedPost[] = [
     title: "The Complete Guide to AI Agent Memory Systems",
     caption: "Production-tested patterns for real-world AI applications",
     createdAt: "2026-01-01T14:00:00Z",
-    tags: ["React","Frontend"],
+    tags: ["React", "Frontend"],
   },
   {
     id: "v41",
@@ -5051,7 +5051,7 @@ export const mockPosts: FeedPost[] = [
     title: "Kubernetes for ML Engineers: Scaling AI Inference",
     caption: "Complete walkthrough from zero to production deployment",
     createdAt: "2025-12-11T04:00:00Z",
-    tags: ["TypeScript","WebDev"],
+    tags: ["TypeScript", "WebDev"],
   },
   {
     id: "v42",
@@ -5062,7 +5062,7 @@ export const mockPosts: FeedPost[] = [
     title: "Building Production RAG with LlamaIndex",
     caption: "Deep dive into the architecture that powers modern AI",
     createdAt: "2025-12-03T03:00:00Z",
-    tags: ["Next.js","Fullstack"],
+    tags: ["Next.js", "Fullstack"],
   },
   {
     id: "v43",
@@ -5073,7 +5073,7 @@ export const mockPosts: FeedPost[] = [
     title: "Voice AI: Building a Real-Time Voice Assistant",
     caption: "Building the full stack with the latest 2026 tools",
     createdAt: "2026-01-29T15:00:00Z",
-    tags: ["NestJS","Backend"],
+    tags: ["NestJS", "Backend"],
   },
   {
     id: "v44",
@@ -5084,7 +5084,7 @@ export const mockPosts: FeedPost[] = [
     title: "AI-Powered Analytics Dashboard: Full Build",
     caption: "The math and intuition behind how it actually works",
     createdAt: "2025-11-26T11:00:00Z",
-    tags: ["Docker","DevOps"],
+    tags: ["Docker", "DevOps"],
   },
   {
     id: "v45",
@@ -5095,7 +5095,7 @@ export const mockPosts: FeedPost[] = [
     title: "Building a Multi-Modal AI Application",
     caption: "From concept to production-ready implementation",
     createdAt: "2025-12-26T16:00:00Z",
-    tags: ["Kubernetes","Infrastructure"],
+    tags: ["Kubernetes", "Infrastructure"],
   },
   {
     id: "v46",
@@ -5106,7 +5106,7 @@ export const mockPosts: FeedPost[] = [
     title: "NestJS Microservices for AI Backends",
     caption: "Everything you need to build this yourself from scratch",
     createdAt: "2025-11-29T18:00:00Z",
-    tags: ["RAG","VectorDB"],
+    tags: ["RAG", "VectorDB"],
   },
   {
     id: "v47",
@@ -5117,7 +5117,7 @@ export const mockPosts: FeedPost[] = [
     title: "The Complete Docker + AI Setup Guide",
     caption: "Head-to-head comparison with real benchmarks and code",
     createdAt: "2025-12-17T21:00:00Z",
-    tags: ["PromptEngineering","LLM"],
+    tags: ["PromptEngineering", "LLM"],
   },
   {
     id: "v48",
@@ -5128,7 +5128,7 @@ export const mockPosts: FeedPost[] = [
     title: "Building AI-Powered VS Code Extensions",
     caption: "Master the techniques used by top AI engineers",
     createdAt: "2026-02-14T10:00:00Z",
-    tags: ["OpenSource","GitHub"],
+    tags: ["OpenSource", "GitHub"],
   },
   {
     id: "v49",
@@ -5139,7 +5139,7 @@ export const mockPosts: FeedPost[] = [
     title: "React Server Components + AI: The Perfect Match",
     caption: "Step-by-step guide with full source code on GitHub",
     createdAt: "2025-12-27T11:00:00Z",
-    tags: ["Cybersecurity","InfoSec"],
+    tags: ["Cybersecurity", "InfoSec"],
   },
   {
     id: "v50",
@@ -5150,7 +5150,7 @@ export const mockPosts: FeedPost[] = [
     title: "Building Autonomous Browsing Agents",
     caption: "Understanding the systems that power billion-dollar products",
     createdAt: "2026-01-17T23:00:00Z",
-    tags: ["QuantumComputing","Research"],
+    tags: ["QuantumComputing", "Research"],
   },
   {
     id: "v51",
@@ -5161,7 +5161,7 @@ export const mockPosts: FeedPost[] = [
     title: "LLM Observability: Monitoring AI in Production",
     caption: "The architecture patterns every AI engineer should know",
     createdAt: "2026-01-10T21:00:00Z",
-    tags: ["Robotics","Hardware"],
+    tags: ["Robotics", "Hardware"],
   },
   {
     id: "v52",
@@ -5172,7 +5172,7 @@ export const mockPosts: FeedPost[] = [
     title: "Building AI Search: Semantic + Vector + Hybrid",
     caption: "From beginner to advanced in one comprehensive tutorial",
     createdAt: "2026-01-21T19:00:00Z",
-    tags: ["EdgeAI","IoT"],
+    tags: ["EdgeAI", "IoT"],
   },
   {
     id: "v53",
@@ -5183,7 +5183,7 @@ export const mockPosts: FeedPost[] = [
     title: "The Full Stack AI Engineer Roadmap 2026",
     caption: "Building scalable AI infrastructure the right way",
     createdAt: "2025-12-19T12:00:00Z",
-    tags: ["DataEngineering","ETL"],
+    tags: ["DataEngineering", "ETL"],
   },
   {
     id: "v54",
@@ -5194,7 +5194,7 @@ export const mockPosts: FeedPost[] = [
     title: "GraphRAG: Beyond Traditional RAG Pipelines",
     caption: "The techniques that separate hobby projects from production",
     createdAt: "2025-11-23T15:00:00Z",
-    tags: ["WebAssembly","Performance"],
+    tags: ["WebAssembly", "Performance"],
   },
   {
     id: "v55",
@@ -5205,7 +5205,7 @@ export const mockPosts: FeedPost[] = [
     title: "Building AI Agents That Use Computer Vision",
     caption: "Full build log with every decision explained",
     createdAt: "2025-12-05T15:00:00Z",
-    tags: ["Rust","SystemsProgramming"],
+    tags: ["Rust", "SystemsProgramming"],
   },
   {
     id: "v56",
@@ -5216,7 +5216,7 @@ export const mockPosts: FeedPost[] = [
     title: "Serverless AI: Lambda + GPU Functions",
     caption: "The practical guide that skips the theory and shows code",
     createdAt: "2025-12-11T18:00:00Z",
-    tags: ["AI Agents","AgenticAI"],
+    tags: ["AI Agents", "AgenticAI"],
   },
   {
     id: "v57",
@@ -5227,7 +5227,7 @@ export const mockPosts: FeedPost[] = [
     title: "Building a Personal AI Assistant: Weekend Project",
     caption: "Enterprise-grade patterns for modern AI applications",
     createdAt: "2025-11-21T23:00:00Z",
-    tags: ["Claude","Anthropic"],
+    tags: ["Claude", "Anthropic"],
   },
   {
     id: "v58",
@@ -5238,7 +5238,7 @@ export const mockPosts: FeedPost[] = [
     title: "AI Safety Engineering: Practical Guardrails",
     caption: "How the best teams in the world build AI products",
     createdAt: "2026-02-01T02:00:00Z",
-    tags: ["OpenAI","GPT-5"],
+    tags: ["OpenAI", "GPT-5"],
   },
   {
     id: "v59",
@@ -5249,7 +5249,7 @@ export const mockPosts: FeedPost[] = [
     title: "On-Device AI: Building Offline-First ML Apps",
     caption: "The complete reference guide for 2026 AI development",
     createdAt: "2025-12-02T03:00:00Z",
-    tags: ["Gemini","Google"],
+    tags: ["Gemini", "Google"],
   },
   {
     id: "v60",
@@ -5260,7 +5260,7 @@ export const mockPosts: FeedPost[] = [
     title: "Building AI-Powered CRMs from Scratch",
     caption: "Production-tested patterns for real-world AI applications",
     createdAt: "2025-11-20T09:00:00Z",
-    tags: ["Sora","VideoGen"],
+    tags: ["Sora", "VideoGen"],
   },
   {
     id: "v61",
@@ -5271,7 +5271,7 @@ export const mockPosts: FeedPost[] = [
     title: "The Complete Hugging Face Production Deployment",
     caption: "Complete walkthrough from zero to production deployment",
     createdAt: "2026-02-08T20:00:00Z",
-    tags: ["Vibecoding","AICoding"],
+    tags: ["Vibecoding", "AICoding"],
   },
   {
     id: "v62",
@@ -5282,7 +5282,7 @@ export const mockPosts: FeedPost[] = [
     title: "Building Real-Time Translation with AI",
     caption: "Deep dive into the architecture that powers modern AI",
     createdAt: "2026-02-15T10:00:00Z",
-    tags: ["BuildInPublic","Startup"],
+    tags: ["BuildInPublic", "Startup"],
   },
   {
     id: "v63",
@@ -5293,7 +5293,7 @@ export const mockPosts: FeedPost[] = [
     title: "AI-Powered Testing: Automated QA Deep Dive",
     caption: "Building the full stack with the latest 2026 tools",
     createdAt: "2025-11-20T22:00:00Z",
-    tags: ["AINews","TechTrends"],
+    tags: ["AINews", "TechTrends"],
   },
   {
     id: "v64",
@@ -5304,7 +5304,7 @@ export const mockPosts: FeedPost[] = [
     title: "Building Consent-Aware AI Systems",
     caption: "The math and intuition behind how it actually works",
     createdAt: "2025-12-20T13:00:00Z",
-    tags: ["AITools","Productivity"],
+    tags: ["AITools", "Productivity"],
   },
   {
     id: "v65",
@@ -5315,7 +5315,7 @@ export const mockPosts: FeedPost[] = [
     title: "The Web Platform + AI: What's Possible in 2026",
     caption: "From concept to production-ready implementation",
     createdAt: "2026-02-01T07:00:00Z",
-    tags: ["GenerativeAI","LLM"],
+    tags: ["GenerativeAI", "LLM"],
   },
   {
     id: "v66",
@@ -5326,7 +5326,7 @@ export const mockPosts: FeedPost[] = [
     title: "Building AI Chatbots with Anthropic's Claude API",
     caption: "Everything you need to build this yourself from scratch",
     createdAt: "2025-12-14T04:00:00Z",
-    tags: ["MachineLearning","MLOps"],
+    tags: ["MachineLearning", "MLOps"],
   },
   {
     id: "v67",
@@ -5337,7 +5337,7 @@ export const mockPosts: FeedPost[] = [
     title: "Edge AI: Processing at the Network Edge",
     caption: "Head-to-head comparison with real benchmarks and code",
     createdAt: "2026-02-09T22:00:00Z",
-    tags: ["LLM","Transformer"],
+    tags: ["LLM", "Transformer"],
   },
   {
     id: "v68",
@@ -5348,7 +5348,7 @@ export const mockPosts: FeedPost[] = [
     title: "Building AI-Powered Content Pipelines",
     caption: "Master the techniques used by top AI engineers",
     createdAt: "2025-12-16T09:00:00Z",
-    tags: ["TechTrends2026","Future"],
+    tags: ["TechTrends2026", "Future"],
   },
   {
     id: "v69",
@@ -5359,7 +5359,7 @@ export const mockPosts: FeedPost[] = [
     title: "The Modern Data Stack for AI Engineers",
     caption: "Step-by-step guide with full source code on GitHub",
     createdAt: "2026-01-20T17:00:00Z",
-    tags: ["SoftwareEngineering","Architecture"],
+    tags: ["SoftwareEngineering", "Architecture"],
   },
   {
     id: "v70",
@@ -5370,7 +5370,7 @@ export const mockPosts: FeedPost[] = [
     title: "Building Cross-Platform AI Mobile Apps",
     caption: "Understanding the systems that power billion-dollar products",
     createdAt: "2026-02-09T13:00:00Z",
-    tags: ["DevTok","Coding"],
+    tags: ["DevTok", "Coding"],
   },
   {
     id: "v71",
@@ -5381,7 +5381,7 @@ export const mockPosts: FeedPost[] = [
     title: "Self-Healing Infrastructure with AI Agents",
     caption: "The architecture patterns every AI engineer should know",
     createdAt: "2026-01-11T20:00:00Z",
-    tags: ["Programming","Algorithms"],
+    tags: ["Programming", "Algorithms"],
   },
   {
     id: "v72",
@@ -5392,7 +5392,7 @@ export const mockPosts: FeedPost[] = [
     title: "Building AI-Powered Developer Tools",
     caption: "From beginner to advanced in one comprehensive tutorial",
     createdAt: "2026-01-08T13:00:00Z",
-    tags: ["SaaS","Cloud"],
+    tags: ["SaaS", "Cloud"],
   },
   {
     id: "v73",
@@ -5403,7 +5403,7 @@ export const mockPosts: FeedPost[] = [
     title: "AI Model Evaluation at Scale",
     caption: "Building scalable AI infrastructure the right way",
     createdAt: "2025-12-11T08:00:00Z",
-    tags: ["Automation","Workflow"],
+    tags: ["Automation", "Workflow"],
   },
   {
     id: "v74",
@@ -5414,7 +5414,7 @@ export const mockPosts: FeedPost[] = [
     title: "Building Recommendation Engines with Neural Collaborative Filtering",
     caption: "The techniques that separate hobby projects from production",
     createdAt: "2026-01-10T23:00:00Z",
-    tags: ["Python","DataScience"],
+    tags: ["Python", "DataScience"],
   },
   {
     id: "v75",
@@ -5425,7 +5425,7 @@ export const mockPosts: FeedPost[] = [
     title: "The Complete AI Interview Prep Course",
     caption: "Full build log with every decision explained",
     createdAt: "2026-01-30T09:00:00Z",
-    tags: ["React","Frontend"],
+    tags: ["React", "Frontend"],
   },
   {
     id: "v76",
@@ -5436,7 +5436,7 @@ export const mockPosts: FeedPost[] = [
     title: "Building AI Features Users Actually Want",
     caption: "The practical guide that skips the theory and shows code",
     createdAt: "2026-01-13T08:00:00Z",
-    tags: ["TypeScript","WebDev"],
+    tags: ["TypeScript", "WebDev"],
   },
   {
     id: "v77",
@@ -5447,7 +5447,7 @@ export const mockPosts: FeedPost[] = [
     title: "End-to-End ML Pipeline: From Data to Deployment",
     caption: "Enterprise-grade patterns for modern AI applications",
     createdAt: "2026-02-02T19:00:00Z",
-    tags: ["Next.js","Fullstack"],
+    tags: ["Next.js", "Fullstack"],
   },
   {
     id: "v78",
@@ -5458,7 +5458,7 @@ export const mockPosts: FeedPost[] = [
     title: "Building Multi-Tenant AI SaaS Applications",
     caption: "How the best teams in the world build AI products",
     createdAt: "2026-01-31T23:00:00Z",
-    tags: ["NestJS","Backend"],
+    tags: ["NestJS", "Backend"],
   },
   {
     id: "v79",
@@ -5469,7 +5469,7 @@ export const mockPosts: FeedPost[] = [
     title: "The Complete Guide to Reinforcement Learning",
     caption: "The complete reference guide for 2026 AI development",
     createdAt: "2025-12-01T08:00:00Z",
-    tags: ["Docker","DevOps"],
+    tags: ["Docker", "DevOps"],
   },
   {
     id: "v80",
@@ -5480,7 +5480,7 @@ export const mockPosts: FeedPost[] = [
     title: "Building AI-Powered DevOps Pipelines",
     caption: "Production-tested patterns for real-world AI applications",
     createdAt: "2025-11-28T13:00:00Z",
-    tags: ["Kubernetes","Infrastructure"],
+    tags: ["Kubernetes", "Infrastructure"],
   },
   {
     id: "v81",
@@ -5491,7 +5491,7 @@ export const mockPosts: FeedPost[] = [
     title: "How to Build Your Own LLM from Scratch",
     caption: "Complete walkthrough from zero to production deployment",
     createdAt: "2025-12-14T21:00:00Z",
-    tags: ["RAG","VectorDB"],
+    tags: ["RAG", "VectorDB"],
   },
   {
     id: "v82",
@@ -5502,7 +5502,7 @@ export const mockPosts: FeedPost[] = [
     title: "Advanced TypeScript Patterns for AI Applications",
     caption: "Deep dive into the architecture that powers modern AI",
     createdAt: "2025-12-31T01:00:00Z",
-    tags: ["PromptEngineering","LLM"],
+    tags: ["PromptEngineering", "LLM"],
   },
   {
     id: "v83",
@@ -5513,7 +5513,7 @@ export const mockPosts: FeedPost[] = [
     title: "Building Scalable AI APIs with FastAPI",
     caption: "Building the full stack with the latest 2026 tools",
     createdAt: "2026-01-14T08:00:00Z",
-    tags: ["OpenSource","GitHub"],
+    tags: ["OpenSource", "GitHub"],
   },
   {
     id: "v84",
@@ -5524,7 +5524,7 @@ export const mockPosts: FeedPost[] = [
     title: "The Complete Guide to Model Compression",
     caption: "The math and intuition behind how it actually works",
     createdAt: "2026-01-08T12:00:00Z",
-    tags: ["Cybersecurity","InfoSec"],
+    tags: ["Cybersecurity", "InfoSec"],
   },
   {
     id: "v85",
@@ -5535,7 +5535,7 @@ export const mockPosts: FeedPost[] = [
     title: "Building AI-Powered Workflow Automation",
     caption: "From concept to production-ready implementation",
     createdAt: "2025-12-15T22:00:00Z",
-    tags: ["QuantumComputing","Research"],
+    tags: ["QuantumComputing", "Research"],
   },
   {
     id: "v86",
@@ -5546,7 +5546,7 @@ export const mockPosts: FeedPost[] = [
     title: "Computer Vision in the Browser with TensorFlow.js",
     caption: "Everything you need to build this yourself from scratch",
     createdAt: "2025-12-29T02:00:00Z",
-    tags: ["Robotics","Hardware"],
+    tags: ["Robotics", "Hardware"],
   },
   {
     id: "v87",
@@ -5557,7 +5557,7 @@ export const mockPosts: FeedPost[] = [
     title: "Building AI-Powered E-Commerce Features",
     caption: "Head-to-head comparison with real benchmarks and code",
     createdAt: "2025-11-20T02:00:00Z",
-    tags: ["EdgeAI","IoT"],
+    tags: ["EdgeAI", "IoT"],
   },
   {
     id: "v88",
@@ -5568,7 +5568,7 @@ export const mockPosts: FeedPost[] = [
     title: "The Neural Network Zoo: Every Architecture Explained",
     caption: "Master the techniques used by top AI engineers",
     createdAt: "2026-02-04T05:00:00Z",
-    tags: ["DataEngineering","ETL"],
+    tags: ["DataEngineering", "ETL"],
   },
   {
     id: "v89",
@@ -5579,7 +5579,7 @@ export const mockPosts: FeedPost[] = [
     title: "Building Production-Grade AI Pipelines with Airflow",
     caption: "Step-by-step guide with full source code on GitHub",
     createdAt: "2025-12-14T15:00:00Z",
-    tags: ["WebAssembly","Performance"],
+    tags: ["WebAssembly", "Performance"],
   },
   {
     id: "v90",
@@ -5590,7 +5590,7 @@ export const mockPosts: FeedPost[] = [
     title: "AI Ethics in Practice: Case Studies and Solutions",
     caption: "Understanding the systems that power billion-dollar products",
     createdAt: "2026-01-18T00:00:00Z",
-    tags: ["Rust","SystemsProgramming"],
+    tags: ["Rust", "SystemsProgramming"],
   },
   {
     id: "v91",
@@ -5601,7 +5601,7 @@ export const mockPosts: FeedPost[] = [
     title: "Building Federated Learning Systems",
     caption: "The architecture patterns every AI engineer should know",
     createdAt: "2025-12-31T15:00:00Z",
-    tags: ["AI Agents","AgenticAI"],
+    tags: ["AI Agents", "AgenticAI"],
   },
   {
     id: "v92",
@@ -5612,7 +5612,7 @@ export const mockPosts: FeedPost[] = [
     title: "The Complete Guide to AI-Powered Data Engineering",
     caption: "From beginner to advanced in one comprehensive tutorial",
     createdAt: "2026-02-17T02:00:00Z",
-    tags: ["Claude","Anthropic"],
+    tags: ["Claude", "Anthropic"],
   },
   {
     id: "v93",
@@ -5623,7 +5623,7 @@ export const mockPosts: FeedPost[] = [
     title: "Building Multi-Language AI Applications",
     caption: "Building scalable AI infrastructure the right way",
     createdAt: "2025-12-15T19:00:00Z",
-    tags: ["OpenAI","GPT-5"],
+    tags: ["OpenAI", "GPT-5"],
   },
   {
     id: "v94",
@@ -5634,7 +5634,7 @@ export const mockPosts: FeedPost[] = [
     title: "Advanced RAG Techniques: Re-ranking, Fusion, and Routing",
     caption: "The techniques that separate hobby projects from production",
     createdAt: "2025-12-18T15:00:00Z",
-    tags: ["Gemini","Google"],
+    tags: ["Gemini", "Google"],
   },
   {
     id: "v95",
@@ -5645,7 +5645,7 @@ export const mockPosts: FeedPost[] = [
     title: "Building AI-Powered Health Tech Applications",
     caption: "Full build log with every decision explained",
     createdAt: "2025-12-15T22:00:00Z",
-    tags: ["Sora","VideoGen"],
+    tags: ["Sora", "VideoGen"],
   },
   {
     id: "v96",
@@ -5656,7 +5656,7 @@ export const mockPosts: FeedPost[] = [
     title: "The Complete Guide to Synthetic Data Generation",
     caption: "The practical guide that skips the theory and shows code",
     createdAt: "2026-02-09T11:00:00Z",
-    tags: ["Vibecoding","AICoding"],
+    tags: ["Vibecoding", "AICoding"],
   },
   {
     id: "v97",
@@ -5667,7 +5667,7 @@ export const mockPosts: FeedPost[] = [
     title: "Building AI Agents with Persistent World Models",
     caption: "Enterprise-grade patterns for modern AI applications",
     createdAt: "2025-12-25T18:00:00Z",
-    tags: ["BuildInPublic","Startup"],
+    tags: ["BuildInPublic", "Startup"],
   },
   {
     id: "v98",
@@ -5678,7 +5678,7 @@ export const mockPosts: FeedPost[] = [
     title: "The Future of Web Development with AI Native Frameworks",
     caption: "How the best teams in the world build AI products",
     createdAt: "2025-11-24T20:00:00Z",
-    tags: ["AINews","TechTrends"],
+    tags: ["AINews", "TechTrends"],
   },
   {
     id: "v99",
@@ -5689,7 +5689,7 @@ export const mockPosts: FeedPost[] = [
     title: "Building Distributed AI Training Systems",
     caption: "The complete reference guide for 2026 AI development",
     createdAt: "2025-12-25T19:00:00Z",
-    tags: ["AITools","Productivity"],
+    tags: ["AITools", "Productivity"],
   },
   {
     id: "v100",
@@ -5700,7 +5700,7 @@ export const mockPosts: FeedPost[] = [
     title: "AI-Powered Code Migration: Legacy to Modern Stack",
     caption: "Production-tested patterns for real-world AI applications",
     createdAt: "2026-01-01T06:00:00Z",
-    tags: ["GenerativeAI","LLM"],
+    tags: ["GenerativeAI", "LLM"],
   },
   {
     id: "v101",
@@ -5711,7 +5711,7 @@ export const mockPosts: FeedPost[] = [
     title: "Building Privacy-Preserving AI Systems",
     caption: "Complete walkthrough from zero to production deployment",
     createdAt: "2025-12-28T23:00:00Z",
-    tags: ["MachineLearning","MLOps"],
+    tags: ["MachineLearning", "MLOps"],
   },
   {
     id: "v102",
@@ -5722,7 +5722,7 @@ export const mockPosts: FeedPost[] = [
     title: "The Complete Guide to Attention Mechanisms",
     caption: "Deep dive into the architecture that powers modern AI",
     createdAt: "2025-12-12T07:00:00Z",
-    tags: ["LLM","Transformer"],
+    tags: ["LLM", "Transformer"],
   },
   {
     id: "v103",
@@ -5733,7 +5733,7 @@ export const mockPosts: FeedPost[] = [
     title: "Building AI-Powered Financial Applications",
     caption: "Building the full stack with the latest 2026 tools",
     createdAt: "2026-02-03T10:00:00Z",
-    tags: ["TechTrends2026","Future"],
+    tags: ["TechTrends2026", "Future"],
   },
   {
     id: "v104",
@@ -5744,7 +5744,7 @@ export const mockPosts: FeedPost[] = [
     title: "Natural Language to SQL: Building Text-to-Query Systems",
     caption: "The math and intuition behind how it actually works",
     createdAt: "2025-11-27T21:00:00Z",
-    tags: ["SoftwareEngineering","Architecture"],
+    tags: ["SoftwareEngineering", "Architecture"],
   },
   {
     id: "v105",
@@ -5755,7 +5755,7 @@ export const mockPosts: FeedPost[] = [
     title: "Building AI-Powered Document Processing Pipelines",
     caption: "From concept to production-ready implementation",
     createdAt: "2026-01-13T09:00:00Z",
-    tags: ["DevTok","Coding"],
+    tags: ["DevTok", "Coding"],
   },
   {
     id: "v106",
@@ -5766,7 +5766,7 @@ export const mockPosts: FeedPost[] = [
     title: "The Complete Guide to AI Model Serving",
     caption: "Everything you need to build this yourself from scratch",
     createdAt: "2026-01-15T22:00:00Z",
-    tags: ["Programming","Algorithms"],
+    tags: ["Programming", "Algorithms"],
   },
   {
     id: "v107",
@@ -5777,7 +5777,7 @@ export const mockPosts: FeedPost[] = [
     title: "Building AI-Native Mobile Applications",
     caption: "Head-to-head comparison with real benchmarks and code",
     createdAt: "2025-12-25T04:00:00Z",
-    tags: ["SaaS","Cloud"],
+    tags: ["SaaS", "Cloud"],
   },
   {
     id: "v108",
@@ -5788,7 +5788,7 @@ export const mockPosts: FeedPost[] = [
     title: "Advanced Prompt Engineering: Chain and Tree of Thought",
     caption: "Master the techniques used by top AI engineers",
     createdAt: "2025-11-27T21:00:00Z",
-    tags: ["Automation","Workflow"],
+    tags: ["Automation", "Workflow"],
   },
   {
     id: "v109",
@@ -5799,7 +5799,7 @@ export const mockPosts: FeedPost[] = [
     title: "Building AI-Powered Security Systems",
     caption: "Step-by-step guide with full source code on GitHub",
     createdAt: "2025-12-27T17:00:00Z",
-    tags: ["Python","DataScience"],
+    tags: ["Python", "DataScience"],
   },
   {
     id: "v110",
@@ -5810,7 +5810,7 @@ export const mockPosts: FeedPost[] = [
     title: "The Complete Guide to Embedding Models",
     caption: "Understanding the systems that power billion-dollar products",
     createdAt: "2026-02-13T22:00:00Z",
-    tags: ["React","Frontend"],
+    tags: ["React", "Frontend"],
   },
   {
     id: "v111",
@@ -5821,7 +5821,7 @@ export const mockPosts: FeedPost[] = [
     title: "Building AI Agents That Learn from Feedback",
     caption: "The architecture patterns every AI engineer should know",
     createdAt: "2025-12-11T12:00:00Z",
-    tags: ["TypeScript","WebDev"],
+    tags: ["TypeScript", "WebDev"],
   },
   {
     id: "v112",
@@ -5832,7 +5832,7 @@ export const mockPosts: FeedPost[] = [
     title: "WebGPU + AI: Hardware-Accelerated ML in the Browser",
     caption: "From beginner to advanced in one comprehensive tutorial",
     createdAt: "2025-12-25T09:00:00Z",
-    tags: ["Next.js","Fullstack"],
+    tags: ["Next.js", "Fullstack"],
   },
   {
     id: "v113",
@@ -5843,7 +5843,7 @@ export const mockPosts: FeedPost[] = [
     title: "Building AI-Powered Project Management Tools",
     caption: "Building scalable AI infrastructure the right way",
     createdAt: "2026-01-10T20:00:00Z",
-    tags: ["NestJS","Backend"],
+    tags: ["NestJS", "Backend"],
   },
   {
     id: "v114",
@@ -5854,7 +5854,7 @@ export const mockPosts: FeedPost[] = [
     title: "The Complete Guide to AI Model Fine-Tuning",
     caption: "The techniques that separate hobby projects from production",
     createdAt: "2026-02-12T04:00:00Z",
-    tags: ["Docker","DevOps"],
+    tags: ["Docker", "DevOps"],
   },
   {
     id: "v115",
@@ -5865,7 +5865,7 @@ export const mockPosts: FeedPost[] = [
     title: "Building Intelligent API Gateways with AI",
     caption: "Full build log with every decision explained",
     createdAt: "2025-11-29T15:00:00Z",
-    tags: ["Kubernetes","Infrastructure"],
+    tags: ["Kubernetes", "Infrastructure"],
   },
   {
     id: "v116",
@@ -5876,7 +5876,7 @@ export const mockPosts: FeedPost[] = [
     title: "AI-Powered Database Optimization and Query Tuning",
     caption: "The practical guide that skips the theory and shows code",
     createdAt: "2026-01-03T22:00:00Z",
-    tags: ["RAG","VectorDB"],
+    tags: ["RAG", "VectorDB"],
   },
   {
     id: "v117",
@@ -5887,7 +5887,7 @@ export const mockPosts: FeedPost[] = [
     title: "Building AI-Powered Notification Systems",
     caption: "Enterprise-grade patterns for modern AI applications",
     createdAt: "2025-12-29T15:00:00Z",
-    tags: ["PromptEngineering","LLM"],
+    tags: ["PromptEngineering", "LLM"],
   },
   {
     id: "v118",
@@ -5898,7 +5898,7 @@ export const mockPosts: FeedPost[] = [
     title: "The Complete Guide to Agentic AI Frameworks",
     caption: "How the best teams in the world build AI products",
     createdAt: "2026-01-17T19:00:00Z",
-    tags: ["OpenSource","GitHub"],
+    tags: ["OpenSource", "GitHub"],
   },
   {
     id: "v119",
@@ -5909,7 +5909,7 @@ export const mockPosts: FeedPost[] = [
     title: "Building AI-Powered Design Systems",
     caption: "The complete reference guide for 2026 AI development",
     createdAt: "2025-12-22T15:00:00Z",
-    tags: ["Cybersecurity","InfoSec"],
+    tags: ["Cybersecurity", "InfoSec"],
   },
   {
     id: "v120",
@@ -5920,7 +5920,7 @@ export const mockPosts: FeedPost[] = [
     title: "Advanced Retrieval Strategies for Production RAG",
     caption: "Production-tested patterns for real-world AI applications",
     createdAt: "2025-12-28T16:00:00Z",
-    tags: ["QuantumComputing","Research"],
+    tags: ["QuantumComputing", "Research"],
   },
   {
     id: "v121",
@@ -5931,7 +5931,7 @@ export const mockPosts: FeedPost[] = [
     title: "Building Real-Time AI Collaboration Features",
     caption: "Complete walkthrough from zero to production deployment",
     createdAt: "2025-12-15T11:00:00Z",
-    tags: ["Robotics","Hardware"],
+    tags: ["Robotics", "Hardware"],
   },
   {
     id: "v122",
@@ -5942,7 +5942,7 @@ export const mockPosts: FeedPost[] = [
     title: "The Complete Guide to AI-Powered Analytics",
     caption: "Deep dive into the architecture that powers modern AI",
     createdAt: "2025-12-09T18:00:00Z",
-    tags: ["EdgeAI","IoT"],
+    tags: ["EdgeAI", "IoT"],
   },
   {
     id: "v123",
@@ -5953,7 +5953,7 @@ export const mockPosts: FeedPost[] = [
     title: "Building Multi-Step AI Workflows with Temporal",
     caption: "Building the full stack with the latest 2026 tools",
     createdAt: "2025-12-23T17:00:00Z",
-    tags: ["DataEngineering","ETL"],
+    tags: ["DataEngineering", "ETL"],
   },
   {
     id: "v124",
@@ -5964,7 +5964,7 @@ export const mockPosts: FeedPost[] = [
     title: "AI-Powered Log Analysis and Anomaly Detection",
     caption: "The math and intuition behind how it actually works",
     createdAt: "2026-01-28T02:00:00Z",
-    tags: ["WebAssembly","Performance"],
+    tags: ["WebAssembly", "Performance"],
   },
   {
     id: "v125",
@@ -5975,7 +5975,7 @@ export const mockPosts: FeedPost[] = [
     title: "Building AI-Powered CI/CD Pipelines",
     caption: "From concept to production-ready implementation",
     createdAt: "2026-01-27T15:00:00Z",
-    tags: ["Rust","SystemsProgramming"],
+    tags: ["Rust", "SystemsProgramming"],
   },
   {
     id: "v126",
@@ -5986,7 +5986,7 @@ export const mockPosts: FeedPost[] = [
     title: "The Complete Guide to Large-Scale AI Architectures",
     caption: "Everything you need to build this yourself from scratch",
     createdAt: "2025-11-19T23:00:00Z",
-    tags: ["AI Agents","AgenticAI"],
+    tags: ["AI Agents", "AgenticAI"],
   },
   {
     id: "v127",
@@ -5997,7 +5997,7 @@ export const mockPosts: FeedPost[] = [
     title: "Building AI-Powered Customer Support Systems",
     caption: "Head-to-head comparison with real benchmarks and code",
     createdAt: "2025-12-12T01:00:00Z",
-    tags: ["Claude","Anthropic"],
+    tags: ["Claude", "Anthropic"],
   },
   {
     id: "v128",
@@ -6008,7 +6008,7 @@ export const mockPosts: FeedPost[] = [
     title: "Advanced Vector Search: HNSW, IVF, and Beyond",
     caption: "Master the techniques used by top AI engineers",
     createdAt: "2025-12-22T17:00:00Z",
-    tags: ["OpenAI","GPT-5"],
+    tags: ["OpenAI", "GPT-5"],
   },
   {
     id: "v129",
@@ -6019,7 +6019,7 @@ export const mockPosts: FeedPost[] = [
     title: "Building Autonomous Code Generation Agents",
     caption: "Step-by-step guide with full source code on GitHub",
     createdAt: "2026-02-11T11:00:00Z",
-    tags: ["Gemini","Google"],
+    tags: ["Gemini", "Google"],
   },
   {
     id: "v130",
@@ -6030,7 +6030,7 @@ export const mockPosts: FeedPost[] = [
     title: "The Complete Guide to AI-Powered Content Creation",
     caption: "Understanding the systems that power billion-dollar products",
     createdAt: "2026-01-19T23:00:00Z",
-    tags: ["Sora","VideoGen"],
+    tags: ["Sora", "VideoGen"],
   },
   {
     id: "v131",
@@ -6041,7 +6041,7 @@ export const mockPosts: FeedPost[] = [
     title: "Building Scalable AI Data Pipelines",
     caption: "The architecture patterns every AI engineer should know",
     createdAt: "2025-12-27T22:00:00Z",
-    tags: ["Vibecoding","AICoding"],
+    tags: ["Vibecoding", "AICoding"],
   },
   {
     id: "v132",
@@ -6052,7 +6052,7 @@ export const mockPosts: FeedPost[] = [
     title: "AI-Powered Network Security: Real-Time Threat Detection",
     caption: "From beginner to advanced in one comprehensive tutorial",
     createdAt: "2025-11-29T05:00:00Z",
-    tags: ["BuildInPublic","Startup"],
+    tags: ["BuildInPublic", "Startup"],
   },
   {
     id: "v133",
@@ -6063,7 +6063,7 @@ export const mockPosts: FeedPost[] = [
     title: "Building AI-Native SaaS: Architecture Patterns",
     caption: "Building scalable AI infrastructure the right way",
     createdAt: "2026-01-16T03:00:00Z",
-    tags: ["AINews","TechTrends"],
+    tags: ["AINews", "TechTrends"],
   },
   {
     id: "v134",
@@ -6074,7 +6074,7 @@ export const mockPosts: FeedPost[] = [
     title: "The Complete Guide to Small Language Models",
     caption: "The techniques that separate hobby projects from production",
     createdAt: "2026-01-20T09:00:00Z",
-    tags: ["AITools","Productivity"],
+    tags: ["AITools", "Productivity"],
   },
   {
     id: "v135",
@@ -6085,7 +6085,7 @@ export const mockPosts: FeedPost[] = [
     title: "Building AI-Powered Monitoring Dashboards",
     caption: "Full build log with every decision explained",
     createdAt: "2026-01-23T12:00:00Z",
-    tags: ["GenerativeAI","LLM"],
+    tags: ["GenerativeAI", "LLM"],
   },
   {
     id: "v136",
@@ -6096,7 +6096,7 @@ export const mockPosts: FeedPost[] = [
     title: "Advanced Inference Optimization: Batching, Caching, KV-Cache",
     caption: "The practical guide that skips the theory and shows code",
     createdAt: "2026-01-12T18:00:00Z",
-    tags: ["MachineLearning","MLOps"],
+    tags: ["MachineLearning", "MLOps"],
   },
   {
     id: "v137",
@@ -6107,7 +6107,7 @@ export const mockPosts: FeedPost[] = [
     title: "Building AI-Powered Accessibility Features",
     caption: "Enterprise-grade patterns for modern AI applications",
     createdAt: "2025-12-24T04:00:00Z",
-    tags: ["LLM","Transformer"],
+    tags: ["LLM", "Transformer"],
   },
   {
     id: "v138",
@@ -6118,7 +6118,7 @@ export const mockPosts: FeedPost[] = [
     title: "The Complete Guide to Multi-Agent Orchestration",
     caption: "How the best teams in the world build AI products",
     createdAt: "2026-01-09T03:00:00Z",
-    tags: ["TechTrends2026","Future"],
+    tags: ["TechTrends2026", "Future"],
   },
   {
     id: "v139",
@@ -6129,7 +6129,7 @@ export const mockPosts: FeedPost[] = [
     title: "Building Intelligent Search with Hybrid Retrieval",
     caption: "The complete reference guide for 2026 AI development",
     createdAt: "2026-01-10T16:00:00Z",
-    tags: ["SoftwareEngineering","Architecture"],
+    tags: ["SoftwareEngineering", "Architecture"],
   },
   {
     id: "v140",
@@ -6140,7 +6140,7 @@ export const mockPosts: FeedPost[] = [
     title: "AI-Powered Performance Testing at Scale",
     caption: "Production-tested patterns for real-world AI applications",
     createdAt: "2025-11-26T21:00:00Z",
-    tags: ["DevTok","Coding"],
+    tags: ["DevTok", "Coding"],
   },
   {
     id: "v141",
@@ -6151,7 +6151,7 @@ export const mockPosts: FeedPost[] = [
     title: "Building AI-Native Web Applications from Scratch",
     caption: "Complete walkthrough from zero to production deployment",
     createdAt: "2025-12-24T01:00:00Z",
-    tags: ["Programming","Algorithms"],
+    tags: ["Programming", "Algorithms"],
   },
   {
     id: "v142",
@@ -6162,7 +6162,7 @@ export const mockPosts: FeedPost[] = [
     title: "The Complete Guide to AI-Powered Visualization",
     caption: "Deep dive into the architecture that powers modern AI",
     createdAt: "2025-12-14T07:00:00Z",
-    tags: ["SaaS","Cloud"],
+    tags: ["SaaS", "Cloud"],
   },
   {
     id: "v143",
@@ -6173,7 +6173,7 @@ export const mockPosts: FeedPost[] = [
     title: "Building Production-Grade Conversational AI",
     caption: "Building the full stack with the latest 2026 tools",
     createdAt: "2025-11-24T23:00:00Z",
-    tags: ["Automation","Workflow"],
+    tags: ["Automation", "Workflow"],
   },
   {
     id: "v144",
@@ -6184,7 +6184,7 @@ export const mockPosts: FeedPost[] = [
     title: "Advanced AI Agent Planning and Reflection",
     caption: "The math and intuition behind how it actually works",
     createdAt: "2025-12-24T09:00:00Z",
-    tags: ["Python","DataScience"],
+    tags: ["Python", "DataScience"],
   },
   {
     id: "v145",
@@ -6195,7 +6195,7 @@ export const mockPosts: FeedPost[] = [
     title: "Building AI-Powered Configuration Management",
     caption: "From concept to production-ready implementation",
     createdAt: "2026-01-15T23:00:00Z",
-    tags: ["React","Frontend"],
+    tags: ["React", "Frontend"],
   },
   {
     id: "v146",
@@ -6206,7 +6206,7 @@ export const mockPosts: FeedPost[] = [
     title: "The Complete Guide to Building RAG Pipelines",
     caption: "Everything you need to build this yourself from scratch",
     createdAt: "2026-01-23T16:00:00Z",
-    tags: ["TypeScript","WebDev"],
+    tags: ["TypeScript", "WebDev"],
   },
   {
     id: "v147",
@@ -6217,7 +6217,7 @@ export const mockPosts: FeedPost[] = [
     title: "Building Real-Time AI Video Processing Systems",
     caption: "Head-to-head comparison with real benchmarks and code",
     createdAt: "2026-02-09T16:00:00Z",
-    tags: ["Next.js","Fullstack"],
+    tags: ["Next.js", "Fullstack"],
   },
   {
     id: "v148",
@@ -6228,7 +6228,7 @@ export const mockPosts: FeedPost[] = [
     title: "AI-Powered Resource Scheduling and Optimization",
     caption: "Master the techniques used by top AI engineers",
     createdAt: "2026-02-03T01:00:00Z",
-    tags: ["NestJS","Backend"],
+    tags: ["NestJS", "Backend"],
   },
   {
     id: "v149",
@@ -6239,7 +6239,7 @@ export const mockPosts: FeedPost[] = [
     title: "Building Multi-Cloud AI Infrastructure",
     caption: "Step-by-step guide with full source code on GitHub",
     createdAt: "2026-02-02T21:00:00Z",
-    tags: ["Docker","DevOps"],
+    tags: ["Docker", "DevOps"],
   },
   {
     id: "v150",
@@ -6250,7 +6250,7 @@ export const mockPosts: FeedPost[] = [
     title: "The Complete Guide to AI-Powered Education Tools",
     caption: "Understanding the systems that power billion-dollar products",
     createdAt: "2025-12-03T19:00:00Z",
-    tags: ["Kubernetes","Infrastructure"],
+    tags: ["Kubernetes", "Infrastructure"],
   },
   {
     id: "v151",
@@ -6261,7 +6261,7 @@ export const mockPosts: FeedPost[] = [
     title: "Building AI Agents with Tool Use Capabilities",
     caption: "The architecture patterns every AI engineer should know",
     createdAt: "2025-12-20T18:00:00Z",
-    tags: ["RAG","VectorDB"],
+    tags: ["RAG", "VectorDB"],
   },
   {
     id: "v152",
@@ -6272,7 +6272,7 @@ export const mockPosts: FeedPost[] = [
     title: "Advanced Tokenization: BPE, SentencePiece, and Tiktoken",
     caption: "From beginner to advanced in one comprehensive tutorial",
     createdAt: "2026-01-11T16:00:00Z",
-    tags: ["PromptEngineering","LLM"],
+    tags: ["PromptEngineering", "LLM"],
   },
   {
     id: "v153",
@@ -6283,7 +6283,7 @@ export const mockPosts: FeedPost[] = [
     title: "Building AI-Powered Incident Response Systems",
     caption: "Building scalable AI infrastructure the right way",
     createdAt: "2025-12-12T02:00:00Z",
-    tags: ["OpenSource","GitHub"],
+    tags: ["OpenSource", "GitHub"],
   },
   {
     id: "v154",
@@ -6294,7 +6294,7 @@ export const mockPosts: FeedPost[] = [
     title: "The Complete Guide to AI App Architecture",
     caption: "The techniques that separate hobby projects from production",
     createdAt: "2025-12-20T04:00:00Z",
-    tags: ["Cybersecurity","InfoSec"],
+    tags: ["Cybersecurity", "InfoSec"],
   },
   {
     id: "v155",
@@ -6305,7 +6305,7 @@ export const mockPosts: FeedPost[] = [
     title: "Building Intelligent Caching Systems with AI",
     caption: "Full build log with every decision explained",
     createdAt: "2026-01-04T06:00:00Z",
-    tags: ["QuantumComputing","Research"],
+    tags: ["QuantumComputing", "Research"],
   },
   {
     id: "v156",
@@ -6316,7 +6316,7 @@ export const mockPosts: FeedPost[] = [
     title: "AI-Powered API Documentation Generation",
     caption: "The practical guide that skips the theory and shows code",
     createdAt: "2026-02-14T20:00:00Z",
-    tags: ["Robotics","Hardware"],
+    tags: ["Robotics", "Hardware"],
   },
   {
     id: "v157",
@@ -6327,7 +6327,7 @@ export const mockPosts: FeedPost[] = [
     title: "Building AI-Native Authentication Systems",
     caption: "Enterprise-grade patterns for modern AI applications",
     createdAt: "2025-12-27T17:00:00Z",
-    tags: ["EdgeAI","IoT"],
+    tags: ["EdgeAI", "IoT"],
   },
   {
     id: "v158",
@@ -6338,7 +6338,7 @@ export const mockPosts: FeedPost[] = [
     title: "The Complete Guide to RLHF and DPO",
     caption: "How the best teams in the world build AI products",
     createdAt: "2026-01-23T19:00:00Z",
-    tags: ["DataEngineering","ETL"],
+    tags: ["DataEngineering", "ETL"],
   },
   {
     id: "v159",
@@ -6349,7 +6349,7 @@ export const mockPosts: FeedPost[] = [
     title: "Building AI-Powered Supply Chain Intelligence",
     caption: "The complete reference guide for 2026 AI development",
     createdAt: "2026-01-24T15:00:00Z",
-    tags: ["WebAssembly","Performance"],
+    tags: ["WebAssembly", "Performance"],
   },
   {
     id: "v160",
@@ -6360,7 +6360,7 @@ export const mockPosts: FeedPost[] = [
     title: "Advanced Retrieval-Augmented Generation Patterns",
     caption: "Production-tested patterns for real-world AI applications",
     createdAt: "2026-02-04T06:00:00Z",
-    tags: ["Rust","SystemsProgramming"],
+    tags: ["Rust", "SystemsProgramming"],
   },
   {
     id: "v161",
@@ -6371,7 +6371,7 @@ export const mockPosts: FeedPost[] = [
     title: "Building End-to-End Autonomous AI Systems",
     caption: "Complete walkthrough from zero to production deployment",
     createdAt: "2026-01-07T08:00:00Z",
-    tags: ["AI Agents","AgenticAI"],
+    tags: ["AI Agents", "AgenticAI"],
   },
   {
     id: "v162",
@@ -6382,7 +6382,7 @@ export const mockPosts: FeedPost[] = [
     title: "The Complete Guide to Production LLM Deployment",
     caption: "Deep dive into the architecture that powers modern AI",
     createdAt: "2026-02-08T23:00:00Z",
-    tags: ["Claude","Anthropic"],
+    tags: ["Claude", "Anthropic"],
   },
   {
     id: "v163",
@@ -6393,7 +6393,7 @@ export const mockPosts: FeedPost[] = [
     title: "Building AI-Powered Climate Tech Solutions",
     caption: "Building the full stack with the latest 2026 tools",
     createdAt: "2025-12-08T10:00:00Z",
-    tags: ["OpenAI","GPT-5"],
+    tags: ["OpenAI", "GPT-5"],
   },
   {
     id: "v164",
@@ -6404,7 +6404,7 @@ export const mockPosts: FeedPost[] = [
     title: "Advanced Multi-Modal AI Application Patterns",
     caption: "The math and intuition behind how it actually works",
     createdAt: "2025-12-26T08:00:00Z",
-    tags: ["Gemini","Google"],
+    tags: ["Gemini", "Google"],
   },
   {
     id: "v165",
@@ -6415,7 +6415,7 @@ export const mockPosts: FeedPost[] = [
     title: "Building Real-Time AI Decision Systems",
     caption: "From concept to production-ready implementation",
     createdAt: "2026-01-03T06:00:00Z",
-    tags: ["Sora","VideoGen"],
+    tags: ["Sora", "VideoGen"],
   },
   {
     id: "v166",
@@ -6426,7 +6426,7 @@ export const mockPosts: FeedPost[] = [
     title: "The Complete Guide to AI-Powered Energy Optimization",
     caption: "Everything you need to build this yourself from scratch",
     createdAt: "2025-12-22T07:00:00Z",
-    tags: ["Vibecoding","AICoding"],
+    tags: ["Vibecoding", "AICoding"],
   },
   {
     id: "v167",
@@ -6437,7 +6437,7 @@ export const mockPosts: FeedPost[] = [
     title: "Building Ethical AI: From Theory to Implementation",
     caption: "Head-to-head comparison with real benchmarks and code",
     createdAt: "2026-01-25T08:00:00Z",
-    tags: ["BuildInPublic","Startup"],
+    tags: ["BuildInPublic", "Startup"],
   },
   {
     id: "v168",
@@ -6448,7 +6448,7 @@ export const mockPosts: FeedPost[] = [
     title: "Advanced Knowledge Graph + LLM Integration",
     caption: "Master the techniques used by top AI engineers",
     createdAt: "2025-12-19T20:00:00Z",
-    tags: ["AINews","TechTrends"],
+    tags: ["AINews", "TechTrends"],
   },
   {
     id: "v169",
@@ -6459,7 +6459,7 @@ export const mockPosts: FeedPost[] = [
     title: "Building AI-Powered Smart City Infrastructure",
     caption: "Step-by-step guide with full source code on GitHub",
     createdAt: "2026-02-10T22:00:00Z",
-    tags: ["AITools","Productivity"],
+    tags: ["AITools", "Productivity"],
   },
   {
     id: "v170",
@@ -6470,7 +6470,7 @@ export const mockPosts: FeedPost[] = [
     title: "The Complete Guide to AI Agent Safety",
     caption: "Understanding the systems that power billion-dollar products",
     createdAt: "2026-01-21T10:00:00Z",
-    tags: ["GenerativeAI","LLM"],
+    tags: ["GenerativeAI", "LLM"],
   },
   {
     id: "v171",
@@ -6481,7 +6481,7 @@ export const mockPosts: FeedPost[] = [
     title: "Building High-Performance AI Inference Servers",
     caption: "The architecture patterns every AI engineer should know",
     createdAt: "2026-02-09T01:00:00Z",
-    tags: ["MachineLearning","MLOps"],
+    tags: ["MachineLearning", "MLOps"],
   },
   {
     id: "v172",
@@ -6492,7 +6492,7 @@ export const mockPosts: FeedPost[] = [
     title: "Advanced Agentic Patterns: ReAct, LATS, and ToT",
     caption: "From beginner to advanced in one comprehensive tutorial",
     createdAt: "2026-01-08T20:00:00Z",
-    tags: ["LLM","Transformer"],
+    tags: ["LLM", "Transformer"],
   },
   {
     id: "v173",
@@ -6503,7 +6503,7 @@ export const mockPosts: FeedPost[] = [
     title: "Building AI-Powered Logistics and Routing",
     caption: "Building scalable AI infrastructure the right way",
     createdAt: "2026-01-08T06:00:00Z",
-    tags: ["TechTrends2026","Future"],
+    tags: ["TechTrends2026", "Future"],
   },
   {
     id: "v174",
@@ -6514,7 +6514,7 @@ export const mockPosts: FeedPost[] = [
     title: "The Complete Guide to Running AI at the Edge",
     caption: "The techniques that separate hobby projects from production",
     createdAt: "2025-11-28T08:00:00Z",
-    tags: ["SoftwareEngineering","Architecture"],
+    tags: ["SoftwareEngineering", "Architecture"],
   },
   {
     id: "v175",
@@ -6525,7 +6525,7 @@ export const mockPosts: FeedPost[] = [
     title: "Building Context-Aware AI Applications",
     caption: "Full build log with every decision explained",
     createdAt: "2026-01-08T05:00:00Z",
-    tags: ["DevTok","Coding"],
+    tags: ["DevTok", "Coding"],
   },
   {
     id: "v176",
@@ -6536,7 +6536,7 @@ export const mockPosts: FeedPost[] = [
     title: "Advanced AI Model Evaluation Frameworks",
     caption: "The practical guide that skips the theory and shows code",
     createdAt: "2026-01-27T00:00:00Z",
-    tags: ["Programming","Algorithms"],
+    tags: ["Programming", "Algorithms"],
   },
   {
     id: "v177",
@@ -6547,7 +6547,7 @@ export const mockPosts: FeedPost[] = [
     title: "Building AI-Powered Quality Assurance Systems",
     caption: "Enterprise-grade patterns for modern AI applications",
     createdAt: "2026-02-16T08:00:00Z",
-    tags: ["SaaS","Cloud"],
+    tags: ["SaaS", "Cloud"],
   },
   {
     id: "v178",
@@ -6558,7 +6558,7 @@ export const mockPosts: FeedPost[] = [
     title: "The Complete Guide to Prompt Caching and Optimization",
     caption: "How the best teams in the world build AI products",
     createdAt: "2025-11-24T05:00:00Z",
-    tags: ["Automation","Workflow"],
+    tags: ["Automation", "Workflow"],
   },
   {
     id: "v179",
@@ -6569,7 +6569,7 @@ export const mockPosts: FeedPost[] = [
     title: "Building Scalable Multi-Agent Communication Protocols",
     caption: "The complete reference guide for 2026 AI development",
     createdAt: "2026-01-20T14:00:00Z",
-    tags: ["Python","DataScience"],
+    tags: ["Python", "DataScience"],
   },
   {
     id: "v180",
@@ -6580,7 +6580,7 @@ export const mockPosts: FeedPost[] = [
     title: "Advanced AI-Powered Natural Language Understanding",
     caption: "Production-tested patterns for real-world AI applications",
     createdAt: "2026-01-02T06:00:00Z",
-    tags: ["React","Frontend"],
+    tags: ["React", "Frontend"],
   },
   {
     id: "v181",
@@ -6591,7 +6591,7 @@ export const mockPosts: FeedPost[] = [
     title: "Building Personal AI Knowledge Management Systems",
     caption: "Complete walkthrough from zero to production deployment",
     createdAt: "2026-02-17T05:00:00Z",
-    tags: ["TypeScript","WebDev"],
+    tags: ["TypeScript", "WebDev"],
   },
   {
     id: "v182",
@@ -6602,7 +6602,7 @@ export const mockPosts: FeedPost[] = [
     title: "The Complete Guide to AI Infrastructure Cost Optimization",
     caption: "Deep dive into the architecture that powers modern AI",
     createdAt: "2025-12-17T18:00:00Z",
-    tags: ["Next.js","Fullstack"],
+    tags: ["Next.js", "Fullstack"],
   },
   {
     id: "v183",
@@ -6613,7 +6613,7 @@ export const mockPosts: FeedPost[] = [
     title: "Building AI-Powered Talent Matching Platforms",
     caption: "Building the full stack with the latest 2026 tools",
     createdAt: "2026-01-03T21:00:00Z",
-    tags: ["NestJS","Backend"],
+    tags: ["NestJS", "Backend"],
   },
   {
     id: "v184",
@@ -6624,7 +6624,7 @@ export const mockPosts: FeedPost[] = [
     title: "Advanced Techniques in Model Distillation",
     caption: "The math and intuition behind how it actually works",
     createdAt: "2026-01-16T01:00:00Z",
-    tags: ["Docker","DevOps"],
+    tags: ["Docker", "DevOps"],
   },
   {
     id: "v185",
@@ -6635,7 +6635,7 @@ export const mockPosts: FeedPost[] = [
     title: "Building AI-Native Developer Experience Platforms",
     caption: "From concept to production-ready implementation",
     createdAt: "2025-12-04T22:00:00Z",
-    tags: ["Kubernetes","Infrastructure"],
+    tags: ["Kubernetes", "Infrastructure"],
   },
   {
     id: "v186",
@@ -6646,7 +6646,7 @@ export const mockPosts: FeedPost[] = [
     title: "The Complete Guide to AI Video Generation",
     caption: "Everything you need to build this yourself from scratch",
     createdAt: "2025-11-25T17:00:00Z",
-    tags: ["RAG","VectorDB"],
+    tags: ["RAG", "VectorDB"],
   },
   {
     id: "v187",
@@ -6657,7 +6657,7 @@ export const mockPosts: FeedPost[] = [
     title: "Building Autonomous AI Research Assistants",
     caption: "Head-to-head comparison with real benchmarks and code",
     createdAt: "2025-11-21T23:00:00Z",
-    tags: ["PromptEngineering","LLM"],
+    tags: ["PromptEngineering", "LLM"],
   },
   {
     id: "v188",
@@ -6668,7 +6668,7 @@ export const mockPosts: FeedPost[] = [
     title: "Advanced AI-Powered Data Visualization",
     caption: "Master the techniques used by top AI engineers",
     createdAt: "2025-12-04T23:00:00Z",
-    tags: ["OpenSource","GitHub"],
+    tags: ["OpenSource", "GitHub"],
   },
   {
     id: "v189",
@@ -6679,7 +6679,7 @@ export const mockPosts: FeedPost[] = [
     title: "Building Real-Time AI Recommendation Systems",
     caption: "Step-by-step guide with full source code on GitHub",
     createdAt: "2026-02-08T11:00:00Z",
-    tags: ["Cybersecurity","InfoSec"],
+    tags: ["Cybersecurity", "InfoSec"],
   },
   {
     id: "v190",
@@ -6690,7 +6690,7 @@ export const mockPosts: FeedPost[] = [
     title: "The Complete Guide to AI-Accelerated Computing",
     caption: "Understanding the systems that power billion-dollar products",
     createdAt: "2026-01-02T12:00:00Z",
-    tags: ["QuantumComputing","Research"],
+    tags: ["QuantumComputing", "Research"],
   },
   {
     id: "v191",
@@ -6701,7 +6701,7 @@ export const mockPosts: FeedPost[] = [
     title: "Building an AI Agent from Scratch: Complete Tutorial",
     caption: "The architecture patterns every AI engineer should know",
     createdAt: "2026-01-05T13:00:00Z",
-    tags: ["Robotics","Hardware"],
+    tags: ["Robotics", "Hardware"],
   },
   {
     id: "v192",
@@ -6712,7 +6712,7 @@ export const mockPosts: FeedPost[] = [
     title: "The Architecture Behind GPT-5: Technical Deep Dive",
     caption: "From beginner to advanced in one comprehensive tutorial",
     createdAt: "2026-01-11T05:00:00Z",
-    tags: ["EdgeAI","IoT"],
+    tags: ["EdgeAI", "IoT"],
   },
   {
     id: "v193",
@@ -6723,7 +6723,7 @@ export const mockPosts: FeedPost[] = [
     title: "Full Stack AI App: React + NestJS + Gemini in 2 Hours",
     caption: "Building scalable AI infrastructure the right way",
     createdAt: "2026-01-03T22:00:00Z",
-    tags: ["DataEngineering","ETL"],
+    tags: ["DataEngineering", "ETL"],
   },
   {
     id: "v194",
@@ -6734,7 +6734,7 @@ export const mockPosts: FeedPost[] = [
     title: "Understanding Transformers: The Math You Actually Need",
     caption: "The techniques that separate hobby projects from production",
     createdAt: "2025-12-08T02:00:00Z",
-    tags: ["WebAssembly","Performance"],
+    tags: ["WebAssembly", "Performance"],
   },
   {
     id: "v195",
@@ -6745,7 +6745,7 @@ export const mockPosts: FeedPost[] = [
     title: "RAG Pipeline Architecture: From Zero to Production",
     caption: "Full build log with every decision explained",
     createdAt: "2025-11-25T03:00:00Z",
-    tags: ["Rust","SystemsProgramming"],
+    tags: ["Rust", "SystemsProgramming"],
   },
   {
     id: "v196",
@@ -6756,7 +6756,7 @@ export const mockPosts: FeedPost[] = [
     title: "Building MCP Servers: The Complete Guide",
     caption: "The practical guide that skips the theory and shows code",
     createdAt: "2026-01-16T03:00:00Z",
-    tags: ["AI Agents","AgenticAI"],
+    tags: ["AI Agents", "AgenticAI"],
   },
   {
     id: "v197",
@@ -6767,7 +6767,7 @@ export const mockPosts: FeedPost[] = [
     title: "Claude Code vs Cursor vs Copilot: Full Comparison",
     caption: "Enterprise-grade patterns for modern AI applications",
     createdAt: "2025-12-13T10:00:00Z",
-    tags: ["Claude","Anthropic"],
+    tags: ["Claude", "Anthropic"],
   },
   {
     id: "v198",
@@ -6778,7 +6778,7 @@ export const mockPosts: FeedPost[] = [
     title: "LLM Fine-Tuning Masterclass: LoRA, QLoRA, and PEFT",
     caption: "How the best teams in the world build AI products",
     createdAt: "2026-01-30T16:00:00Z",
-    tags: ["OpenAI","GPT-5"],
+    tags: ["OpenAI", "GPT-5"],
   },
   {
     id: "v199",
@@ -6789,7 +6789,7 @@ export const mockPosts: FeedPost[] = [
     title: "Building AI Agents with LangGraph: Complete Walkthrough",
     caption: "The complete reference guide for 2026 AI development",
     createdAt: "2025-12-16T03:00:00Z",
-    tags: ["Gemini","Google"],
+    tags: ["Gemini", "Google"],
   },
   {
     id: "v200",
@@ -6800,7 +6800,7 @@ export const mockPosts: FeedPost[] = [
     title: "Multi-Agent Systems: Coordination and Communication",
     caption: "Production-tested patterns for real-world AI applications",
     createdAt: "2026-01-15T23:00:00Z",
-    tags: ["Sora","VideoGen"],
+    tags: ["Sora", "VideoGen"],
   },
 
 
@@ -7799,7 +7799,7 @@ export const mockPosts: FeedPost[] = [
     sourceName: "Anthropic",
     readTime: 6,
     createdAt: "2026-02-16T04:00:00Z",
-    tags: ["Claude","Anthropic","LLM"],
+    tags: ["Claude", "Anthropic", "LLM"],
   },
   {
     id: "a72",
@@ -7813,7 +7813,7 @@ export const mockPosts: FeedPost[] = [
     sourceName: "OpenAI Blog",
     readTime: 7,
     createdAt: "2026-01-04T17:00:00Z",
-    tags: ["OpenAI","GPT-5","LLM"],
+    tags: ["OpenAI", "GPT-5", "LLM"],
   },
   {
     id: "a73",
@@ -7827,7 +7827,7 @@ export const mockPosts: FeedPost[] = [
     sourceName: "Google DeepMind",
     readTime: 7,
     createdAt: "2026-02-06T02:00:00Z",
-    tags: ["Google","Gemini","AICoding"],
+    tags: ["Google", "Gemini", "AICoding"],
   },
   {
     id: "a74",
@@ -7841,7 +7841,7 @@ export const mockPosts: FeedPost[] = [
     sourceName: "VentureBeat",
     readTime: 6,
     createdAt: "2025-12-27T02:00:00Z",
-    tags: ["AI Agents","Enterprise"],
+    tags: ["AI Agents", "Enterprise"],
   },
   {
     id: "a75",
@@ -7855,7 +7855,7 @@ export const mockPosts: FeedPost[] = [
     sourceName: "TechCrunch",
     readTime: 4,
     createdAt: "2025-12-21T04:00:00Z",
-    tags: ["MCP","AI Agents"],
+    tags: ["MCP", "AI Agents"],
   },
   {
     id: "a76",
@@ -7869,7 +7869,7 @@ export const mockPosts: FeedPost[] = [
     sourceName: "The Verge",
     readTime: 3,
     createdAt: "2026-01-12T17:00:00Z",
-    tags: ["Sora","VideoGen"],
+    tags: ["Sora", "VideoGen"],
   },
   {
     id: "a77",
@@ -7883,7 +7883,7 @@ export const mockPosts: FeedPost[] = [
     sourceName: "Bloomberg Technology",
     readTime: 3,
     createdAt: "2026-02-03T07:00:00Z",
-    tags: ["Cursor","AICoding"],
+    tags: ["Cursor", "AICoding"],
   },
   {
     id: "a78",
@@ -7897,7 +7897,7 @@ export const mockPosts: FeedPost[] = [
     sourceName: "InfoWorld",
     readTime: 7,
     createdAt: "2026-02-09T11:00:00Z",
-    tags: ["Python","Programming"],
+    tags: ["Python", "Programming"],
   },
   {
     id: "a79",
@@ -7911,7 +7911,7 @@ export const mockPosts: FeedPost[] = [
     sourceName: "Vercel Blog",
     readTime: 5,
     createdAt: "2025-12-15T23:00:00Z",
-    tags: ["React","Frontend"],
+    tags: ["React", "Frontend"],
   },
   {
     id: "a80",
@@ -7925,7 +7925,7 @@ export const mockPosts: FeedPost[] = [
     sourceName: "Microsoft DevBlog",
     readTime: 7,
     createdAt: "2025-12-25T00:00:00Z",
-    tags: ["TypeScript","WebDev"],
+    tags: ["TypeScript", "WebDev"],
   },
   {
     id: "a81",
@@ -7939,7 +7939,7 @@ export const mockPosts: FeedPost[] = [
     sourceName: "Vercel Blog",
     readTime: 4,
     createdAt: "2025-12-01T16:00:00Z",
-    tags: ["Next.js","Fullstack"],
+    tags: ["Next.js", "Fullstack"],
   },
   {
     id: "a82",
@@ -7953,7 +7953,7 @@ export const mockPosts: FeedPost[] = [
     sourceName: "The Register",
     readTime: 4,
     createdAt: "2026-01-18T16:00:00Z",
-    tags: ["NestJS","Backend"],
+    tags: ["NestJS", "Backend"],
   },
   {
     id: "a83",
@@ -7967,7 +7967,7 @@ export const mockPosts: FeedPost[] = [
     sourceName: "InfoWorld",
     readTime: 4,
     createdAt: "2026-01-07T03:00:00Z",
-    tags: ["Docker","MLOps"],
+    tags: ["Docker", "MLOps"],
   },
   {
     id: "a84",
@@ -7981,7 +7981,7 @@ export const mockPosts: FeedPost[] = [
     sourceName: "MIT Technology Review",
     readTime: 3,
     createdAt: "2026-01-16T11:00:00Z",
-    tags: ["RAG","VectorDB"],
+    tags: ["RAG", "VectorDB"],
   },
   {
     id: "a85",
@@ -7995,7 +7995,7 @@ export const mockPosts: FeedPost[] = [
     sourceName: "Ars Technica",
     readTime: 7,
     createdAt: "2026-02-10T08:00:00Z",
-    tags: ["LLM","Cloud"],
+    tags: ["LLM", "Cloud"],
   },
   {
     id: "a86",
@@ -8009,7 +8009,7 @@ export const mockPosts: FeedPost[] = [
     sourceName: "ZDNet",
     readTime: 3,
     createdAt: "2026-01-01T16:00:00Z",
-    tags: ["Cybersecurity","AI Agents"],
+    tags: ["Cybersecurity", "AI Agents"],
   },
   {
     id: "a87",
@@ -8023,7 +8023,7 @@ export const mockPosts: FeedPost[] = [
     sourceName: "IEEE Spectrum",
     readTime: 7,
     createdAt: "2025-12-03T10:00:00Z",
-    tags: ["QuantumComputing","Research"],
+    tags: ["QuantumComputing", "Research"],
   },
   {
     id: "a88",
@@ -8037,7 +8037,7 @@ export const mockPosts: FeedPost[] = [
     sourceName: "Reuters Tech",
     readTime: 6,
     createdAt: "2026-01-28T16:00:00Z",
-    tags: ["EdgeAI","Hardware"],
+    tags: ["EdgeAI", "Hardware"],
   },
   {
     id: "a89",
@@ -8051,7 +8051,7 @@ export const mockPosts: FeedPost[] = [
     sourceName: "Hacker News",
     readTime: 6,
     createdAt: "2026-02-14T01:00:00Z",
-    tags: ["OpenSource","LLM"],
+    tags: ["OpenSource", "LLM"],
   },
   {
     id: "a90",
@@ -8065,7 +8065,7 @@ export const mockPosts: FeedPost[] = [
     sourceName: "Forbes AI",
     readTime: 3,
     createdAt: "2025-12-15T16:00:00Z",
-    tags: ["AICoding","Enterprise"],
+    tags: ["AICoding", "Enterprise"],
   },
   {
     id: "a91",
@@ -8079,7 +8079,7 @@ export const mockPosts: FeedPost[] = [
     sourceName: "GitHub Blog",
     readTime: 6,
     createdAt: "2025-12-10T22:00:00Z",
-    tags: ["AICoding","GitHub"],
+    tags: ["AICoding", "GitHub"],
   },
   {
     id: "a92",
@@ -8093,7 +8093,7 @@ export const mockPosts: FeedPost[] = [
     sourceName: "TechCrunch",
     readTime: 5,
     createdAt: "2026-01-24T03:00:00Z",
-    tags: ["OpenSource","MLOps"],
+    tags: ["OpenSource", "MLOps"],
   },
   {
     id: "a93",
@@ -8107,7 +8107,7 @@ export const mockPosts: FeedPost[] = [
     sourceName: "Bloomberg Technology",
     readTime: 4,
     createdAt: "2026-01-06T20:00:00Z",
-    tags: ["AITools","DevTools"],
+    tags: ["AITools", "DevTools"],
   },
   {
     id: "a94",
@@ -8121,7 +8121,7 @@ export const mockPosts: FeedPost[] = [
     sourceName: "The Register",
     readTime: 4,
     createdAt: "2026-01-15T00:00:00Z",
-    tags: ["Cloud","Infrastructure"],
+    tags: ["Cloud", "Infrastructure"],
   },
   {
     id: "a95",
@@ -8135,7 +8135,7 @@ export const mockPosts: FeedPost[] = [
     sourceName: "InfoWorld",
     readTime: 4,
     createdAt: "2025-11-25T05:00:00Z",
-    tags: ["AI Agents","SoftwareEngineering"],
+    tags: ["AI Agents", "SoftwareEngineering"],
   },
   {
     id: "a96",
@@ -8149,7 +8149,7 @@ export const mockPosts: FeedPost[] = [
     sourceName: "Ars Technica",
     readTime: 5,
     createdAt: "2026-01-29T07:00:00Z",
-    tags: ["WebAssembly","EdgeAI"],
+    tags: ["WebAssembly", "EdgeAI"],
   },
   {
     id: "a97",
@@ -8163,7 +8163,7 @@ export const mockPosts: FeedPost[] = [
     sourceName: "The Register",
     readTime: 5,
     createdAt: "2026-02-17T10:00:00Z",
-    tags: ["Kubernetes","Infrastructure"],
+    tags: ["Kubernetes", "Infrastructure"],
   },
   {
     id: "a98",
@@ -8177,7 +8177,7 @@ export const mockPosts: FeedPost[] = [
     sourceName: "Wired",
     readTime: 5,
     createdAt: "2026-01-27T15:00:00Z",
-    tags: ["GenerativeAI","Music"],
+    tags: ["GenerativeAI", "Music"],
   },
   {
     id: "a99",
@@ -8191,7 +8191,7 @@ export const mockPosts: FeedPost[] = [
     sourceName: "Forbes AI",
     readTime: 7,
     createdAt: "2025-12-04T05:00:00Z",
-    tags: ["Enterprise","AI"],
+    tags: ["Enterprise", "AI"],
   },
   {
     id: "a100",
@@ -8205,7 +8205,7 @@ export const mockPosts: FeedPost[] = [
     sourceName: "ZDNet",
     readTime: 6,
     createdAt: "2025-12-01T08:00:00Z",
-    tags: ["Rust","Programming"],
+    tags: ["Rust", "Programming"],
   },
   {
     id: "a101",
@@ -8219,7 +8219,7 @@ export const mockPosts: FeedPost[] = [
     sourceName: "MIT Technology Review",
     readTime: 4,
     createdAt: "2026-01-25T11:00:00Z",
-    tags: ["AI Education","EdTech"],
+    tags: ["AI Education", "EdTech"],
   },
   {
     id: "a102",
@@ -8233,7 +8233,7 @@ export const mockPosts: FeedPost[] = [
     sourceName: "Ars Technica",
     readTime: 6,
     createdAt: "2026-01-15T11:00:00Z",
-    tags: ["LLM","Optimization"],
+    tags: ["LLM", "Optimization"],
   },
   {
     id: "a103",
@@ -8247,7 +8247,7 @@ export const mockPosts: FeedPost[] = [
     sourceName: "CNBC Tech",
     readTime: 4,
     createdAt: "2026-02-08T18:00:00Z",
-    tags: ["Autonomy","AI"],
+    tags: ["Autonomy", "AI"],
   },
   {
     id: "a104",
@@ -8261,7 +8261,7 @@ export const mockPosts: FeedPost[] = [
     sourceName: "VentureBeat",
     readTime: 4,
     createdAt: "2025-11-21T07:00:00Z",
-    tags: ["VoiceAI","Automation"],
+    tags: ["VoiceAI", "Automation"],
   },
   {
     id: "a105",
@@ -8275,7 +8275,7 @@ export const mockPosts: FeedPost[] = [
     sourceName: "The Register",
     readTime: 3,
     createdAt: "2026-01-27T06:00:00Z",
-    tags: ["DevOps","Automation"],
+    tags: ["DevOps", "Automation"],
   },
   {
     id: "a106",
@@ -8289,7 +8289,7 @@ export const mockPosts: FeedPost[] = [
     sourceName: "IEEE Spectrum",
     readTime: 4,
     createdAt: "2026-01-14T00:00:00Z",
-    tags: ["MachineLearning","Healthcare"],
+    tags: ["MachineLearning", "Healthcare"],
   },
   {
     id: "a107",
@@ -8303,7 +8303,7 @@ export const mockPosts: FeedPost[] = [
     sourceName: "Hacker News",
     readTime: 5,
     createdAt: "2026-02-10T06:00:00Z",
-    tags: ["Programming","AI"],
+    tags: ["Programming", "AI"],
   },
   {
     id: "a108",
@@ -8317,7 +8317,7 @@ export const mockPosts: FeedPost[] = [
     sourceName: "Ars Technica",
     readTime: 3,
     createdAt: "2025-12-30T10:00:00Z",
-    tags: ["LLM","Hardware"],
+    tags: ["LLM", "Hardware"],
   },
   {
     id: "a109",
@@ -8331,7 +8331,7 @@ export const mockPosts: FeedPost[] = [
     sourceName: "InfoWorld",
     readTime: 6,
     createdAt: "2026-02-01T16:00:00Z",
-    tags: ["AICoding","SoftwareEngineering"],
+    tags: ["AICoding", "SoftwareEngineering"],
   },
   {
     id: "a110",
@@ -8345,7 +8345,7 @@ export const mockPosts: FeedPost[] = [
     sourceName: "Bloomberg Technology",
     readTime: 3,
     createdAt: "2026-02-02T11:00:00Z",
-    tags: ["Infrastructure","AI"],
+    tags: ["Infrastructure", "AI"],
   },
   {
     id: "a111",
@@ -8359,7 +8359,7 @@ export const mockPosts: FeedPost[] = [
     sourceName: "Wired",
     readTime: 3,
     createdAt: "2026-02-05T10:00:00Z",
-    tags: ["EmotionAI","Healthcare"],
+    tags: ["EmotionAI", "Healthcare"],
   },
   {
     id: "a112",
@@ -8373,7 +8373,7 @@ export const mockPosts: FeedPost[] = [
     sourceName: "TechCrunch",
     readTime: 6,
     createdAt: "2026-02-08T00:00:00Z",
-    tags: ["AICoding","DevTools"],
+    tags: ["AICoding", "DevTools"],
   },
   {
     id: "a113",
@@ -8387,7 +8387,7 @@ export const mockPosts: FeedPost[] = [
     sourceName: "Google DeepMind",
     readTime: 4,
     createdAt: "2026-01-11T13:00:00Z",
-    tags: ["MachineLearning","Optimization"],
+    tags: ["MachineLearning", "Optimization"],
   },
   {
     id: "a114",
@@ -8401,7 +8401,7 @@ export const mockPosts: FeedPost[] = [
     sourceName: "The Verge",
     readTime: 7,
     createdAt: "2026-01-28T16:00:00Z",
-    tags: ["VoiceAI","AITools"],
+    tags: ["VoiceAI", "AITools"],
   },
   {
     id: "a115",
@@ -8415,7 +8415,7 @@ export const mockPosts: FeedPost[] = [
     sourceName: "Forbes AI",
     readTime: 7,
     createdAt: "2025-12-16T01:00:00Z",
-    tags: ["SaaS","AI"],
+    tags: ["SaaS", "AI"],
   },
   {
     id: "a116",
@@ -8429,7 +8429,7 @@ export const mockPosts: FeedPost[] = [
     sourceName: "Ars Technica",
     readTime: 6,
     createdAt: "2026-01-03T01:00:00Z",
-    tags: ["WebDev","EdgeAI"],
+    tags: ["WebDev", "EdgeAI"],
   },
   {
     id: "a117",
@@ -8443,7 +8443,7 @@ export const mockPosts: FeedPost[] = [
     sourceName: "The Register",
     readTime: 4,
     createdAt: "2026-01-30T15:00:00Z",
-    tags: ["DevOps","AICoding"],
+    tags: ["DevOps", "AICoding"],
   },
   {
     id: "a118",
@@ -8457,7 +8457,7 @@ export const mockPosts: FeedPost[] = [
     sourceName: "MIT Technology Review",
     readTime: 4,
     createdAt: "2025-12-28T06:00:00Z",
-    tags: ["MachineLearning","DataScience"],
+    tags: ["MachineLearning", "DataScience"],
   },
   {
     id: "a119",
@@ -8471,7 +8471,7 @@ export const mockPosts: FeedPost[] = [
     sourceName: "VentureBeat",
     readTime: 5,
     createdAt: "2026-01-31T19:00:00Z",
-    tags: ["AI Agents","SaaS"],
+    tags: ["AI Agents", "SaaS"],
   },
   {
     id: "a120",
@@ -8485,7 +8485,7 @@ export const mockPosts: FeedPost[] = [
     sourceName: "Hacker News",
     readTime: 3,
     createdAt: "2025-12-03T17:00:00Z",
-    tags: ["JavaScript","Runtime"],
+    tags: ["JavaScript", "Runtime"],
   },
   {
     id: "a121",
@@ -8499,7 +8499,7 @@ export const mockPosts: FeedPost[] = [
     sourceName: "InfoWorld",
     readTime: 4,
     createdAt: "2025-11-30T23:00:00Z",
-    tags: ["AITools","DevTools"],
+    tags: ["AITools", "DevTools"],
   },
   {
     id: "a122",
@@ -8513,7 +8513,7 @@ export const mockPosts: FeedPost[] = [
     sourceName: "MIT Technology Review",
     readTime: 6,
     createdAt: "2025-12-13T11:00:00Z",
-    tags: ["GenerativeAI","LLM"],
+    tags: ["GenerativeAI", "LLM"],
   },
   {
     id: "a123",
@@ -8527,7 +8527,7 @@ export const mockPosts: FeedPost[] = [
     sourceName: "Wired",
     readTime: 6,
     createdAt: "2026-01-22T15:00:00Z",
-    tags: ["AISafety","Research"],
+    tags: ["AISafety", "Research"],
   },
   {
     id: "a124",
@@ -8541,7 +8541,7 @@ export const mockPosts: FeedPost[] = [
     sourceName: "TechRadar",
     readTime: 5,
     createdAt: "2026-01-18T18:00:00Z",
-    tags: ["VectorDB","Infrastructure"],
+    tags: ["VectorDB", "Infrastructure"],
   },
   {
     id: "a125",
@@ -8555,7 +8555,7 @@ export const mockPosts: FeedPost[] = [
     sourceName: "ZDNet",
     readTime: 7,
     createdAt: "2026-01-23T13:00:00Z",
-    tags: ["Testing","AICoding"],
+    tags: ["Testing", "AICoding"],
   },
   {
     id: "a126",
@@ -8569,7 +8569,7 @@ export const mockPosts: FeedPost[] = [
     sourceName: "Google DeepMind",
     readTime: 4,
     createdAt: "2026-01-05T10:00:00Z",
-    tags: ["LLM","AISafety"],
+    tags: ["LLM", "AISafety"],
   },
   {
     id: "a127",
@@ -8583,7 +8583,7 @@ export const mockPosts: FeedPost[] = [
     sourceName: "Bloomberg Technology",
     readTime: 3,
     createdAt: "2025-11-20T01:00:00Z",
-    tags: ["AI","Enterprise"],
+    tags: ["AI", "Enterprise"],
   },
   {
     id: "a128",
@@ -8597,7 +8597,7 @@ export const mockPosts: FeedPost[] = [
     sourceName: "TechCrunch",
     readTime: 7,
     createdAt: "2026-02-14T10:00:00Z",
-    tags: ["AI Agents","AICoding"],
+    tags: ["AI Agents", "AICoding"],
   },
   {
     id: "a129",
@@ -8611,7 +8611,7 @@ export const mockPosts: FeedPost[] = [
     sourceName: "Reuters Tech",
     readTime: 5,
     createdAt: "2026-02-12T10:00:00Z",
-    tags: ["Cloud","Infrastructure"],
+    tags: ["Cloud", "Infrastructure"],
   },
   {
     id: "a130",
@@ -8625,7 +8625,7 @@ export const mockPosts: FeedPost[] = [
     sourceName: "The Register",
     readTime: 4,
     createdAt: "2026-02-17T10:00:00Z",
-    tags: ["DataEngineering","AI"],
+    tags: ["DataEngineering", "AI"],
   },
   {
     id: "a131",
@@ -8639,7 +8639,7 @@ export const mockPosts: FeedPost[] = [
     sourceName: "The Verge",
     readTime: 7,
     createdAt: "2025-11-19T19:00:00Z",
-    tags: ["GenerativeAI","TechTrends"],
+    tags: ["GenerativeAI", "TechTrends"],
   },
   {
     id: "a132",
@@ -8653,7 +8653,7 @@ export const mockPosts: FeedPost[] = [
     sourceName: "Ars Technica",
     readTime: 7,
     createdAt: "2026-01-13T22:00:00Z",
-    tags: ["AICoding","Productivity"],
+    tags: ["AICoding", "Productivity"],
   },
   {
     id: "a133",
@@ -8667,7 +8667,7 @@ export const mockPosts: FeedPost[] = [
     sourceName: "IEEE Spectrum",
     readTime: 7,
     createdAt: "2025-12-13T19:00:00Z",
-    tags: ["MachineLearning","Optimization"],
+    tags: ["MachineLearning", "Optimization"],
   },
   {
     id: "a134",
@@ -8681,7 +8681,7 @@ export const mockPosts: FeedPost[] = [
     sourceName: "Wired",
     readTime: 7,
     createdAt: "2025-11-30T11:00:00Z",
-    tags: ["Accessibility","AI"],
+    tags: ["Accessibility", "AI"],
   },
   {
     id: "a135",
@@ -8695,7 +8695,7 @@ export const mockPosts: FeedPost[] = [
     sourceName: "InfoWorld",
     readTime: 7,
     createdAt: "2026-01-28T05:00:00Z",
-    tags: ["GraphQL","Backend"],
+    tags: ["GraphQL", "Backend"],
   },
   {
     id: "a136",
@@ -8709,7 +8709,7 @@ export const mockPosts: FeedPost[] = [
     sourceName: "MIT Technology Review",
     readTime: 7,
     createdAt: "2026-01-05T09:00:00Z",
-    tags: ["AI","Energy"],
+    tags: ["AI", "Energy"],
   },
   {
     id: "a137",
@@ -8723,7 +8723,7 @@ export const mockPosts: FeedPost[] = [
     sourceName: "Bloomberg Technology",
     readTime: 4,
     createdAt: "2025-11-24T05:00:00Z",
-    tags: ["Career","AI"],
+    tags: ["Career", "AI"],
   },
   {
     id: "a138",
@@ -8737,7 +8737,7 @@ export const mockPosts: FeedPost[] = [
     sourceName: "TechRadar",
     readTime: 4,
     createdAt: "2025-12-06T12:00:00Z",
-    tags: ["DevOps","AITools"],
+    tags: ["DevOps", "AITools"],
   },
   {
     id: "a139",
@@ -8751,7 +8751,7 @@ export const mockPosts: FeedPost[] = [
     sourceName: "Forbes AI",
     readTime: 6,
     createdAt: "2026-02-04T14:00:00Z",
-    tags: ["AI","Automation"],
+    tags: ["AI", "Automation"],
   },
   {
     id: "a140",
@@ -8765,7 +8765,7 @@ export const mockPosts: FeedPost[] = [
     sourceName: "Ars Technica",
     readTime: 6,
     createdAt: "2025-12-07T17:00:00Z",
-    tags: ["Hardware","AI"],
+    tags: ["Hardware", "AI"],
   },
   {
     id: "a141",
@@ -8779,7 +8779,7 @@ export const mockPosts: FeedPost[] = [
     sourceName: "IEEE Spectrum",
     readTime: 5,
     createdAt: "2025-12-22T20:00:00Z",
-    tags: ["AI","Climate"],
+    tags: ["AI", "Climate"],
   },
   {
     id: "a142",
@@ -8793,7 +8793,7 @@ export const mockPosts: FeedPost[] = [
     sourceName: "MIT Technology Review",
     readTime: 6,
     createdAt: "2026-01-08T08:00:00Z",
-    tags: ["AI","Research"],
+    tags: ["AI", "Research"],
   },
   {
     id: "a143",
@@ -8807,7 +8807,7 @@ export const mockPosts: FeedPost[] = [
     sourceName: "TechCrunch",
     readTime: 5,
     createdAt: "2026-01-02T10:00:00Z",
-    tags: ["AITools","API"],
+    tags: ["AITools", "API"],
   },
   {
     id: "a144",
@@ -8821,7 +8821,7 @@ export const mockPosts: FeedPost[] = [
     sourceName: "The Verge",
     readTime: 4,
     createdAt: "2026-01-10T01:00:00Z",
-    tags: ["Robotics","AI"],
+    tags: ["Robotics", "AI"],
   },
   {
     id: "a145",
@@ -8835,7 +8835,7 @@ export const mockPosts: FeedPost[] = [
     sourceName: "Wired",
     readTime: 4,
     createdAt: "2026-02-03T20:00:00Z",
-    tags: ["Healthcare","AI"],
+    tags: ["Healthcare", "AI"],
   },
   {
     id: "a146",
@@ -8849,7 +8849,7 @@ export const mockPosts: FeedPost[] = [
     sourceName: "TechCrunch",
     readTime: 4,
     createdAt: "2025-12-03T15:00:00Z",
-    tags: ["Startup","AI Agents"],
+    tags: ["Startup", "AI Agents"],
   },
   {
     id: "a147",
@@ -8863,7 +8863,7 @@ export const mockPosts: FeedPost[] = [
     sourceName: "Bloomberg Technology",
     readTime: 5,
     createdAt: "2026-01-01T00:00:00Z",
-    tags: ["AI","Finance"],
+    tags: ["AI", "Finance"],
   },
   {
     id: "a148",
@@ -8877,7 +8877,7 @@ export const mockPosts: FeedPost[] = [
     sourceName: "ZDNet",
     readTime: 4,
     createdAt: "2026-01-08T02:00:00Z",
-    tags: ["AICoding","Cloud"],
+    tags: ["AICoding", "Cloud"],
   },
   {
     id: "a149",
@@ -8891,7 +8891,7 @@ export const mockPosts: FeedPost[] = [
     sourceName: "ZDNet",
     readTime: 7,
     createdAt: "2025-12-20T11:00:00Z",
-    tags: ["Cybersecurity","AI"],
+    tags: ["Cybersecurity", "AI"],
   },
   {
     id: "a150",
@@ -8905,7 +8905,7 @@ export const mockPosts: FeedPost[] = [
     sourceName: "Google DeepMind",
     readTime: 6,
     createdAt: "2025-12-10T19:00:00Z",
-    tags: ["MachineLearning","Optimization"],
+    tags: ["MachineLearning", "Optimization"],
   },
   {
     id: "a151",
@@ -8919,7 +8919,7 @@ export const mockPosts: FeedPost[] = [
     sourceName: "The Verge",
     readTime: 3,
     createdAt: "2025-12-08T05:00:00Z",
-    tags: ["GameDev","GenerativeAI"],
+    tags: ["GameDev", "GenerativeAI"],
   },
   {
     id: "a152",
@@ -8933,7 +8933,7 @@ export const mockPosts: FeedPost[] = [
     sourceName: "VentureBeat",
     readTime: 5,
     createdAt: "2025-11-20T09:00:00Z",
-    tags: ["AI Agents","Automation"],
+    tags: ["AI Agents", "Automation"],
   },
   {
     id: "a153",
@@ -8947,7 +8947,7 @@ export const mockPosts: FeedPost[] = [
     sourceName: "TechRadar",
     readTime: 6,
     createdAt: "2025-12-26T07:00:00Z",
-    tags: ["DevOps","Cloud"],
+    tags: ["DevOps", "Cloud"],
   },
   {
     id: "a154",
@@ -8961,7 +8961,7 @@ export const mockPosts: FeedPost[] = [
     sourceName: "Reuters Tech",
     readTime: 7,
     createdAt: "2026-02-17T01:00:00Z",
-    tags: ["AISafety","Privacy"],
+    tags: ["AISafety", "Privacy"],
   },
   {
     id: "a155",
@@ -8975,7 +8975,7 @@ export const mockPosts: FeedPost[] = [
     sourceName: "The Verge",
     readTime: 3,
     createdAt: "2025-12-14T20:00:00Z",
-    tags: ["AITools","Frontend"],
+    tags: ["AITools", "Frontend"],
   },
   {
     id: "a156",
@@ -8989,7 +8989,7 @@ export const mockPosts: FeedPost[] = [
     sourceName: "InfoWorld",
     readTime: 4,
     createdAt: "2025-12-28T23:00:00Z",
-    tags: ["DataEngineering","Automation"],
+    tags: ["DataEngineering", "Automation"],
   },
   {
     id: "a157",
@@ -9003,7 +9003,7 @@ export const mockPosts: FeedPost[] = [
     sourceName: "MIT Technology Review",
     readTime: 5,
     createdAt: "2025-12-21T05:00:00Z",
-    tags: ["AISafety","Testing"],
+    tags: ["AISafety", "Testing"],
   },
   {
     id: "a158",
@@ -9017,7 +9017,7 @@ export const mockPosts: FeedPost[] = [
     sourceName: "Wired",
     readTime: 5,
     createdAt: "2026-02-16T12:00:00Z",
-    tags: ["GenerativeAI","AITools"],
+    tags: ["GenerativeAI", "AITools"],
   },
   {
     id: "a159",
@@ -9031,7 +9031,7 @@ export const mockPosts: FeedPost[] = [
     sourceName: "Forbes AI",
     readTime: 4,
     createdAt: "2025-11-26T18:00:00Z",
-    tags: ["Career","SoftwareEngineering"],
+    tags: ["Career", "SoftwareEngineering"],
   },
   {
     id: "a160",
@@ -9045,7 +9045,7 @@ export const mockPosts: FeedPost[] = [
     sourceName: "TechCrunch",
     readTime: 4,
     createdAt: "2026-02-02T15:00:00Z",
-    tags: ["AI","Search"],
+    tags: ["AI", "Search"],
   },
   {
     id: "a161",
@@ -9059,7 +9059,7 @@ export const mockPosts: FeedPost[] = [
     sourceName: "IEEE Spectrum",
     readTime: 5,
     createdAt: "2025-11-28T13:00:00Z",
-    tags: ["Privacy","MachineLearning"],
+    tags: ["Privacy", "MachineLearning"],
   },
   {
     id: "a162",
@@ -9073,7 +9073,7 @@ export const mockPosts: FeedPost[] = [
     sourceName: "Bloomberg Technology",
     readTime: 7,
     createdAt: "2025-11-27T05:00:00Z",
-    tags: ["AI","Logistics"],
+    tags: ["AI", "Logistics"],
   },
   {
     id: "a163",
@@ -9087,7 +9087,7 @@ export const mockPosts: FeedPost[] = [
     sourceName: "Google DeepMind",
     readTime: 5,
     createdAt: "2025-11-26T14:00:00Z",
-    tags: ["MachineLearning","LLM"],
+    tags: ["MachineLearning", "LLM"],
   },
   {
     id: "a164",
@@ -9101,7 +9101,7 @@ export const mockPosts: FeedPost[] = [
     sourceName: "MIT Technology Review",
     readTime: 7,
     createdAt: "2025-11-30T10:00:00Z",
-    tags: ["AI","Research"],
+    tags: ["AI", "Research"],
   },
   {
     id: "a165",
@@ -9115,7 +9115,7 @@ export const mockPosts: FeedPost[] = [
     sourceName: "CNBC Tech",
     readTime: 7,
     createdAt: "2025-12-29T22:00:00Z",
-    tags: ["AI","Finance"],
+    tags: ["AI", "Finance"],
   },
   {
     id: "a166",
@@ -9129,7 +9129,7 @@ export const mockPosts: FeedPost[] = [
     sourceName: "InfoWorld",
     readTime: 7,
     createdAt: "2026-02-13T09:00:00Z",
-    tags: ["AITools","DevTools"],
+    tags: ["AITools", "DevTools"],
   },
   {
     id: "a167",
@@ -9143,7 +9143,7 @@ export const mockPosts: FeedPost[] = [
     sourceName: "TechCrunch",
     readTime: 5,
     createdAt: "2026-01-18T10:00:00Z",
-    tags: ["Blockchain","Cybersecurity"],
+    tags: ["Blockchain", "Cybersecurity"],
   },
   {
     id: "a168",
@@ -9157,7 +9157,7 @@ export const mockPosts: FeedPost[] = [
     sourceName: "Forbes AI",
     readTime: 3,
     createdAt: "2026-02-02T17:00:00Z",
-    tags: ["AI","Career"],
+    tags: ["AI", "Career"],
   },
   {
     id: "a169",
@@ -9171,7 +9171,7 @@ export const mockPosts: FeedPost[] = [
     sourceName: "Wired",
     readTime: 6,
     createdAt: "2026-01-11T17:00:00Z",
-    tags: ["AI","Infrastructure"],
+    tags: ["AI", "Infrastructure"],
   },
   {
     id: "a170",
@@ -9185,7 +9185,7 @@ export const mockPosts: FeedPost[] = [
     sourceName: "ZDNet",
     readTime: 6,
     createdAt: "2026-02-08T16:00:00Z",
-    tags: ["API","AITools"],
+    tags: ["API", "AITools"],
   },
   {
     id: "a171",
@@ -9199,7 +9199,7 @@ export const mockPosts: FeedPost[] = [
     sourceName: "Ars Technica",
     readTime: 4,
     createdAt: "2025-12-02T16:00:00Z",
-    tags: ["RAG","LLM"],
+    tags: ["RAG", "LLM"],
   },
   {
     id: "a172",
@@ -9213,7 +9213,7 @@ export const mockPosts: FeedPost[] = [
     sourceName: "The Verge",
     readTime: 3,
     createdAt: "2026-01-23T05:00:00Z",
-    tags: ["Accessibility","Frontend"],
+    tags: ["Accessibility", "Frontend"],
   },
   {
     id: "a173",
@@ -9227,7 +9227,7 @@ export const mockPosts: FeedPost[] = [
     sourceName: "TechRadar",
     readTime: 7,
     createdAt: "2026-02-05T18:00:00Z",
-    tags: ["EdgeAI","Hardware"],
+    tags: ["EdgeAI", "Hardware"],
   },
   {
     id: "a174",
@@ -9241,7 +9241,7 @@ export const mockPosts: FeedPost[] = [
     sourceName: "IEEE Spectrum",
     readTime: 3,
     createdAt: "2026-02-04T01:00:00Z",
-    tags: ["AI","Energy"],
+    tags: ["AI", "Energy"],
   },
   {
     id: "a175",
@@ -9255,7 +9255,7 @@ export const mockPosts: FeedPost[] = [
     sourceName: "MIT Technology Review",
     readTime: 6,
     createdAt: "2026-02-17T10:00:00Z",
-    tags: ["AI","Biotech"],
+    tags: ["AI", "Biotech"],
   },
   {
     id: "a176",
@@ -9269,7 +9269,7 @@ export const mockPosts: FeedPost[] = [
     sourceName: "VentureBeat",
     readTime: 5,
     createdAt: "2025-11-21T23:00:00Z",
-    tags: ["AI Agents","Automation"],
+    tags: ["AI Agents", "Automation"],
   },
   {
     id: "a177",
@@ -9283,7 +9283,7 @@ export const mockPosts: FeedPost[] = [
     sourceName: "Google DeepMind",
     readTime: 5,
     createdAt: "2026-02-16T18:00:00Z",
-    tags: ["AICoding","AI"],
+    tags: ["AICoding", "AI"],
   },
   {
     id: "a178",
@@ -9297,7 +9297,7 @@ export const mockPosts: FeedPost[] = [
     sourceName: "Reuters Tech",
     readTime: 7,
     createdAt: "2026-01-23T04:00:00Z",
-    tags: ["AI","Agriculture"],
+    tags: ["AI", "Agriculture"],
   },
   {
     id: "a179",
@@ -9311,7 +9311,7 @@ export const mockPosts: FeedPost[] = [
     sourceName: "Ars Technica",
     readTime: 6,
     createdAt: "2026-01-05T17:00:00Z",
-    tags: ["LLM","AI Agents"],
+    tags: ["LLM", "AI Agents"],
   },
   {
     id: "a180",
@@ -9325,7 +9325,7 @@ export const mockPosts: FeedPost[] = [
     sourceName: "The Register",
     readTime: 6,
     createdAt: "2025-11-25T14:00:00Z",
-    tags: ["DevOps","Infrastructure"],
+    tags: ["DevOps", "Infrastructure"],
   },
   {
     id: "a181",
@@ -9339,7 +9339,7 @@ export const mockPosts: FeedPost[] = [
     sourceName: "Ars Technica",
     readTime: 4,
     createdAt: "2025-11-20T20:00:00Z",
-    tags: ["WebDev","EdgeAI"],
+    tags: ["WebDev", "EdgeAI"],
   },
   {
     id: "a182",
@@ -9353,7 +9353,7 @@ export const mockPosts: FeedPost[] = [
     sourceName: "Wired",
     readTime: 4,
     createdAt: "2026-01-26T03:00:00Z",
-    tags: ["GenerativeAI","Music"],
+    tags: ["GenerativeAI", "Music"],
   },
   {
     id: "a183",
@@ -9367,7 +9367,7 @@ export const mockPosts: FeedPost[] = [
     sourceName: "Anthropic",
     readTime: 7,
     createdAt: "2025-12-11T06:00:00Z",
-    tags: ["MachineLearning","LLM"],
+    tags: ["MachineLearning", "LLM"],
   },
   {
     id: "a184",
@@ -9381,7 +9381,7 @@ export const mockPosts: FeedPost[] = [
     sourceName: "Anthropic",
     readTime: 5,
     createdAt: "2026-02-06T03:00:00Z",
-    tags: ["Claude","Anthropic","LLM"],
+    tags: ["Claude", "Anthropic", "LLM"],
   },
   {
     id: "a185",
@@ -9395,7 +9395,7 @@ export const mockPosts: FeedPost[] = [
     sourceName: "OpenAI Blog",
     readTime: 6,
     createdAt: "2025-12-10T08:00:00Z",
-    tags: ["OpenAI","GPT-5","LLM"],
+    tags: ["OpenAI", "GPT-5", "LLM"],
   },
   {
     id: "a186",
@@ -9409,7 +9409,7 @@ export const mockPosts: FeedPost[] = [
     sourceName: "Google DeepMind",
     readTime: 7,
     createdAt: "2026-02-11T07:00:00Z",
-    tags: ["Google","Gemini","AICoding"],
+    tags: ["Google", "Gemini", "AICoding"],
   },
   {
     id: "a187",
@@ -9423,7 +9423,7 @@ export const mockPosts: FeedPost[] = [
     sourceName: "VentureBeat",
     readTime: 4,
     createdAt: "2025-11-24T19:00:00Z",
-    tags: ["AI Agents","Enterprise"],
+    tags: ["AI Agents", "Enterprise"],
   },
   {
     id: "a188",
@@ -9437,7 +9437,7 @@ export const mockPosts: FeedPost[] = [
     sourceName: "TechCrunch",
     readTime: 4,
     createdAt: "2026-02-16T06:00:00Z",
-    tags: ["MCP","AI Agents"],
+    tags: ["MCP", "AI Agents"],
   },
   {
     id: "a189",
@@ -9451,7 +9451,7 @@ export const mockPosts: FeedPost[] = [
     sourceName: "The Verge",
     readTime: 3,
     createdAt: "2026-01-16T02:00:00Z",
-    tags: ["Sora","VideoGen"],
+    tags: ["Sora", "VideoGen"],
   },
   {
     id: "a190",
@@ -9465,7 +9465,7 @@ export const mockPosts: FeedPost[] = [
     sourceName: "Bloomberg Technology",
     readTime: 3,
     createdAt: "2026-01-02T16:00:00Z",
-    tags: ["Cursor","AICoding"],
+    tags: ["Cursor", "AICoding"],
   },
   {
     id: "a191",
@@ -9479,7 +9479,7 @@ export const mockPosts: FeedPost[] = [
     sourceName: "InfoWorld",
     readTime: 7,
     createdAt: "2026-02-02T21:00:00Z",
-    tags: ["Python","Programming"],
+    tags: ["Python", "Programming"],
   },
   {
     id: "a192",
@@ -9493,7 +9493,7 @@ export const mockPosts: FeedPost[] = [
     sourceName: "Vercel Blog",
     readTime: 7,
     createdAt: "2025-12-08T16:00:00Z",
-    tags: ["React","Frontend"],
+    tags: ["React", "Frontend"],
   },
   {
     id: "a193",
@@ -9507,7 +9507,7 @@ export const mockPosts: FeedPost[] = [
     sourceName: "Microsoft DevBlog",
     readTime: 6,
     createdAt: "2026-02-03T21:00:00Z",
-    tags: ["TypeScript","WebDev"],
+    tags: ["TypeScript", "WebDev"],
   },
   {
     id: "a194",
@@ -9521,7 +9521,7 @@ export const mockPosts: FeedPost[] = [
     sourceName: "Vercel Blog",
     readTime: 4,
     createdAt: "2026-01-02T19:00:00Z",
-    tags: ["Next.js","Fullstack"],
+    tags: ["Next.js", "Fullstack"],
   },
   {
     id: "a195",
@@ -9535,7 +9535,7 @@ export const mockPosts: FeedPost[] = [
     sourceName: "The Register",
     readTime: 5,
     createdAt: "2026-01-02T06:00:00Z",
-    tags: ["NestJS","Backend"],
+    tags: ["NestJS", "Backend"],
   },
   {
     id: "a196",
@@ -9549,7 +9549,7 @@ export const mockPosts: FeedPost[] = [
     sourceName: "InfoWorld",
     readTime: 3,
     createdAt: "2026-01-05T19:00:00Z",
-    tags: ["Docker","MLOps"],
+    tags: ["Docker", "MLOps"],
   },
   {
     id: "a197",
@@ -9563,7 +9563,7 @@ export const mockPosts: FeedPost[] = [
     sourceName: "MIT Technology Review",
     readTime: 4,
     createdAt: "2025-11-21T03:00:00Z",
-    tags: ["RAG","VectorDB"],
+    tags: ["RAG", "VectorDB"],
   },
   {
     id: "a198",
@@ -9577,7 +9577,7 @@ export const mockPosts: FeedPost[] = [
     sourceName: "Ars Technica",
     readTime: 3,
     createdAt: "2026-02-11T04:00:00Z",
-    tags: ["LLM","Cloud"],
+    tags: ["LLM", "Cloud"],
   },
   {
     id: "a199",
@@ -9591,7 +9591,7 @@ export const mockPosts: FeedPost[] = [
     sourceName: "ZDNet",
     readTime: 3,
     createdAt: "2025-11-29T11:00:00Z",
-    tags: ["Cybersecurity","AI Agents"],
+    tags: ["Cybersecurity", "AI Agents"],
   },
   {
     id: "a200",
@@ -9605,6 +9605,6 @@ export const mockPosts: FeedPost[] = [
     sourceName: "IEEE Spectrum",
     readTime: 5,
     createdAt: "2025-11-24T17:00:00Z",
-    tags: ["QuantumComputing","Research"],
+    tags: ["QuantumComputing", "Research"],
   },
 ];

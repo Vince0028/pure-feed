@@ -27,11 +27,13 @@ export class CronJobService implements OnModuleInit {
   ) { }
 
   /**
-   * Run immediately on startup to populate the feed.
+   * Run immediately on startup to populate the feed in the background.
    */
   async onModuleInit() {
-    this.logger.log('🚀 Server started — triggering initial feed fetch...');
-    await this.handleCron();
+    this.logger.log('🚀 Server started — triggering initial feed fetch in the background...');
+    this.handleCron().catch(err => {
+      this.logger.error('Initial background fetch failed', err);
+    });
   }
 
   /**
@@ -93,10 +95,13 @@ export class CronJobService implements OnModuleInit {
       embedUrl: item.embedUrl,
       title: item.title,
       caption: item.caption,
+      snippet: item.snippet,
+      sourceName: item.sourceName,
+      readTime: item.readTime,
       tags: item.tags,
       fameScore: item.fameScore,
       isTechFluff: false,
-      createdAt: new Date().toISOString(),
+      createdAt: item.publishedAt || new Date().toISOString(),
     }));
 
     const stored = this.feed.addPosts(posts);

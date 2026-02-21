@@ -10,6 +10,9 @@ export interface FeedPost {
   embedUrl: string;
   title: string;
   caption?: string;
+  snippet?: string;
+  sourceName?: string;
+  readTime?: number;
   summary?: string[];
   tags: string[];
   fameScore?: number;
@@ -27,9 +30,14 @@ export interface RawFeedItem {
   embedUrl: string;
   title: string;
   caption?: string;
+  snippet?: string;
+  sourceName?: string;
+  readTime?: number;
+  publishedAt?: string;
   tags: string[];
   fameScore?: number;
 }
+
 
 /**
  * Gatekeeper verdict — TECH items are kept, FLUFF items are discarded.
