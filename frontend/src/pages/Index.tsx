@@ -9,7 +9,7 @@ type FilterTab = "articles" | "shorts" | "videos";
 
 const Index = () => {
   const [posts, setPosts] = useState<FeedPost[]>(mockPosts);
-  const [filter, setFilter] = useState<FilterTab>("shorts");
+  const [filter, setFilter] = useState<FilterTab>("articles");
   const [activeIndex, setActiveIndex] = useState(0);
   const [shuffleKey, setShuffleKey] = useState(0);
   const [visibleCount, setVisibleCount] = useState(10);
