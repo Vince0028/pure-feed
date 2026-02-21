@@ -51,8 +51,9 @@ export class CronJobService implements OnModuleInit {
     // Fetch 4 batches of shorts (using rotating hashtags) -> ~200 items
     const shortsPromises = Array(4).fill(0).map(() => this.youtube.fetchShorts(undefined, 50));
 
-    // Fetch 1 batch of long videos -> ~50 items
-    const videosPromises = Array(1).fill(0).map(() => this.youtube.fetchLongVideos(undefined, 50));
+    // Fetch 8 batches of long videos (using rotating AI hashtags) -> ~400 items
+    // (Gatekeeper will filter out non-tech/unavailable videos, reliably leaving > 100)
+    const videosPromises = Array(8).fill(0).map(() => this.youtube.fetchLongVideos(undefined, 50));
 
     const [shortsJson, videosJson, rssItems] = await Promise.all([
       Promise.all(shortsPromises),

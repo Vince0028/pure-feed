@@ -16,39 +16,33 @@ export class YoutubeService {
 
   /** Hashtag pools organized by category — rotated through on each fetch. */
   private readonly hashtagPool: Record<string, string[]> = {
-    ai: [
-      'ArtificialIntelligence', 'MachineLearning', 'DeepLearning', 'NeuralNetworks',
-      'GenerativeAI', 'AIResearch', 'AIEthics', 'ResponsibleAI', 'ExplainableAI',
-      'AIForGood', 'AINews', 'AIUpdate', 'FutureOfAI', 'AIInnovation', 'AIRevolution',
-      'AITools', 'AIDevelopment', 'OpenSourceAI',
+    core_ai: [
+      'AI', 'ArtificialIntelligence', 'Tech', 'Technology', 'FutureTech', 'Innovation'
     ],
-    llm: [
-      'LLM', 'LargeLanguageModels', 'GPT', 'GPT5', 'ChatGPT', 'OpenAI',
-      'Claude', 'Anthropic', 'Gemini', 'GoogleAI', 'Llama', 'MetaAI',
-      'Mistral', 'PromptEngineering', 'FineTuning', 'RLHF', 'RAG',
-      'Transformers', 'NLP', 'NaturalLanguageProcessing',
+    specific_ai: [
+      'MachineLearning', 'DeepLearning', 'NeuralNetworks', 'DataScience', 'GenerativeAI'
     ],
-    coding: [
-      'AICoding', 'CopilotAI', 'CursorAI', 'CodeAssistant', 'AIForDevelopers',
-      'VibeCoding', 'CodeGeneration', 'DevTools', 'SoftwareEngineering',
-      'Programming', 'WebDevelopment', 'TypeScript', 'React', 'NextJS',
-      'FullStack', 'FrontendDev', 'BackendDev',
+    coding_dev: [
+      'Python', 'OpenSource', 'SoftwareEngineering', 'DevOps', 'LLM'
     ],
-    vision: [
-      'ComputerVision', 'ImageGeneration', 'StableDiffusion', 'Midjourney',
-      'DALLE', 'Sora', 'AIVideo', 'AIArt', 'TextToImage', 'TextToVideo',
-      'ObjectDetection', 'ImageRecognition',
+    general_tools: [
+      'AITools', 'AIPowered', 'SmartTools', 'Automation', 'Workflow'
     ],
-    agents: [
-      'AIAgents', 'AutonomousAgents', 'AgenticAI', 'MultiAgentSystems',
-      'AutoGPT', 'LangChain', 'LangGraph', 'CrewAI', 'AIWorkflow',
-      'AIAutomation', 'RPA', 'IntelligentAutomation',
+    creative_ai: [
+      'Midjourney', 'ChatGPT', 'StableDiffusion', 'AIArt', 'AIVideo'
     ],
-    industry: [
-      'TechNews', 'NVIDIA', 'Apple', 'Google', 'Microsoft', 'Tesla',
-      'Robotics', 'QuantumComputing', 'EdgeAI', 'AIStartup', 'VentureCapital',
-      'TechTrends', 'FutureTech', 'CloudComputing', 'MLOps',
+    productivity: [
+      'LifeHacks', 'Efficiency', 'NoCode', 'SaaS', 'FutureOfWork'
+    ]
+  };
+
+  private readonly shortsHashtagPool: Record<string, string[]> = {
+    essential: [
+      'Shorts', 'YouTubeShorts', 'TechShorts', 'Viral'
     ],
+    engagement: [
+      'WaitForIt', 'MindBlowing', 'TechTrends', 'DidYouKnow'
+    ]
   };
 
   private categoryIndex = 0;
@@ -68,7 +62,7 @@ export class YoutubeService {
     const tags = this.hashtagPool[category];
     // Pick 3-4 random tags from the category for the search query
     const shuffled = [...tags].sort(() => Math.random() - 0.5);
-    return shuffled.slice(0, 4).join(' ');
+    return shuffled.slice(0, 3).join(' ');
   }
 
   /**
@@ -76,7 +70,15 @@ export class YoutubeService {
    */
   async fetchShorts(query?: string, maxResults = 10): Promise<RawFeedItem[]> {
     const q = query || this.getSearchQuery();
-    return this.fetchVideos(q, 'short', maxResults);
+
+    // Add shorts specific tags
+    const shortsCategories = Object.keys(this.shortsHashtagPool);
+    const shortsCategory = shortsCategories[this.categoryIndex % shortsCategories.length];
+    const shortsTags = this.shortsHashtagPool[shortsCategory];
+    const shuffledShorts = [...shortsTags].sort(() => Math.random() - 0.5).slice(0, 2);
+
+    const finalQuery = `${q} ${shuffledShorts.join(' ')}`;
+    return this.fetchVideos(finalQuery, 'short', maxResults);
   }
 
   /**

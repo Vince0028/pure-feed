@@ -32,7 +32,7 @@ export class GeminiService {
 
     for (const key of keys) {
       const genAI = new GoogleGenerativeAI(key);
-      const model = genAI.getGenerativeModel({ model: 'gemini-1.5-flash' });
+      const model = genAI.getGenerativeModel({ model: 'gemini-1.5-flash-latest' });
       this.clients.push({ genAI, model });
     }
 

@@ -37,8 +37,26 @@ const Index = () => {
       videos: "video",
     };
     const typed = posts.filter((p) => p.contentType === tabToType[filter]);
-    // Always shuffle — randomize on every load and tab switch
-    return [...typed].sort(() => Math.random() - 0.5);
+
+    // Deduplicate posts by sourceId to prevent repeating videos
+    const uniqueIds = new Set<string>();
+    const uniquePosts = [];
+    for (const p of typed) {
+      if (!uniqueIds.has(p.sourceId)) {
+        uniqueIds.add(p.sourceId);
+        uniquePosts.push(p);
+      }
+    }
+
+    if (filter === "shorts") {
+      // Randomize TikToks and YouTube separately, then append YouTube after TikToks
+      const tiktok = uniquePosts.filter(p => p.source === "tiktok").sort(() => Math.random() - 0.5);
+      const youtube = uniquePosts.filter(p => p.source === "youtube").sort(() => Math.random() - 0.5);
+      return [...tiktok, ...youtube];
+    } else {
+      // Always shuffle — randomize on every load and tab switch
+      return [...uniquePosts].sort(() => Math.random() - 0.5);
+    }
   }, [filter, shuffleKey, posts]);
 
   // Persist current index back to the ref whenever it changes
@@ -145,7 +163,7 @@ const Index = () => {
           const shouldRender = distance <= 3;
           const isNearby = distance === 1;
           return (
-            <div key={post.id} className="h-screen w-full">
+            <div key={post.id} className="h-[100dvh] w-full">
               {shouldRender ? (
                 <FeedCard post={post} isActive={i === activeIndex} isNearby={isNearby} />
               ) : null}
@@ -161,8 +179,8 @@ const Index = () => {
             key={tab}
             onClick={() => handleTabClick(tab)}
             className={`px-3 py-1 text-xs font-medium rounded-md transition-colors capitalize ${filter === tab
-                ? "bg-foreground/10 text-foreground"
-                : "text-muted-foreground hover:text-foreground/70"
+              ? "bg-foreground/10 text-foreground"
+              : "text-muted-foreground hover:text-foreground/70"
               }`}
           >
             {tab === "articles" ? "Articles" : tab === "shorts" ? "Shorts" : "Videos"}
@@ -188,8 +206,8 @@ const Index = () => {
               }}
               style={{ transform: `scale(${scale})`, opacity: 1 - distance * 0.15 }}
               className={`rounded-full transition-all duration-300 ${i === activeIndex
-                  ? "h-5 w-1.5 bg-foreground/70"
-                  : "h-1.5 w-1.5 bg-muted-foreground/30 hover:bg-muted-foreground/50"
+                ? "h-5 w-1.5 bg-foreground/70"
+                : "h-1.5 w-1.5 bg-muted-foreground/30 hover:bg-muted-foreground/50"
                 }`}
             />
           );
