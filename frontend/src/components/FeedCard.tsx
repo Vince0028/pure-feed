@@ -4203,13 +4203,18 @@ export function FeedCard({ post, isActive, isNearby = false }: FeedCardProps) {
     setOpen(true);
     if (summary) return; // already fetched
     setLoading(true);
-    const backendSummary = await summarizePost(post.title, post.caption);
-    if (backendSummary.length > 0) {
-      setSummary(backendSummary);
-    } else {
-      await new Promise((r) => setTimeout(r, 1500));
-      setSummary(mockSummaries[post.id] || ["No summary available."]);
+
+    try {
+      const backendSummary = await summarizePost(post.title, post.caption);
+      if (backendSummary && backendSummary.length > 0) {
+        setSummary(backendSummary);
+      } else {
+        setSummary(["AI was unable to generate a summary for this short content.", "Try again later."]);
+      }
+    } catch (e) {
+      setSummary(["An error occurred while generating the summary.", "API may be overloaded."]);
     }
+
     setLoading(false);
   };
 
@@ -4403,7 +4408,7 @@ export function FeedCard({ post, isActive, isNearby = false }: FeedCardProps) {
                     transition={{ duration: 0.25 }}
                     className="overflow-hidden"
                   >
-                    <ul className="mt-2 space-y-2 rounded-lg border border-border/40 bg-foreground/5 p-4 max-h-48 overflow-y-auto w-full">
+                    <ul className="mt-2 space-y-2 rounded-lg border border-border/40 bg-foreground/5 p-4 max-h-48 overflow-y-auto overscroll-contain w-full">
                       {summary.map((point, i) => (
                         <li key={i} className="flex gap-2.5 text-sm text-foreground/80">
                           <span className="mt-0.5 text-badge-article font-semibold shrink-0">{i + 1}.</span>
@@ -4513,7 +4518,7 @@ export function FeedCard({ post, isActive, isNearby = false }: FeedCardProps) {
                     transition={{ duration: 0.25 }}
                     className="overflow-hidden"
                   >
-                    <ul className="mt-2 space-y-1.5 rounded-lg border border-border/40 bg-background/70 backdrop-blur-md p-3">
+                    <ul className="mt-2 space-y-1.5 rounded-lg border border-border/40 bg-background/70 backdrop-blur-md p-3 max-h-48 overflow-y-auto overscroll-contain pointer-events-auto">
                       {summary.map((point, i) => (
                         <li key={i} className="flex gap-2 text-xs sm:text-sm text-foreground/80">
                           <span className="mt-0.5 text-muted-foreground shrink-0">{i + 1}.</span>

@@ -1,9 +1,18 @@
-require('dotenv').config();
+import { GoogleGenerativeAI } from '@google/generative-ai';
+import { readFileSync } from 'fs';
 
-const key = process.env.GROQ_API_KEYS || process.env.GROQ_API_KEY;
+function getEnv(key) {
+    const envFile = readFileSync('.env', 'utf-8');
+    for (const line of envFile.split('\n')) {
+        if (line.startsWith(key + '=')) {
+            return line.split('=')[1].trim();
+        }
+    }
+}
 
+const key = getEnv('GEMINI_API_KEY');
 if (!key) {
-    console.log("No Groq API key found in .env");
+    console.log("No Gemini API key found in .env");
     process.exit(1);
 }
 
@@ -12,7 +21,7 @@ Your goal is to provide a highly knowledgeable yet perfectly simple and readable
 Analyze the following title and content:
 
 Title: "This is the best video generator and it's free rn and nobody knows 🤫 #seedance #ai #tech"
-Content: "N/A"
+Content: ""
 
 Provide a structured summary using exactly these 3 bullet points:
 - Key Concept: [1 clear sentence explaining the core technology, release, or main idea]
@@ -22,25 +31,11 @@ Provide a structured summary using exactly these 3 bullet points:
 Do not include any intro, outro, or additional text. Start each line with a dash (-).`;
 
 async function test() {
-    const response = await fetch('https://api.groq.com/openai/v1/chat/completions', {
-        method: 'POST',
-        headers: {
-            'Authorization': `Bearer ${key.trim()}`,
-            'Content-Type': 'application/json'
-        },
-        body: JSON.stringify({
-            model: 'llama-3.1-8b-instant',
-            messages: [{ role: 'user', content: prompt }],
-            temperature: 0.1,
-        })
-    });
+    const genAI = new GoogleGenerativeAI(key);
+    const model = genAI.getGenerativeModel({ model: 'gemini-1.5-flash' });
 
-    const data = await response.json();
-    if (!response.ok) {
-        console.error('Groq API Error:', data);
-        return;
-    }
-    const rawText = data.choices[0].message.content.trim();
+    const result = await model.generateContent(prompt);
+    const rawText = result.response.text().trim();
     console.log('----- RAW OUTPUT -----');
     console.log(rawText);
     console.log('----------------------');

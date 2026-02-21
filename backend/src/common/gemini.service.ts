@@ -77,19 +77,9 @@ export class GeminiService {
         const result = await client.model.generateContent(prompt);
         return result.response.text().trim();
       } catch (err: any) {
-        const isQuotaError = this.isQuotaOrRateError(err);
-
-        if (isQuotaError && totalKeys > 1) {
-          const exhaustedIndex = this.activeIndex;
-          this.activeIndex = (this.activeIndex + 1) % totalKeys;
-          this.logger.warn(
-            `🔄 Key #${exhaustedIndex + 1} exhausted — rotating to key #${this.activeIndex + 1}`,
-          );
-          attempts++;
-        } else {
-          // Non-quota error or last key — rethrow
-          throw err;
-        }
+        this.logger.warn(`Gemini Error on key #${this.activeIndex + 1}: ${err.message}`);
+        this.activeIndex = (this.activeIndex + 1) % totalKeys;
+        attempts++;
       }
     }
 
