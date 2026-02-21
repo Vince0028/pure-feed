@@ -46,4 +46,5 @@ export interface RawFeedItem {
 export interface GatekeeperResult {
   verdict: 'TECH' | 'FLUFF';
   fameScore?: number;
+  snippet?: string;
 }

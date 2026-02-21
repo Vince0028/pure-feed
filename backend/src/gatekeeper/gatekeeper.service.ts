@@ -32,9 +32,10 @@ Or is this lifestyle content, a vlog, a reaction video, or fluff with no technic
 
 Title: "${item.title}"
 Caption: "${item.caption || 'N/A'}"
+Snippet: "${item.snippet || 'N/A'}"
 
 Identify whether it is TECH or FLUFF.
-${isArticle ? 'Additionally, because this is an article, provide a FAME_SCORE from 1-100 based on how famous, impactful, or highly demanded this news is. A major OpenAI/Google release should be 90-100. A standard tutorial or niche update should be 30-50. A completely obscure opinion piece should be 1-20. Format your response exactly like this: [VERDICT],[SCORE]\nExample: TECH,85' : 'Respond with ONLY one word: TECH or FLUFF'}
+${isArticle ? 'Additionally, because this is an article, provide a FAME_SCORE from 1-100 based on how famous, impactful, or highly demanded this news is. ALSO provide a highly engaging 1-to-2 sentence summary covering what this article is likely about. Format your response exactly like this: [VERDICT] | [SCORE] | [SUMMARY]\nExample: TECH | 85 | Anthropic released a detailed system card analyzing the safety and alignment capabilities of Claude Sonnet 4.6.' : 'Respond with ONLY one word: TECH or FLUFF'}
 `;
 
       const text = await this.gemini.generateContent(prompt);
@@ -42,11 +43,19 @@ ${isArticle ? 'Additionally, because this is an article, provide a FAME_SCORE fr
 
       if (isArticle) {
         this.logger.debug(`Gemini Article Response: "${text}"`);
-        const verdict = upper.includes('TECH') ? 'TECH' : upper.includes('FLUFF') ? 'FLUFF' : 'TECH';
-        const match = upper.match(/\b([1-9][0-9]?|100)\b/);
-        const score = match ? parseInt(match[0], 10) : 50;
-        console.log(`[DEBUG GATEKEEPER] Extracted Score: ${score}, Match Array: ${JSON.stringify(match)}, Full Text: ${text}`);
-        return { verdict, fameScore: score };
+        // Expected format: TECH | 85 | Anthropic released...
+        const parts = text.split('|').map(p => p.trim());
+        const verdictPart = (parts[0] || upper).toUpperCase();
+        const verdict = verdictPart.includes('TECH') ? 'TECH' : verdictPart.includes('FLUFF') ? 'FLUFF' : 'TECH';
+
+        const scoreMatch = parts[1] ? parts[1].match(/\b([1-9][0-9]?|100)\b/) : upper.match(/\b([1-9][0-9]?|100)\b/);
+        const score = scoreMatch ? parseInt(scoreMatch[0], 10) : 50;
+
+        // The summary is whatever is left over (safely grabbing part[2])
+        const snippet = parts.length >= 3 ? parts.slice(2).join(' | ') : undefined;
+
+        console.log(`[DEBUG GATEKEEPER] Verdict: ${verdict}, Score: ${score}, Snippet: ${snippet || 'none'}`);
+        return { verdict, fameScore: score, snippet };
       }
 
       if (upper.includes('TECH')) return { verdict: 'TECH' };
@@ -79,6 +88,11 @@ ${isArticle ? 'Additionally, because this is an article, provide a FAME_SCORE fr
         // (external APIs like HN/Dev.to/Lobsters pre-compute from engagement)
         if (item.fameScore == null && result.fameScore != null) {
           item.fameScore = result.fameScore;
+        }
+
+        // Apply our shiny new AI-generated Snippet to Articles missing text
+        if (item.contentType === 'article' && result.snippet) {
+          item.snippet = result.snippet;
         }
 
         // Skip low-quality articles (1-point Lobsters posts, etc.)
