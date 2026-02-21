@@ -5,6 +5,7 @@ import { RssService } from '../rss/rss.service';
 import { ExternalArticlesService } from '../external-articles/external-articles.service';
 import { GatekeeperService } from '../gatekeeper/gatekeeper.service';
 import { FeedService } from '../feed/feed.service';
+import { TiktokService } from '../tiktok/tiktok.service';
 import { FeedPost, RawFeedItem } from '../common/types';
 import { randomUUID } from 'crypto';
 
@@ -24,6 +25,7 @@ export class CronJobService implements OnModuleInit {
     private readonly externalArticles: ExternalArticlesService,
     private readonly gatekeeper: GatekeeperService,
     private readonly feed: FeedService,
+    private readonly tiktok: TiktokService,
   ) { }
 
   /**
@@ -50,25 +52,29 @@ export class CronJobService implements OnModuleInit {
    */
   async fetchAndFilter(): Promise<{ fetched: number; passed: number; stored: number }> {
     // 1. Fetch from all sources
-    this.logger.log('📡 Fetching from YouTube + RSS + HackerNews + Dev.to + Lobsters...');
+    this.logger.log('📡 Fetching from TikTok + YouTube + RSS + HackerNews + Dev.to + Lobsters...');
 
-    // Fetch 4 batches of shorts (using rotating hashtags) -> ~200 items
-    const shortsPromises = Array(4).fill(0).map(() => this.youtube.fetchShorts(undefined, 50));
+    // Fetch TikToks (Using Apify synchronous scraper to get ~60 latest videos)
+    const tiktokPromise = this.tiktok.fetchTiktokShorts(60);
+
+    // Fetch 2 batches of YouTube shorts (using rotating hashtags) -> ~100 items
+    const youtubeShortsPromises = Array(2).fill(0).map(() => this.youtube.fetchShorts(undefined, 50));
 
     // Fetch 8 batches of long videos (using rotating AI hashtags) -> ~400 items
-    // (Gatekeeper will filter out non-tech/unavailable videos, reliably leaving > 100)
-    const videosPromises = Array(8).fill(0).map(() => this.youtube.fetchLongVideos(undefined, 50));
+    const youtubeVideosPromises = Array(8).fill(0).map(() => this.youtube.fetchLongVideos(undefined, 50));
 
-    const [shortsJson, videosJson, rssItems, externalItems] = await Promise.all([
-      Promise.all(shortsPromises),
-      Promise.all(videosPromises),
+    const [tiktoks, youtubeShortsJson, youtubeVideosJson, rssItems, externalItems] = await Promise.all([
+      tiktokPromise,
+      Promise.all(youtubeShortsPromises),
+      Promise.all(youtubeVideosPromises),
       this.rss.fetchArticles(5),
       this.externalArticles.fetchAll(40),
     ]);
 
     const allItems: RawFeedItem[] = [
-      ...shortsJson.flat(),
-      ...videosJson.flat(),
+      ...tiktoks,
+      ...youtubeShortsJson.flat(),
+      ...youtubeVideosJson.flat(),
       ...rssItems,
       ...externalItems,
     ];
@@ -104,7 +110,7 @@ export class CronJobService implements OnModuleInit {
       createdAt: item.publishedAt || new Date().toISOString(),
     }));
 
-    const stored = this.feed.addPosts(posts);
+    const stored = await this.feed.addPosts(posts);
 
     this.logger.log(`✅ Pipeline complete: ${allItems.length} fetched → ${techItems.length} passed → ${stored} new stored`);
 

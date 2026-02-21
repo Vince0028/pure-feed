@@ -137,8 +137,28 @@ All APIs listed below are **free** or have a **generous free tier** you can star
 ```
 ┌─────────────────────────────────────────────────┐
 │                   VERCEL                        │
-│                                                 │
+│             (Frontend Hosted Here)              │
 │  ┌──────────────┐       ┌─────────────────────┐ │
+│  │ User Browser │ ◄───► │   React + Vite      │ │
+│  └──────────────┘       └──────────┬──────────┘ │
+└────────────────────────────────────┼────────────┘
+                                     │
+┌────────────────────────────────────┼────────────┐
+│                   RENDER           │            │
+│              (Backend Hosted Here) │            │
+│  ┌──────────────┐       ┌──────────▼──────────┐ │
+│  │   Cron Job   │ ◄───► │  NestJS API Server  │ │
+│  │(Every 1 Hour)│       │  (Port 3001)        │ │
+│  └──────┬───────┘       └──────────┬──────────┘ │
+└─────────┼──────────────────────────┼────────────┘
+          │                          │
+┌─────────▼────────┐      ┌──────────▼──────────┐
+│   SUPABASE       │      │   EXTERNAL APIs     │
+│   (Postgres DB)  │      │   - YouTube Data    │
+│                  │      │   - Hacker News     │
+│  Saves 500+ items│      │   - Groq / Gemini   │
+└──────────────────┘      └─────────────────────┘
+```
 │  │  React +     │  API  │  NestJS (Serverless)│ │
 │  │  Tailwind    │◄─────►│                     │ │
 │  │  Frontend    │       │  ┌─ FetchService    │ │
@@ -226,8 +246,34 @@ YOUTUBE_API_KEY=your_youtube_data_api_v3_key
 GEMINI_API_KEY=your_google_ai_studio_key
 GEMINI_API_KEYS=key1,key2,key3    # comma-separated for auto-rotation
 GROQ_API_KEYS=groq_key1,groq_key2 # comma-separated fallback keys
-CRON_SECRET=your_vercel_cron_secret
+
+# Supabase (Database)
+SUPABASE_URL=https://your-project.supabase.co
+SUPABASE_ANON_KEY=your_anon_public_key
 ```
+
+## Deployment Setup
+
+### 1. Database (Supabase)
+1. Create a free project on [Supabase.com](https://supabase.com/).
+2. Open the **SQL Editor** on Supabase.
+3. Paste and run the contents of `01_schema.sql` (found in the root folder).
+4. Go to **Project Settings -> API** to get your `SUPABASE_URL` and `SUPABASE_ANON_KEY`.
+
+### 2. Backend (Render.com)
+Vercel has a strict 10-second timeout limit for serverless functions, so the backend must be hosted on Render to give it enough time to scrape articles during the hourly cron job.
+1. Create a free Web Service on [Render.com](https://render.com/).
+2. Connect your gut repository and select the `backend` folder as your root directory.
+3. Build Command: `npm install && npm run build`
+4. Start Command: `npm run start:prod`
+5. Add all the Environment Variables listed above into the Render dashboard.
+
+### 3. Frontend (Vercel)
+1. Create a new project on [Vercel.com](https://vercel.com/).
+2. Select the `frontend` folder as your root directory.
+3. Add an Environment Variable for your Render API route:
+   `VITE_API_BASE_URL` = `https://your-render-url.onrender.com/api`
+4. Deploy! Your app will now automatically fetch, categorize, and store AI news forever.
 
 ## Project Structure
 

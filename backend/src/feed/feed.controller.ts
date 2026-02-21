@@ -8,16 +8,16 @@ import { FeedPost } from '../common/types';
  */
 @Controller('feed')
 export class FeedController {
-  constructor(private readonly feedService: FeedService) {}
+  constructor(private readonly feedService: FeedService) { }
 
   @Get()
-  getAll(): FeedPost[] {
+  async getAll(): Promise<FeedPost[]> {
     return this.feedService.getAll();
   }
 
   @Get(':id')
-  getById(@Param('id') id: string): FeedPost {
-    const post = this.feedService.getById(id);
+  async getById(@Param('id') id: string): Promise<FeedPost> {
+    const post = await this.feedService.getById(id);
     if (!post) throw new NotFoundException(`Post ${id} not found`);
     return post;
   }
