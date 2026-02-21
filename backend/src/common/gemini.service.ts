@@ -9,13 +9,13 @@ import { GoogleGenerativeAI, GenerativeModel } from '@google/generative-ai';
  * When a key hits its quota (429 / 503 / RESOURCE_EXHAUSTED), it
  * automatically swaps to the next key and retries the request.
  *
- * Free tier per key: ~1,500 requests/day on Gemini 1.5 Flash.
+ * Free tier per key: ~1,500 requests/day on Gemini 2.0 Flash.
  * With 3 keys = ~4,500 free requests/day.
  */
 @Injectable()
 export class GeminiService {
   private readonly logger = new Logger(GeminiService.name);
-  private readonly clients: { genAI: GoogleGenerativeAI; model: GenerativeModel }[] = [];
+  private readonly clients: { genAI: GoogleGenerativeAI; model: GenerativeModel; modelName: string; keyId: number }[] = [];
   private activeIndex = 0;
   private readonly groqKeys: string[] = [];
 
@@ -31,10 +31,21 @@ export class GeminiService {
         ? [singleKey]
         : [];
 
+    const geminiModels = [
+      'gemini-2.0-flash',
+      'gemini-1.5-pro',
+      'gemini-1.5-flash-8b',
+      'gemini-1.5-flash-latest'
+    ];
+
+    let keyIndex = 1;
     for (const key of keys) {
       const genAI = new GoogleGenerativeAI(key);
-      const model = genAI.getGenerativeModel({ model: 'gemini-1.5-flash' });
-      this.clients.push({ genAI, model });
+      for (const modelName of geminiModels) {
+        const model = genAI.getGenerativeModel({ model: modelName });
+        this.clients.push({ genAI, model, modelName, keyId: keyIndex });
+      }
+      keyIndex++;
     }
 
     if (this.clients.length === 0) {
@@ -77,7 +88,7 @@ export class GeminiService {
         const result = await client.model.generateContent(prompt);
         return result.response.text().trim();
       } catch (err: any) {
-        this.logger.warn(`Gemini Error on key #${this.activeIndex + 1}: ${err.message}`);
+        this.logger.warn(`Gemini Error on Key #${client.keyId} [${client.modelName}]: ${err.message}`);
         this.activeIndex = (this.activeIndex + 1) % totalKeys;
         attempts++;
       }
