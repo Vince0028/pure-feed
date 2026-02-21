@@ -4522,6 +4522,8 @@ export function FeedCard({ post, isActive, isNearby = false }: FeedCardProps) {
                   Video
                 </span>
               )}
+              <span className="text-[11px] text-foreground/40 font-medium">{timeAgo}</span>
+              <span className="text-foreground/20">·</span>
               {post.tags.slice(0, 2).map((tag) => (
                 <span
                   key={tag}
