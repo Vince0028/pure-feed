@@ -11,7 +11,8 @@ import { RawFeedItem } from '../common/types';
 @Injectable()
 export class YoutubeService {
   private readonly logger = new Logger(YoutubeService.name);
-  private readonly apiKey: string;
+  private readonly apiKeys: string[] = [];
+  private activeKeyIndex = 0;
   private readonly baseUrl = 'https://www.googleapis.com/youtube/v3';
 
   /** Hashtag pools organized by category — rotated through on each fetch. */
@@ -48,7 +49,20 @@ export class YoutubeService {
   private categoryIndex = 0;
 
   constructor(private config: ConfigService) {
-    this.apiKey = this.config.get<string>('YOUTUBE_API_KEY') || '';
+    const keysStr = this.config.get<string>('YOUTUBE_API_KEYS') || '';
+    const singleKey = this.config.get<string>('YOUTUBE_API_KEY') || '';
+
+    this.apiKeys = keysStr
+      ? keysStr.split(',').map(k => k.trim()).filter(Boolean)
+      : singleKey
+        ? [singleKey]
+        : [];
+
+    if (this.apiKeys.length === 0) {
+      this.logger.warn('No YouTube API keys found in YOUTUBE_API_KEYS or YOUTUBE_API_KEY');
+    } else {
+      this.logger.log(`Loaded ${this.apiKeys.length} YouTube API key(s) for rotation`);
+    }
   }
 
   /**
@@ -97,43 +111,59 @@ export class YoutubeService {
     duration: 'short' | 'medium' | 'long',
     maxResults: number,
   ): Promise<RawFeedItem[]> {
-    if (!this.apiKey) {
-      this.logger.warn('YOUTUBE_API_KEY not set — returning mock data');
+    if (this.apiKeys.length === 0) {
+      this.logger.warn('YOUTUBE_API_KEYS not set — returning mock data');
       return this.getMockShorts();
     }
 
-    try {
-      const params = new URLSearchParams({
-        part: 'snippet',
-        q: query,
-        type: 'video',
-        videoDuration: duration,
-        order: 'date',
-        maxResults: String(maxResults),
-        key: this.apiKey,
-      });
+    const totalKeys = this.apiKeys.length;
+    let attempts = 0;
 
-      const res = await fetch(`${this.baseUrl}/search?${params}`);
-      if (!res.ok) {
-        this.logger.error(`YouTube API error: ${res.status} ${res.statusText}`);
-        return this.getMockShorts();
+    while (attempts < totalKeys) {
+      const currentKey = this.apiKeys[this.activeKeyIndex];
+      try {
+        const params = new URLSearchParams({
+          part: 'snippet',
+          q: query,
+          type: 'video',
+          videoDuration: duration,
+          order: 'date',
+          maxResults: String(maxResults),
+          key: currentKey,
+        });
+
+        const res = await fetch(`${this.baseUrl}/search?${params}`);
+        if (!res.ok) {
+          // Identify if error is related to quota (typically 403 or 429 from Google)
+          if (res.status === 403 || res.status === 429) {
+            this.logger.warn(`YouTube Key #${this.activeKeyIndex + 1} quota exhausted or blocked. Rotating...`);
+            this.activeKeyIndex = (this.activeKeyIndex + 1) % totalKeys;
+            attempts++;
+            continue; // Spin loop to try next key immediately
+          }
+          throw new Error(`YouTube API error: ${res.status} ${res.statusText}`);
+        }
+
+        const data = await res.json();
+
+        return (data.items || []).map((item: any) => ({
+          source: 'youtube' as const,
+          contentType: duration === 'short' ? 'short' : 'video',
+          sourceId: item.id.videoId,
+          embedUrl: `https://www.youtube.com/embed/${item.id.videoId}`,
+          title: item.snippet.title,
+          caption: item.snippet.description,
+          tags: this.extractTags(item.snippet.title + ' ' + item.snippet.description),
+        }));
+      } catch (err: any) {
+        this.logger.error(`YouTube API Fetch Failed on Key #${this.activeKeyIndex + 1}`, err.message);
+        this.activeKeyIndex = (this.activeKeyIndex + 1) % totalKeys;
+        attempts++;
       }
-
-      const data = await res.json();
-
-      return (data.items || []).map((item: any) => ({
-        source: 'youtube' as const,
-        contentType: duration === 'short' ? 'short' : 'video',
-        sourceId: item.id.videoId,
-        embedUrl: `https://www.youtube.com/embed/${item.id.videoId}`,
-        title: item.snippet.title,
-        caption: item.snippet.description,
-        tags: this.extractTags(item.snippet.title + ' ' + item.snippet.description),
-      }));
-    } catch (err) {
-      this.logger.error('Failed to fetch YouTube videos', err);
-      return this.getMockShorts();
     }
+
+    this.logger.error('All YouTube API keys exhausted — returning mock fallback data');
+    return this.getMockShorts();
   }
 
   /**

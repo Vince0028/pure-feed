@@ -16,7 +16,7 @@ export class CronController {
   constructor(
     private readonly cronService: CronJobService,
     private readonly config: ConfigService,
-  ) {}
+  ) { }
 
   @Get('fetch-latest')
   async fetchLatest(
@@ -29,12 +29,17 @@ export class CronController {
     }
 
     this.logger.log('Manual fetch triggered via /api/cron/fetch-latest');
-    const result = await this.cronService.fetchAndFilter();
+
+    // Fire and forget: the pipeline takes ~8 mins (due to Apify + Gatekeeper throttling)
+    // Serverless platforms will kill the HTTP request long before it finishes if we await it.
+    this.cronService.fetchAndFilter().catch(err => {
+      this.logger.error('Background fetchAndFilter pipeline failed', err);
+    });
 
     return {
       success: true,
-      message: `Fetched ${result.fetched} items → ${result.passed} passed gatekeeper → ${result.stored} new posts stored`,
-      ...result,
+      message: 'Feed synchronization started in the background. Supabase will update dynamically.',
+      status: 'processing'
     };
   }
 }
