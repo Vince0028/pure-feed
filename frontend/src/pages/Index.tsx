@@ -2,12 +2,12 @@ import { useState, useRef, useEffect, useCallback, useMemo } from "react";
 import { motion } from "framer-motion";
 import { Zap, ChevronUp, ChevronDown } from "lucide-react";
 import { FeedCard } from "@/components/FeedCard";
-import { mockPosts, ContentType } from "@/data/mockPosts";
+import { FeedPost, mockPosts, ContentType } from "@/data/mockPosts";
 
 type FilterTab = "articles" | "shorts" | "videos";
 
 const Index = () => {
-  const [posts, setPosts] = useState<typeof mockPosts>(mockPosts);
+  const [posts, setPosts] = useState<FeedPost[]>(mockPosts);
   const [filter, setFilter] = useState<FilterTab>("shorts");
   const [activeIndex, setActiveIndex] = useState(0);
   const [shuffleKey, setShuffleKey] = useState(0);
@@ -21,7 +21,9 @@ const Index = () => {
       .then(res => res.json())
       .then(data => {
         if (Array.isArray(data) && data.length > 0) {
-          setPosts(current => [...current, ...data]);
+          // Prepend real backend data before the mock database, so fresh stuff is at the top
+          // The deduplication loop below will then prioritize the real API items and kill duplicate mock items
+          setPosts(current => [...data, ...current]);
         }
       })
       .catch(err => console.error("Failed to fetch feed:", err));
