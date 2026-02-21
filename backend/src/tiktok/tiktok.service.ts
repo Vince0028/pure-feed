@@ -69,8 +69,8 @@ export class TiktokService {
             }
 
             const items: RawFeedItem[] = data.map((item: any) => ({
-                source: 'tiktok',
-                contentType: 'short',
+                source: 'tiktok' as const,
+                contentType: 'short' as const,
                 // Example ID extraction from 'https://www.tiktok.com/@user/video/732891901'
                 sourceId: item.id || this.extractTiktokId(item.webVideoUrl),
                 // Most TikTok scrapers return a clean webVideoUrl we can embed
