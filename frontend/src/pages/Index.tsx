@@ -1,6 +1,6 @@
 import { useState, useRef, useEffect, useCallback, useMemo } from "react";
 import { motion } from "framer-motion";
-import { Zap, ChevronUp, ChevronDown } from "lucide-react";
+import { ChevronUp, ChevronDown } from "lucide-react";
 import { FeedCard } from "@/components/FeedCard";
 import { FeedPost, mockPosts, ContentType } from "@/data/mockPosts";
 import { fetchFeed } from "@/lib/api";
@@ -246,9 +246,7 @@ const Index = () => {
       <div className="fixed bottom-0 left-0 right-0 z-50 flex items-center justify-between px-3 py-2 sm:px-5 sm:py-3 bg-background/80 backdrop-blur-md border-t border-border/20">
         {/* Logo */}
         <div className="flex items-center gap-2">
-          <div className="flex h-7 w-7 sm:h-8 sm:w-8 items-center justify-center rounded-lg bg-foreground/8">
-            <Zap className="h-3.5 w-3.5 sm:h-4 sm:w-4 text-foreground/70" />
-          </div>
+          <img src="/nofluff_logo.png" alt="NoFluff.ai" className="h-7 w-7 sm:h-8 sm:w-8 rounded-lg object-contain" />
           <span className="text-sm sm:text-base font-semibold tracking-tight">
             <span className="text-gradient-primary">NoFluff</span>
             <span className="text-muted-foreground font-normal">.ai</span>
