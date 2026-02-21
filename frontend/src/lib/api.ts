@@ -8,7 +8,7 @@ const API_BASE = import.meta.env.VITE_API_BASE_URL || "/api";
  */
 export async function fetchFeed(): Promise<FeedPost[]> {
   try {
-    const res = await fetch(`${API_BASE}/feed`);
+    const res = await fetch(`${API_BASE}/feed`, { cache: "no-store" });
     if (!res.ok) throw new Error(`Feed fetch failed: ${res.status}`);
     return await res.json();
   } catch (err) {
