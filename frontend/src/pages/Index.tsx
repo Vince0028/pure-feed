@@ -61,15 +61,16 @@ const Index = () => {
       return [...tiktok, ...youtube];
     } else if (filter === "articles") {
       // Articles are already sorted by Fame Score from the backend.
-      // For mock posts without a fame score, generate a consistent pseudo-random score (10-95)
-      // based on their ID, so they mix organically instead of clustering by date.
+      // For mock posts without a fame score, generate a consistent pseudo-random score
       const getFame = (p: typeof uniquePosts[0]) => {
-        if (p.fameScore !== undefined && p.fameScore !== null) return p.fameScore;
+        if (typeof p.fameScore === 'number') return p.fameScore;
         let hash = 0;
         for (let i = 0; i < p.id.length; i++) hash += p.id.charCodeAt(i);
         return 10 + (hash % 85);
       };
-      return uniquePosts.sort((a, b) => getFame(b) - getFame(a));
+
+      // We must explicitly clone uniquePosts before sorting, otherwise React state mutates!
+      return [...uniquePosts].sort((a, b) => getFame(b) - getFame(a));
     } else {
       // Always shuffle standard videos
       return [...uniquePosts].sort(() => Math.random() - 0.5);
