@@ -3,6 +3,7 @@ import { motion } from "framer-motion";
 import { Zap, ChevronUp, ChevronDown } from "lucide-react";
 import { FeedCard } from "@/components/FeedCard";
 import { FeedPost, mockPosts, ContentType } from "@/data/mockPosts";
+import { fetchFeed } from "@/lib/api";
 
 type FilterTab = "articles" | "shorts" | "videos";
 
@@ -15,10 +16,9 @@ const Index = () => {
   const isScrolling = useRef(false);
   const touchStartY = useRef(0);
 
-  // Fetch real data from backend
+  // Fetch real data from the explicit API client (so VITE_API_BASE_URL points to Render)
   useEffect(() => {
-    fetch('/api/feed')
-      .then(res => res.json())
+    fetchFeed()
       .then(data => {
         if (Array.isArray(data) && data.length > 0) {
           // Prepend real backend data before the mock database, so fresh stuff is at the top
@@ -26,7 +26,7 @@ const Index = () => {
           setPosts(current => [...data, ...current]);
         }
       })
-      .catch(err => console.error("Failed to fetch feed:", err));
+      .catch(err => console.error("Failed to load live feed items:", err));
   }, []);
 
   // Remember scroll position per tab
