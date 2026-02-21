@@ -10,9 +10,8 @@ async function bootstrap() {
 
   // Enable CORS for the frontend
   app.enableCors({
-    origin: process.env.FRONTEND_URL || 'http://localhost:8080',
+    origin: '*',
     methods: 'GET,POST',
-    credentials: true,
   });
 
   // Validation pipe for DTOs
