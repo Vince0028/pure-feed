@@ -77,7 +77,7 @@ export function WelcomeModal() {
                         <p className="leading-relaxed">
                             <strong>Note on Videos:</strong> Some YouTube shorts or TikToks may
                             temporarily show as "unavailable" due to creator privacy settings
-                            or regional blocks.
+                            or regional blocks. Additionally, some TikToks may play without sound due to browser autoplay policies.
                         </p>
                     </div>
                 </div>
