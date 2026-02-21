@@ -4325,13 +4325,13 @@ export function FeedCard({ post, isActive, isNearby = false }: FeedCardProps) {
             <iframe
               src={
                 post.source === "tiktok"
-                  ? post.embedUrl
+                  ? `${post.embedUrl}?autoplay=${isActive ? "1" : "0"}&loop=1&muted=0`
                   : `${post.embedUrl}?${isActive ? "autoplay=1" : "autoplay=0"}&rel=0&loop=1&modestbranding=1`
               }
               title={post.title}
               className={
                 isShort
-                  ? "h-full w-full max-w-[400px] sm:max-w-[450px] aspect-[9/16] rounded-lg"
+                  ? "h-full w-full sm:max-w-[450px] aspect-[9/16] object-cover rounded-lg"
                   : "w-full max-w-[800px] aspect-video rounded-lg"
               }
               allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
