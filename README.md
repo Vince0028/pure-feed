@@ -84,6 +84,12 @@ No API key required. Unlimited. Direct XML feeds from major sources:
 - **Usage:** Content gatekeeping (TECH vs FLUFF classification) + 3-bullet summarization + Fame Scoring
 - **Get your key:** [Google AI Studio](https://aistudio.google.com/) → "Get API Key" (create multiple Google accounts for more free keys)
 
+### 4. Groq API (High-Speed Fallback)
+
+- **Free tier:** Extremely generous developer limits (e.g., 30 requests/min, 14,400 requests/day on LLaMA 3.1 8B).
+- **Auto-fallback:** Add your keys comma-separated in `GROQ_API_KEYS`. If Gemini fails or exhausts its quota, the backend instantly routes to Groq.
+- **Get your key:** [Groq Console](https://console.groq.com/keys) → Create API Key
+
 ---
 
 ## Detailed API Logic & Scalability
@@ -108,19 +114,21 @@ The "Summarize" button calls the Gemini API directly when a user clicks it. If t
 *Solution*: The app already includes **Automatic Key Rotation**. If you put multiple comma-separated keys in the `GEMINI_API_KEYS` environment variable, the backend will automatically rotate to a fresh, free API key if one runs out.
 
 ### Suggested APIs to Expand Content
-If you want to pull in more content in the future, consider integrating these APIs:
+All APIs listed below are **free** or have a **generous free tier** you can start using immediately with no credit card.
 
 #### For Shorts & Videos:
-- **TikTok Scraper APIs (via RapidAPI)**: Official TikTok API access is heavily restricted, but RapidAPI offers unofficial scrapers to query `#AI` TikToks.
-- **Instagram Graph API**: To fetch Instagram Reels using specific hashtags.
-- **Reddit API**: Completely free. You can pull trending videos from subreddits like `r/artificial`, `r/MachineLearning`, and `r/singularity`.
-- **Twitter/X API**: Great for finding the absolute latest trending tech demo videos, although the free tier is very limited.
+- **Reddit API** ✅ Free (60 req/min, no credit card) — Pull video posts from `r/artificial`, `r/MachineLearning`, `r/singularity`. No scraper needed. [Get key](https://www.reddit.com/prefs/apps)
+- **Dailymotion API** ✅ Free (unlimited public search) — Alternative short-video source, good for tech content. No key needed for public reads. [Docs](https://developers.dailymotion.com/)
+- **Vimeo API** ✅ Free tier (250 calls/15 min) — Quality tech talks and demos. [Get key](https://developer.vimeo.com/)
+- **Bluesky AT Protocol** ✅ 100% Free — Fetch public posts & videos from the decentralized Bluesky social network. No key required for public feeds. [Docs](https://docs.bsky.app/)
+
+> ⚠️ **Avoid**: TikTok Scraper APIs (RapidAPI paid), Instagram Graph API (locked down), Twitter/X API (100 reads/month free — nearly useless).
 
 #### For Articles & News:
-- **Hacker News API**: 100% free and unlimited. The absolute best source for deep, technical programming and AI discussions. Highly recommended.
-- **NewsAPI (newsapi.org)**: A popular global news aggregator. You can query "AI", "LLM", etc., but the free tier delays news by 24 hours.
-- **GNews.io API**: A great alternative to Google News that provides up-to-date article search.
-- **Dev.to API**: Free API to get technical blog posts directly from developers.
+- **Hacker News API** ✅ 100% Free, unlimited — Best source for deep technical AI/programming discussions. No key needed. [Docs](https://github.com/HackerNews/API)
+- **Dev.to API** ✅ Free, unlimited — Technical blog posts from developers on AI, LLMs, frameworks. No key needed. [Docs](https://developers.forem.com/api)
+- **Lobsters API** ✅ Free, unlimited — Curated tech link aggregator, great signal-to-noise ratio. No key needed. [API](https://lobste.rs/s.json)
+- **NewsAPI (newsapi.org)** ⚠️ Free dev tier (100 req/day, 24h delay on articles) — Fine for testing. [Get key](https://newsapi.org/register)
 
 ---
 
@@ -217,6 +225,7 @@ npm run test:backend   # backend tests
 YOUTUBE_API_KEY=your_youtube_data_api_v3_key
 GEMINI_API_KEY=your_google_ai_studio_key
 GEMINI_API_KEYS=key1,key2,key3    # comma-separated for auto-rotation
+GROQ_API_KEYS=groq_key1,groq_key2 # comma-separated fallback keys
 CRON_SECRET=your_vercel_cron_secret
 ```
 

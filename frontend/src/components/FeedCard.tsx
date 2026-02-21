@@ -4222,51 +4222,82 @@ export function FeedCard({ post, isActive, isNearby = false }: FeedCardProps) {
   const isShort = post.contentType === "short";
   const isArticle = post.contentType === "article";
 
-  /** Highlight tech keywords inside the snippet */
+  /** Highlight tech keywords + numbers/params inside the snippet */
   const highlightKeywords = useMemo(() => {
     if (!post.snippet) return null;
+
+    // Named tech terms — sorted longest-first to prevent partial matches
     const keywords = [
-      "GPT-5", "GPT-4", "GPT-4o", "GPT-4V", "Gemini", "Claude", "Claude 3",
-      "Claude 3.5 Sonnet", "Opus", "Llama 3", "Llama 4", "Qwen", "Qwen 3",
-      "Mistral", "Mixtral", "Grok", "OpenAI", "Anthropic", "Google DeepMind",
-      "Google", "Meta", "Microsoft", "Apple", "Apple Intelligence", "Tesla",
-      "Nvidia", "AMD", "Intel", "TSMC", "ASML", "ARM", "Copilot", "Cursor",
-      "V0", "Vercel", "Supabase", "LangChain", "LangGraph", "LlamaIndex",
-      "PyTorch", "TensorFlow", "JAX", "Keras", "Scikit", "AlphaFold",
-      "AlphaGo", "Sora", "Midjourney", "Stability AI", "Stable Diffusion",
+      "GPT-5", "GPT-4o", "GPT-4V", "GPT-4",
+      "Claude 3.5 Sonnet", "Claude 3.5", "Claude 3", "Claude",
+      "Llama 3.1", "Llama 3", "Llama 4", "Qwen 3", "Qwen",
+      "Gemini 1.5 Pro", "Gemini 1.5 Flash", "Gemini 1.5", "Gemini",
+      "Mistral", "Mixtral", "Grok",
+      "OpenAI", "Anthropic", "Google DeepMind", "Google",
+      "Meta", "Microsoft", "Apple Intelligence", "Apple",
+      "Tesla", "Nvidia", "AMD", "Intel", "TSMC", "ASML", "ARM",
+      "Copilot", "Cursor", "Vercel", "Supabase",
+      "LangChain", "LangGraph", "LlamaIndex",
+      "PyTorch", "TensorFlow", "JAX", "Keras",
+      "AlphaFold", "AlphaGo", "Sora", "Midjourney",
+      "Stability AI", "Stable Diffusion",
       "Hugging Face", "Replicate", "Together AI", "Groq", "Perplexity",
-      "chain-of-thought", "mixture-of-experts", "Mixture of Depths", "MoE",
-      "RAG", "RLHF", "RLAIF", "DPO", "PPO", "KTO", "transformer", "attention",
-      "Flash Attention", "RoPE", "LoRA", "QLoRA", "fine-tuning", "quantization",
-      "inference", "hallucination", "alignment", "jailbreak", "prompt engineering",
-      "multi-modal", "multimodal", "on-device", "open weights", "open-source",
-      "autonomous", "AI agents", "multi-agent", "agentic", "computer-use",
-      "code execution", "function calling", "tool use", "RPA", "AGI", "ASI",
-      "10 million tokens", "1M tokens", "100K context", "200K window",
-      "1000 logical qubits", "quantum error correction", "quantum advantage",
-      "400B", "70B", "8B", "3B parameter", "trillion parameters", "parameters",
-      "3nm process", "2nm", "Blackwell", "B200", "H100", "A100", "TPU",
-      "Neural Engine", "NPU", "TOPS", "TFLOPS", "AI Act", "compute cluster",
-      "supercomputer", "data center", "2x", "3x", "10x", "100x", "50%", "40%",
-      "$100M", "$1B", "1 billion", "100 million", "2024", "2025", "2026", "2027",
+      "chain-of-thought", "mixture-of-experts", "Mixture of Depths",
+      "Flash Attention", "LoRA", "QLoRA",
+      "fine-tuning", "quantization", "hallucination",
+      "alignment", "jailbreak", "prompt engineering",
+      "multi-modal", "multimodal", "on-device",
+      "open weights", "open-source",
+      "AI agents", "multi-agent", "agentic", "computer-use",
+      "code execution", "function calling", "tool use",
+      "quantum error correction", "quantum advantage",
+      "compute cluster", "supercomputer", "data center",
+      "Neural Engine", "AI Act",
+      // Acronyms that should only match as whole words
+      "MoE", "RAG", "RLHF", "RLAIF", "DPO", "RoPE",
+      "RPA", "AGI", "ASI", "NPU", "TPU", "TOPS", "TFLOPS",
+      "V0", "KTO", "B200", "H100", "A100",
+      // Chip names that need boundaries
+      "Blackwell",
     ];
+
+    // Escape special regex chars and build a word-boundary-aware pattern
     const escaped = keywords
       .sort((a, b) => b.length - a.length)
       .map((k) => k.replace(/[.*+?^${}()|[\]\\]/g, "\\$&"));
-    const re = new RegExp(`(${escaped.join("|")})`, "gi");
-    const parts = post.snippet.split(re);
-    return parts.map((part, i) => {
-      if (re.test(part)) {
-        return (
+
+    // Wrap each term in \b ... \b for real word boundaries
+    const termPattern = escaped.map((k) => `\\b${k}\\b`).join("|");
+
+    // Number / parameter / percentage / dollar pattern
+    // Matches: 22B, 1.7B, 256K, 80+, 10x, 60 tokens, 100ms, 3nm
+    // Also: $150,000  $2.5B  $100M  45%  80%
+    const numPattern =
+      "\\$\\d[\\d,]*(?:\\.\\d+)?(?:\\s*(?:billion|million|trillion|K|M|B|T))?|\\d+(?:\\.\\d+)?(?:K|M|B|T)(?:\\+)?(?:\\s*(?:parameter|param|tokens?|TFLOPS|ms|ns|sec|rpm|nm|x))?|\\d+(?:\\.\\d+)?%|\\d+(?:\\.\\d+)?x";
+
+    const fullPattern = new RegExp(`(${termPattern}|${numPattern})`, "gi");
+
+    const parts = post.snippet.split(fullPattern);
+    let keyIdx = 0;
+    return parts.map((part) => {
+      if (!part) return null;
+      if (fullPattern.test(part)) {
+        const el = (
           <mark
-            key={i}
-            className="bg-amber-400/15 text-amber-300 rounded-sm px-0.5 font-medium"
+            key={keyIdx}
+            className="bg-amber-400/15 text-amber-300 rounded-sm px-0.5 font-medium not-italic"
           >
             {part}
           </mark>
         );
+        keyIdx++;
+        // Reset lastIndex since we're using the same regex with `g` flag
+        fullPattern.lastIndex = 0;
+        return el;
       }
-      return <span key={i}>{part}</span>;
+      const el = <span key={keyIdx}>{part}</span>;
+      keyIdx++;
+      return el;
     });
   }, [post.snippet]);
 
@@ -4308,74 +4339,74 @@ export function FeedCard({ post, isActive, isNearby = false }: FeedCardProps) {
         /* ──────────────────────────────────────────
            ARTICLE — "Paper" style card
            ────────────────────────────────────────── */
-        <div className="absolute inset-0 z-0 bg-background overflow-y-auto scrollbar-hide">
-          <div className="w-full max-w-lg mx-auto px-5 pt-28 pb-24 sm:pt-32 space-y-5">
-            {/* Top meta row: source, time, read time */}
-            <div className="flex items-center gap-2 text-[11px] text-muted-foreground">
-              <span className="inline-flex items-center gap-1 rounded-md bg-badge-article/10 border border-badge-article/15 px-2 py-0.5 text-badge-article font-medium">
-                <BookOpen className="h-3 w-3" />
-                {post.sourceName || "Article"}
-              </span>
-              <span className="text-foreground/20">·</span>
-              <span>{timeAgo}</span>
-              {post.readTime && (
-                <>
-                  <span className="text-foreground/20">·</span>
-                  <span className="inline-flex items-center gap-0.5">
-                    <Clock className="h-3 w-3" />
-                    {post.readTime} min read
-                  </span>
-                </>
-              )}
-            </div>
-
-            {/* Tags */}
-            <div className="flex flex-wrap gap-1.5">
-              {post.tags.map((tag) => (
-                <span
-                  key={tag}
-                  className="rounded-full bg-foreground/6 border border-foreground/8 px-2.5 py-0.5 text-[10px] font-medium text-foreground/50 uppercase tracking-wider"
-                >
-                  {tag}
+        <>
+          <div className="absolute inset-0 z-0 bg-background overflow-y-auto scrollbar-hide">
+            <div className="w-full max-w-lg mx-auto px-5 pt-28 pb-24 sm:pt-32 space-y-5">
+              {/* Top meta row: source, time, read time */}
+              <div className="flex items-center gap-2 text-[11px] text-muted-foreground">
+                <span className="inline-flex items-center gap-1 rounded-md bg-badge-article/10 border border-badge-article/15 px-2 py-0.5 text-badge-article font-medium">
+                  <BookOpen className="h-3 w-3" />
+                  {post.sourceName || "Article"}
                 </span>
-              ))}
-            </div>
+                <span className="text-foreground/20">·</span>
+                <span>{timeAgo}</span>
+                {post.readTime && (
+                  <>
+                    <span className="text-foreground/20">·</span>
+                    <span className="inline-flex items-center gap-0.5">
+                      <Clock className="h-3 w-3" />
+                      {post.readTime} min read
+                    </span>
+                  </>
+                )}
+              </div>
 
-            {/* Title — editorial style */}
-            <h1 className="text-2xl sm:text-3xl font-bold leading-tight tracking-tight text-foreground">
-              {post.title}
-            </h1>
+              {/* Tags */}
+              <div className="flex flex-wrap gap-1.5">
+                {post.tags.map((tag) => (
+                  <span
+                    key={tag}
+                    className="rounded-full bg-foreground/6 border border-foreground/8 px-2.5 py-0.5 text-[10px] font-medium text-foreground/50 uppercase tracking-wider"
+                  >
+                    {tag}
+                  </span>
+                ))}
+              </div>
 
-            {/* Divider */}
-            <div className="h-px w-12 bg-badge-article/40" />
+              {/* Title — editorial style */}
+              <h1 className="text-2xl sm:text-3xl font-bold leading-tight tracking-tight text-foreground">
+                {post.title}
+              </h1>
 
-            {/* Snippet with keyword highlights */}
-            {post.snippet && (
-              <p className="text-sm sm:text-base leading-relaxed text-foreground/65 font-light">
-                {highlightKeywords}
-              </p>
-            )}
+              {/* Divider */}
+              <div className="h-px w-12 bg-badge-article/40" />
 
-            {/* Caption / subtitle */}
-            {post.caption && (
-              <p className="text-xs sm:text-sm text-muted-foreground italic border-l-2 border-badge-article/30 pl-3">
-                {post.caption}
-              </p>
-            )}
+              {/* Snippet with keyword highlights */}
+              {post.snippet && (
+                <p className="text-sm sm:text-base leading-relaxed text-foreground/65 font-light">
+                  {highlightKeywords}
+                </p>
+              )}
 
-            {/* Read full article link */}
-            <a
-              href={post.sourceId}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="inline-flex items-center gap-2 rounded-lg border border-border/40 bg-foreground/5 px-4 py-2.5 text-sm text-foreground/70 hover:text-foreground hover:bg-foreground/10 transition-all group"
-            >
-              Read full article
-              <ExternalLink className="h-3.5 w-3.5 transition-transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
-            </a>
+              {/* Caption / subtitle */}
+              {post.caption && (
+                <p className="text-xs sm:text-sm text-muted-foreground italic border-l-2 border-badge-article/30 pl-3">
+                  {post.caption}
+                </p>
+              )}
 
-            {/* Summary toggle */}
-            <div>
+              {/* Read full article link */}
+              <a
+                href={post.sourceId}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="inline-flex items-center gap-2 rounded-lg border border-border/40 bg-foreground/5 px-4 py-2.5 text-sm text-foreground/70 hover:text-foreground hover:bg-foreground/10 transition-all group"
+              >
+                Read full article
+                <ExternalLink className="h-3.5 w-3.5 transition-transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
+              </a>
+
+              {/* Summary button — inline in the article flow */}
               <button
                 onClick={handleToggle}
                 disabled={loading}
@@ -4399,32 +4430,50 @@ export function FeedCard({ post, isActive, isNearby = false }: FeedCardProps) {
                 </motion.span>
               </button>
 
-              <AnimatePresence>
-                {open && summary && (
-                  <motion.div
-                    initial={{ height: 0, opacity: 0 }}
-                    animate={{ height: "auto", opacity: 1 }}
-                    exit={{ height: 0, opacity: 0 }}
-                    transition={{ duration: 0.25 }}
-                    className="overflow-hidden"
-                  >
-                    <ul className="mt-2 space-y-2 rounded-lg border border-border/40 bg-foreground/5 p-4 max-h-48 overflow-y-auto overscroll-contain w-full">
-                      {summary.map((point, i) => (
-                        <li key={i} className="flex gap-2.5 text-sm text-foreground/80">
-                          <span className="mt-0.5 text-badge-article font-semibold shrink-0">{i + 1}.</span>
-                          <span>{point}</span>
-                        </li>
-                      ))}
-                    </ul>
-                  </motion.div>
-                )}
-              </AnimatePresence>
+              {/* Bottom spacer */}
+              <div className="h-16" />
             </div>
-
-            {/* Bottom spacer for the bottom bar */}
-            <div className="h-16" />
           </div>
-        </div>
+
+          {/* ── Article Summary Overlay — floats centered on screen with own scroll ── */}
+          <AnimatePresence>
+            {open && summary && isArticle && (
+              <motion.div
+                initial={{ opacity: 0 }}
+                animate={{ opacity: 1 }}
+                exit={{ opacity: 0 }}
+                transition={{ duration: 0.2 }}
+                className="absolute inset-0 z-30 flex items-center justify-center bg-background/60 backdrop-blur-sm px-5"
+                onClick={() => setOpen(false)}
+              >
+                <motion.div
+                  initial={{ scale: 0.95, opacity: 0 }}
+                  animate={{ scale: 1, opacity: 1 }}
+                  exit={{ scale: 0.95, opacity: 0 }}
+                  transition={{ duration: 0.2 }}
+                  className="w-full max-w-md rounded-xl border border-border/50 bg-background/95 backdrop-blur-xl p-5 shadow-2xl"
+                  onClick={(e) => e.stopPropagation()}
+                >
+                  <h3 className="text-sm font-semibold text-foreground/70 mb-3">AI Summary — 3 Key Points</h3>
+                  <ul className="space-y-3 max-h-[55vh] overflow-y-auto overscroll-contain pr-1">
+                    {summary.map((point, i) => (
+                      <li key={i} className="flex gap-2.5 text-sm text-foreground/80">
+                        <span className="mt-0.5 text-badge-article font-semibold shrink-0">{i + 1}.</span>
+                        <span>{point}</span>
+                      </li>
+                    ))}
+                  </ul>
+                  <button
+                    onClick={() => setOpen(false)}
+                    className="mt-4 w-full rounded-lg border border-border/40 bg-foreground/5 px-3 py-2 text-xs text-foreground/60 hover:bg-foreground/10 transition-colors"
+                  >
+                    Close
+                  </button>
+                </motion.div>
+              </motion.div>
+            )}
+          </AnimatePresence>
+        </>
       ) : (
         <div className="absolute inset-0 z-0 flex items-center justify-center bg-background">
           <div className="flex flex-col items-center gap-4 px-8 text-center">

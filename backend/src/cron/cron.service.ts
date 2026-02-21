@@ -2,6 +2,7 @@ import { Injectable, Logger, OnModuleInit } from '@nestjs/common';
 import { Cron, CronExpression } from '@nestjs/schedule';
 import { YoutubeService } from '../youtube/youtube.service';
 import { RssService } from '../rss/rss.service';
+import { ExternalArticlesService } from '../external-articles/external-articles.service';
 import { GatekeeperService } from '../gatekeeper/gatekeeper.service';
 import { FeedService } from '../feed/feed.service';
 import { FeedPost, RawFeedItem } from '../common/types';
@@ -20,6 +21,7 @@ export class CronJobService implements OnModuleInit {
   constructor(
     private readonly youtube: YoutubeService,
     private readonly rss: RssService,
+    private readonly externalArticles: ExternalArticlesService,
     private readonly gatekeeper: GatekeeperService,
     private readonly feed: FeedService,
   ) { }
@@ -46,7 +48,7 @@ export class CronJobService implements OnModuleInit {
    */
   async fetchAndFilter(): Promise<{ fetched: number; passed: number; stored: number }> {
     // 1. Fetch from all sources
-    this.logger.log('📡 Fetching from YouTube + RSS...');
+    this.logger.log('📡 Fetching from YouTube + RSS + HackerNews + Dev.to + Lobsters...');
 
     // Fetch 4 batches of shorts (using rotating hashtags) -> ~200 items
     const shortsPromises = Array(4).fill(0).map(() => this.youtube.fetchShorts(undefined, 50));
@@ -55,16 +57,18 @@ export class CronJobService implements OnModuleInit {
     // (Gatekeeper will filter out non-tech/unavailable videos, reliably leaving > 100)
     const videosPromises = Array(8).fill(0).map(() => this.youtube.fetchLongVideos(undefined, 50));
 
-    const [shortsJson, videosJson, rssItems] = await Promise.all([
+    const [shortsJson, videosJson, rssItems, externalItems] = await Promise.all([
       Promise.all(shortsPromises),
       Promise.all(videosPromises),
       this.rss.fetchArticles(5),
+      this.externalArticles.fetchAll(40),
     ]);
 
     const allItems: RawFeedItem[] = [
       ...shortsJson.flat(),
       ...videosJson.flat(),
-      ...rssItems
+      ...rssItems,
+      ...externalItems,
     ];
     this.logger.log(`Fetched ${allItems.length} total items`);
 

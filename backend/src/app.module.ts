@@ -8,6 +8,7 @@ import { SummarizerModule } from './summarizer/summarizer.module';
 import { CronModule } from './cron/cron.module';
 import { YoutubeModule } from './youtube/youtube.module';
 import { RssModule } from './rss/rss.module';
+import { ExternalArticlesModule } from './external-articles/external-articles.module';
 
 @Module({
   imports: [
@@ -17,9 +18,10 @@ import { RssModule } from './rss/rss.module';
     FeedModule,
     YoutubeModule,
     RssModule,
+    ExternalArticlesModule,
     GatekeeperModule,
     SummarizerModule,
     CronModule,
   ],
 })
-export class AppModule {}
+export class AppModule { }

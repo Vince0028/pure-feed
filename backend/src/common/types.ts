@@ -4,7 +4,7 @@
  */
 export interface FeedPost {
   id: string;
-  source: 'youtube' | 'rss';
+  source: 'youtube' | 'rss' | 'hackernews' | 'devto' | 'lobsters';
   contentType: 'short' | 'video' | 'article';
   sourceId: string;
   embedUrl: string;
@@ -21,7 +21,7 @@ export interface FeedPost {
  * Raw item returned by a data source before gatekeeping.
  */
 export interface RawFeedItem {
-  source: 'youtube' | 'rss';
+  source: 'youtube' | 'rss' | 'hackernews' | 'devto' | 'lobsters';
   contentType: 'short' | 'video' | 'article';
   sourceId: string;
   embedUrl: string;
