@@ -4204,7 +4204,13 @@ export function FeedCard({ post, isActive, isNearby = false }: FeedCardProps) {
       return;
     }
     setOpen(true);
-    if (summary) return; // already fetched
+
+    // Check if the current summary is just a placeholder with duration/views (t1-t232 style)
+    const isPlaceholderSummary = summary && summary.length > 0 && summary[summary.length - 1].includes("Duration:");
+
+    // If we have a real summary, don't fetch again
+    if (summary && !isPlaceholderSummary) return;
+
     setLoading(true);
 
     try {
