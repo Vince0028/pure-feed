@@ -2,6 +2,7 @@ import { useState, useRef, useEffect, useCallback, useMemo } from "react";
 import { motion } from "framer-motion";
 import { ChevronUp, ChevronDown } from "lucide-react";
 import { FeedCard } from "@/components/FeedCard";
+import { WelcomeModal } from "@/components/WelcomeModal";
 import { FeedPost, mockPosts, ContentType } from "@/data/mockPosts";
 import { fetchFeed } from "@/lib/api";
 
@@ -180,6 +181,7 @@ const Index = () => {
 
   return (
     <div ref={containerRef} className="fixed inset-0 overflow-hidden bg-background">
+      <WelcomeModal />
       {/* Scrolling container — only render a window of ±3 cards for performance */}
       <motion.div
         className="h-full w-full"
