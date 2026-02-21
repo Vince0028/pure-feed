@@ -11,8 +11,7 @@ import { randomUUID } from 'crypto';
 
 /**
  * CronJobService — Orchestrates the entire fetch → filter → store pipeline.
- *
- * Runs every hour automatically via @nestjs/schedule.
+ * Runs every 3 days automatically via @nestjs/schedule.
  * Also triggered on-demand via the CronController endpoint.
  */
 @Injectable()
@@ -39,9 +38,9 @@ export class CronJobService implements OnModuleInit {
   }
 
   /**
-   * Automatic cron: runs every hour.
+   * Automatic cron: runs every 3 days.
    */
-  @Cron(CronExpression.EVERY_HOUR)
+  @Cron('0 0 */3 * *')
   async handleCron() {
     this.logger.log('⏰ Cron triggered — fetching latest AI content...');
     await this.fetchAndFilter();

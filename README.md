@@ -148,7 +148,7 @@ All APIs listed below are **free** or have a **generous free tier** you can star
 │              (Backend Hosted Here) │            │
 │  ┌──────────────┐       ┌──────────▼──────────┐ │
 │  │   Cron Job   │ ◄───► │  NestJS API Server  │ │
-│  │(Every 1 Hour)│       │  (Port 3001)        │ │
+│  │(Every 3 Days)│       │  (Port 3001)        │ │
 │  └──────┬───────┘       └──────────┬──────────┘ │
 └─────────┼──────────────────────────┼────────────┘
           │                          │
@@ -184,10 +184,10 @@ All APIs listed below are **free** or have a **generous free tier** you can star
 
 | Service | Role |
 |---|---|
-| **FetchService** | Pulls latest YouTube Shorts (via Data API v3) and articles (via RSS). Runs on a Vercel Cron every hour. |
+| **FetchService** | Pulls latest YouTube Shorts (via Data API v3) and articles (via RSS). Runs every 3 days. |
 | **GatekeeperService** | Pre-filters every fetched item through Gemini. Prompt: *"Is this a technical AI/LLM/programming update? Respond TECH or FLUFF."* Discards all FLUFF. |
 | **SummarizerService** | On-demand (triggered by user click). Sends transcript/caption to Gemini. Returns exactly 3 technical bullet points. |
-| **CronController** | `GET /api/cron/fetch-latest` — orchestrates Fetch → Gatekeeper → Save to DB. Runs hourly via `vercel.json` cron. |
+| **CronController** | `GET /api/cron/fetch-latest` — orchestrates Fetch → Gatekeeper → Save to DB. Runs every 3 days via NestJS `@Cron`. |
 
 ---
 
@@ -261,10 +261,10 @@ SUPABASE_ANON_KEY=your_anon_public_key
 4. Go to **Project Settings -> API** to get your `SUPABASE_URL` and `SUPABASE_ANON_KEY`.
 
 ### 2. Backend (Render.com)
-Vercel has a strict 10-second timeout limit for serverless functions, so the backend must be hosted on Render to give it enough time to scrape articles during the hourly cron job.
+Vercel has a strict 10-second timeout limit for serverless functions, so the backend must be hosted on Render to give it enough time to scrape articles during the 3-day cron job.
 1. Create a free Web Service on [Render.com](https://render.com/).
 2. Connect your gut repository and select the `backend` folder as your root directory.
-3. Build Command: `npm install && npm run build`
+3. Build Command: `npm install -g @nestjs/cli && npm install && npm run build`
 4. Start Command: `npm run start:prod`
 5. Add all the Environment Variables listed above into the Render dashboard.
 
