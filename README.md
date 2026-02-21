@@ -81,8 +81,46 @@ No API key required. Unlimited. Direct XML feeds from major sources:
 
 - **Free tier:** 1,500 requests/day per key, 1M tokens/minute
 - **Auto-rotation:** Add multiple keys comma-separated in `GEMINI_API_KEYS` — when one key's quota runs out, it automatically swaps to the next
-- **Usage:** Content gatekeeping (TECH vs FLUFF classification) + 3-bullet summarization
+- **Usage:** Content gatekeeping (TECH vs FLUFF classification) + 3-bullet summarization + Fame Scoring
 - **Get your key:** [Google AI Studio](https://aistudio.google.com/) → "Get API Key" (create multiple Google accounts for more free keys)
+
+---
+
+## Detailed API Logic & Scalability
+
+### How the Fetching Pipeline Works
+1. **Cron Job Orchestration**: The `CronJobService` runs in the background (e.g., on server startup or hourly via Vercel).
+2. **Fetching Content**: 
+   - **YouTube Videos & Shorts**: The backend calls the **YouTube Data API v3**, passing in rotating AI-specific hashtags (like `#AI`, `#MachineLearning`, `#YouTubeShorts`). It fetches multiple batches at once.
+   - **Articles**: The backend uses **`rss-parser`** to fetch XML feeds from famous tech publishers like TechCrunch, MIT, and OpenAI. It grabs the top recent articles from each feed.
+3. **The AI Gatekeeper**: 
+   - All fetched items are sent to the **Google Gemini 1.5 Flash API**.
+   - Gemini acts as a strict filter. It reads the title and caption, and if the post is lifestyle/fluff, it assigns `FLUFF` and deletes it. If it is highly technical, it passes as `TECH`.
+   - **Fame Scoring**: For articles, Gemini also assigns a `FAME_SCORE` (1 to 100) based on how impactful the news is. The backend natively sorts articles by this score so the biggest news appears first.
+4. **Storage**: The surviving `TECH` posts are stored in the backend's database (currently an in-memory MVP store). The frontend then fetches from this store.
+
+### Will APIs Run Out if Many Users Are Scrolling?
+**No.** 
+Users scrolling through the feed **do not** trigger external API calls (like YouTube or RSS). When a user scrolls, they are simply querying your backend's own database. This means no matter if you have 10 users or 10,000 users scrolling, you will not hit YouTube or RSS API rate limits. 
+
+**The Only Exception:** 
+The "Summarize" button calls the Gemini API directly when a user clicks it. If thousands of users are clicking "Summarize" simultaneously, you might hit the Gemini rate limit. 
+*Solution*: The app already includes **Automatic Key Rotation**. If you put multiple comma-separated keys in the `GEMINI_API_KEYS` environment variable, the backend will automatically rotate to a fresh, free API key if one runs out.
+
+### Suggested APIs to Expand Content
+If you want to pull in more content in the future, consider integrating these APIs:
+
+#### For Shorts & Videos:
+- **TikTok Scraper APIs (via RapidAPI)**: Official TikTok API access is heavily restricted, but RapidAPI offers unofficial scrapers to query `#AI` TikToks.
+- **Instagram Graph API**: To fetch Instagram Reels using specific hashtags.
+- **Reddit API**: Completely free. You can pull trending videos from subreddits like `r/artificial`, `r/MachineLearning`, and `r/singularity`.
+- **Twitter/X API**: Great for finding the absolute latest trending tech demo videos, although the free tier is very limited.
+
+#### For Articles & News:
+- **Hacker News API**: 100% free and unlimited. The absolute best source for deep, technical programming and AI discussions. Highly recommended.
+- **NewsAPI (newsapi.org)**: A popular global news aggregator. You can query "AI", "LLM", etc., but the free tier delays news by 24 hours.
+- **GNews.io API**: A great alternative to Google News that provides up-to-date article search.
+- **Dev.to API**: Free API to get technical blog posts directly from developers.
 
 ---
 

@@ -17,6 +17,7 @@ export class GeminiService {
   private readonly logger = new Logger(GeminiService.name);
   private readonly clients: { genAI: GoogleGenerativeAI; model: GenerativeModel }[] = [];
   private activeIndex = 0;
+  private readonly groqKeys: string[] = [];
 
   constructor(private config: ConfigService) {
     // Load all keys: GEMINI_API_KEYS (comma-separated) takes priority,
@@ -32,22 +33,30 @@ export class GeminiService {
 
     for (const key of keys) {
       const genAI = new GoogleGenerativeAI(key);
-      const model = genAI.getGenerativeModel({ model: 'gemini-1.5-flash-latest' });
+      const model = genAI.getGenerativeModel({ model: 'gemini-1.5-flash' });
       this.clients.push({ genAI, model });
     }
 
     if (this.clients.length === 0) {
-      this.logger.warn('No Gemini API keys configured — AI features disabled');
+      this.logger.warn('No Gemini API keys configured');
     } else {
       this.logger.log(`Loaded ${this.clients.length} Gemini API key(s) for rotation`);
+    }
+
+    const groqKeysStr = this.config.get<string>('GROQ_API_KEYS') || this.config.get<string>('GROQ_API_KEY') || '';
+    const groqArr = groqKeysStr.split(',').map(k => k.trim()).filter(Boolean);
+    this.groqKeys.push(...groqArr);
+
+    if (this.groqKeys.length > 0) {
+      this.logger.log(`Loaded ${this.groqKeys.length} Groq API key(s) as fallback`);
     }
   }
 
   /**
-   * Whether at least one key is available.
+   * Whether at least one key is available (Gemini or Groq).
    */
   get isAvailable(): boolean {
-    return this.clients.length > 0;
+    return this.clients.length > 0 || this.groqKeys.length > 0;
   }
 
   /**
@@ -84,7 +93,46 @@ export class GeminiService {
       }
     }
 
-    throw new Error('All Gemini API keys exhausted — try again later');
+    // 2. Try Groq Fallback if Gemini failed or wasn't configured
+    if (this.groqKeys.length > 0) {
+      this.logger.warn('Gemini exhausted/unavailable — falling back to Groq LLaMA models');
+      return this.generateWithGroq(prompt);
+    }
+
+    throw new Error('All AI API keys exhausted — try again later');
+  }
+
+  /**
+   * Direct HTTP fetch to Groq OpenAI-compatible completions API using Llama 3 8B.
+   */
+  private async generateWithGroq(prompt: string): Promise<string> {
+    for (let i = 0; i < this.groqKeys.length; i++) {
+      const key = this.groqKeys[i];
+      try {
+        const response = await fetch('https://api.groq.com/openai/v1/chat/completions', {
+          method: 'POST',
+          headers: {
+            'Authorization': `Bearer ${key}`,
+            'Content-Type': 'application/json'
+          },
+          body: JSON.stringify({
+            model: 'llama-3.1-8b-instant',
+            messages: [{ role: 'user', content: prompt }],
+            temperature: 0.1,
+          })
+        });
+
+        if (!response.ok) {
+          throw new Error(`Groq HTTP error ${response.status}`);
+        }
+
+        const data = await response.json();
+        return data.choices?.[0]?.message?.content?.trim() || '';
+      } catch (err: any) {
+        this.logger.error(`Groq key #${i + 1} failed: ${err.message}`);
+      }
+    }
+    throw new Error('All Groq API keys exhausted or failed');
   }
 
   /**

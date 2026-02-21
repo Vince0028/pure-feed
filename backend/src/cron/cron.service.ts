@@ -72,8 +72,16 @@ export class CronJobService implements OnModuleInit {
     this.logger.log('🔍 Running Gatekeeper filter...');
     const techItems = await this.gatekeeper.filterFeed(allItems);
 
-    // 3. Convert to FeedPost and store
-    const posts: FeedPost[] = techItems.map((item) => ({
+    // 3. Separate articles and sort by fameScore
+    const articles = techItems.filter(item => item.contentType === 'article');
+    const videos = techItems.filter(item => item.contentType !== 'article');
+
+    articles.sort((a, b) => (b.fameScore || 50) - (a.fameScore || 50));
+
+    const sortedItems = [...articles, ...videos];
+
+    // 4. Convert to FeedPost and store
+    const posts: FeedPost[] = sortedItems.map((item) => ({
       id: randomUUID(),
       source: item.source,
       contentType: item.contentType,
@@ -82,6 +90,7 @@ export class CronJobService implements OnModuleInit {
       title: item.title,
       caption: item.caption,
       tags: item.tags,
+      fameScore: item.fameScore,
       isTechFluff: false,
       createdAt: new Date().toISOString(),
     }));

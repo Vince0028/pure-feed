@@ -1723,7 +1723,7 @@ const mockSummaries: Record<string, string[]> = {
     "Students showed 20% greater improvement on standardized tests.",
     "Systems adapt difficulty in real-time with unlimited patience for learners.",
   ],
-s21: [
+  s21: [
     "Stop talking to your AI. Start giving it a job. — a concise breakdown of the latest development.",
     "Key technical details explained in under 60 seconds for developers.",
     "What this means for the industry and how you can apply it today.",
@@ -4221,22 +4221,29 @@ export function FeedCard({ post, isActive, isNearby = false }: FeedCardProps) {
   const highlightKeywords = useMemo(() => {
     if (!post.snippet) return null;
     const keywords = [
-      "GPT-5", "GPT-4", "GPT-4o", "Gemini", "Claude", "Llama 4", "Qwen 3",
-      "OpenAI", "Anthropic", "Google", "Meta", "Microsoft", "Apple", "Tesla",
-      "Nvidia", "TSMC", "Copilot", "Cursor", "Vercel", "LangChain", "LangGraph",
-      "PyTorch", "AlphaFold", "Sora", "Stability AI", "Hugging Face",
-      "chain-of-thought", "mixture-of-experts", "Mixture of Depths",
-      "10 million tokens", "10M token", "500K context", "128K tokens",
-      "1000 logical qubits", "1,000 logical qubits",
-      "400B", "52B", "3B parameter", "40 TOPS",
-      "3nm process", "torch.compile", "Flash Attention",
-      "RLHF", "RAG", "transformer", "MoE", "AI agents", "AI Act",
-      "2x", "3x", "10x", "40%", "30%", "15%", "400%",
-      "$400M", "$4B", "$25,000", "35 million euros", "7%",
-      "Apache 2.0", "Phase 1", "Q3 2026", "2027",
-      "autonomous", "on-device", "open weights", "open-weight",
-      "code execution", "computer-use", "multi-step", "multi-file",
-      "inference", "hallucination", "fine-tuning",
+      "GPT-5", "GPT-4", "GPT-4o", "GPT-4V", "Gemini", "Claude", "Claude 3",
+      "Claude 3.5 Sonnet", "Opus", "Llama 3", "Llama 4", "Qwen", "Qwen 3",
+      "Mistral", "Mixtral", "Grok", "OpenAI", "Anthropic", "Google DeepMind",
+      "Google", "Meta", "Microsoft", "Apple", "Apple Intelligence", "Tesla",
+      "Nvidia", "AMD", "Intel", "TSMC", "ASML", "ARM", "Copilot", "Cursor",
+      "V0", "Vercel", "Supabase", "LangChain", "LangGraph", "LlamaIndex",
+      "PyTorch", "TensorFlow", "JAX", "Keras", "Scikit", "AlphaFold",
+      "AlphaGo", "Sora", "Midjourney", "Stability AI", "Stable Diffusion",
+      "Hugging Face", "Replicate", "Together AI", "Groq", "Perplexity",
+      "chain-of-thought", "mixture-of-experts", "Mixture of Depths", "MoE",
+      "RAG", "RLHF", "RLAIF", "DPO", "PPO", "KTO", "transformer", "attention",
+      "Flash Attention", "RoPE", "LoRA", "QLoRA", "fine-tuning", "quantization",
+      "inference", "hallucination", "alignment", "jailbreak", "prompt engineering",
+      "multi-modal", "multimodal", "on-device", "open weights", "open-source",
+      "autonomous", "AI agents", "multi-agent", "agentic", "computer-use",
+      "code execution", "function calling", "tool use", "RPA", "AGI", "ASI",
+      "10 million tokens", "1M tokens", "100K context", "200K window",
+      "1000 logical qubits", "quantum error correction", "quantum advantage",
+      "400B", "70B", "8B", "3B parameter", "trillion parameters", "parameters",
+      "3nm process", "2nm", "Blackwell", "B200", "H100", "A100", "TPU",
+      "Neural Engine", "NPU", "TOPS", "TFLOPS", "AI Act", "compute cluster",
+      "supercomputer", "data center", "2x", "3x", "10x", "100x", "50%", "40%",
+      "$100M", "$1B", "1 billion", "100 million", "2024", "2025", "2026", "2027",
     ];
     const escaped = keywords
       .sort((a, b) => b.length - a.length)
@@ -4296,8 +4303,8 @@ export function FeedCard({ post, isActive, isNearby = false }: FeedCardProps) {
         /* ──────────────────────────────────────────
            ARTICLE — "Paper" style card
            ────────────────────────────────────────── */
-        <div className="absolute inset-0 z-0 flex items-center justify-center bg-background overflow-y-auto scrollbar-hide">
-          <div className="w-full max-w-lg mx-auto px-5 py-16 sm:py-20 space-y-5">
+        <div className="absolute inset-0 z-0 bg-background overflow-y-auto scrollbar-hide">
+          <div className="w-full max-w-lg mx-auto px-5 pt-28 pb-24 sm:pt-32 space-y-5">
             {/* Top meta row: source, time, read time */}
             <div className="flex items-center gap-2 text-[11px] text-muted-foreground">
               <span className="inline-flex items-center gap-1 rounded-md bg-badge-article/10 border border-badge-article/15 px-2 py-0.5 text-badge-article font-medium">
@@ -4396,7 +4403,7 @@ export function FeedCard({ post, isActive, isNearby = false }: FeedCardProps) {
                     transition={{ duration: 0.25 }}
                     className="overflow-hidden"
                   >
-                    <ul className="mt-2 space-y-2 rounded-lg border border-border/40 bg-foreground/5 p-4">
+                    <ul className="mt-2 space-y-2 rounded-lg border border-border/40 bg-foreground/5 p-4 max-h-48 overflow-y-auto w-full">
                       {summary.map((point, i) => (
                         <li key={i} className="flex gap-2.5 text-sm text-foreground/80">
                           <span className="mt-0.5 text-badge-article font-semibold shrink-0">{i + 1}.</span>

@@ -1,50 +1,62 @@
 import { Injectable, Logger } from '@nestjs/common';
 import { GeminiService } from '../common/gemini.service';
-import { GatekeeperVerdict, RawFeedItem } from '../common/types';
+import { GatekeeperResult, RawFeedItem } from '../common/types';
 
 /**
  * GatekeeperService — The "Filler Killer."
  *
  * Uses the shared GeminiService (with automatic key rotation) to
- * classify each post as TECH or FLUFF.
+ * classify each post as TECH or FLUFF, and optionally assign a fame score.
  * Only TECH items survive into the feed. Everything else gets discarded.
  */
 @Injectable()
 export class GatekeeperService {
   private readonly logger = new Logger(GatekeeperService.name);
 
-  constructor(private readonly gemini: GeminiService) {}
+  constructor(private readonly gemini: GeminiService) { }
 
   /**
-   * Classify a single post as TECH or FLUFF.
+   * Classify a single post as TECH or FLUFF, and get a fameScore for articles.
    */
-  async classify(title: string, caption?: string): Promise<GatekeeperVerdict> {
+  async classify(item: RawFeedItem): Promise<GatekeeperResult> {
     if (!this.gemini.isAvailable) {
-      this.logger.warn('No Gemini keys configured — defaulting to TECH');
-      return 'TECH';
+      this.logger.warn('No Gemini keys configured — defaulting to TECH with score 50');
+      return { verdict: 'TECH', fameScore: item.contentType === 'article' ? 50 : undefined };
     }
 
     try {
-      const prompt = `You are a strict tech content filter. Analyze this title and caption.
+      const isArticle = item.contentType === 'article';
+      const prompt = `You are a strict tech content filter and news ranker. Analyze this title and caption.
 Is this a genuine, highly technical update about AI, LLMs, programming, new model releases, APIs, or specific tech tools?
 Or is this lifestyle content, a vlog, a reaction video, or fluff with no technical substance?
 
-Title: "${title}"
-Caption: "${caption || 'N/A'}"
+Title: "${item.title}"
+Caption: "${item.caption || 'N/A'}"
 
-Respond with ONLY one word: TECH or FLUFF`;
+Identify whether it is TECH or FLUFF.
+${isArticle ? 'Additionally, because this is an article, provide a FAME_SCORE from 1-100 based on how famous, impactful, or highly demanded this news is. A major OpenAI/Google release should be 90-100. A standard tutorial or niche update should be 30-50. A completely obscure opinion piece should be 1-20. Format your response exactly like this: [VERDICT],[SCORE]\nExample: TECH,85' : 'Respond with ONLY one word: TECH or FLUFF'}
+`;
 
       const text = await this.gemini.generateContent(prompt);
-      const upper = text.toUpperCase();
+      const upper = text.toUpperCase().trim();
 
-      if (upper.includes('TECH')) return 'TECH';
-      if (upper.includes('FLUFF')) return 'FLUFF';
+      if (isArticle) {
+        this.logger.debug(`Gemini Article Response: "${text}"`);
+        const verdict = upper.includes('TECH') ? 'TECH' : upper.includes('FLUFF') ? 'FLUFF' : 'TECH';
+        const match = upper.match(/\b([1-9][0-9]?|100)\b/);
+        const score = match ? parseInt(match[0], 10) : 50;
+        console.log(`[DEBUG GATEKEEPER] Extracted Score: ${score}, Match Array: ${JSON.stringify(match)}, Full Text: ${text}`);
+        return { verdict, fameScore: score };
+      }
+
+      if (upper.includes('TECH')) return { verdict: 'TECH' };
+      if (upper.includes('FLUFF')) return { verdict: 'FLUFF' };
 
       this.logger.warn(`Unexpected Gemini response: "${text}" — defaulting to TECH`);
-      return 'TECH';
+      return { verdict: 'TECH' };
     } catch (err) {
       this.logger.error('Gatekeeper classification failed', err);
-      return 'TECH'; // Fail open — show the post rather than hide it
+      return { verdict: 'TECH', fameScore: item.contentType === 'article' ? 50 : undefined }; // Fail open
     }
   }
 
@@ -55,10 +67,11 @@ Respond with ONLY one word: TECH or FLUFF`;
     const results: RawFeedItem[] = [];
 
     for (const item of items) {
-      const verdict = await this.classify(item.title, item.caption);
-      if (verdict === 'TECH') {
+      const result = await this.classify(item);
+      if (result.verdict === 'TECH') {
+        item.fameScore = result.fameScore;
         results.push(item);
-        this.logger.log(`✅ TECH: ${item.title}`);
+        this.logger.log(`✅ TECH: ${item.title} ${item.fameScore ? `(Score: ${item.fameScore})` : ''}`);
       } else {
         this.logger.log(`❌ FLUFF: ${item.title}`);
       }

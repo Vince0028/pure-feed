@@ -12,7 +12,7 @@ import { GeminiService } from '../common/gemini.service';
 export class SummarizerService {
   private readonly logger = new Logger(SummarizerService.name);
 
-  constructor(private readonly gemini: GeminiService) {}
+  constructor(private readonly gemini: GeminiService) { }
 
   /**
    * Summarize content into concise bullet points.
@@ -25,15 +25,19 @@ export class SummarizerService {
     }
 
     try {
-      const prompt = `You are a content summarizer for a tech news app.
-Extract only the key facts. Skip intros, outros, filler, and opinions.
-Keep each bullet short and direct. No em dashes. Use simple language.
-The number of bullets should match the content (e.g. "5 tools" = 5 bullets, a news article might be 2-3).
+      const prompt = `You are an expert tech analyst summarizing content for a fast-paced tech news feed.
+Your goal is to provide a highly knowledgeable yet perfectly simple and readable summary.
+Analyze the following title and content:
 
 Title: "${title}"
 Content: "${content || 'N/A'}"
 
-Return each bullet on its own line, starting with "- ".`;
+Provide a structured summary using exactly these 3 bullet points:
+- Key Concept: [1 clear sentence explaining the core technology, release, or main idea]
+- Why it Matters: [1 clear sentence explaining the impact, use case, or significance to the tech industry]
+- Details: [1-2 sentences with the most important technical specs, numbers, or specific features]
+
+Do not include any intro, outro, or additional text. Start each line with a dash (-).`;
 
       const text = await this.gemini.generateContent(prompt);
 

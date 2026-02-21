@@ -53,8 +53,12 @@ const Index = () => {
       const tiktok = uniquePosts.filter(p => p.source === "tiktok").sort(() => Math.random() - 0.5);
       const youtube = uniquePosts.filter(p => p.source === "youtube").sort(() => Math.random() - 0.5);
       return [...tiktok, ...youtube];
+    } else if (filter === "articles") {
+      // Articles are already sorted by Fame Score from the backend, so preserve that order.
+      // If any mock posts are mixed in, guarantee they fallback to descending Fame Score.
+      return uniquePosts.sort((a, b) => (b.fameScore || 50) - (a.fameScore || 50));
     } else {
-      // Always shuffle — randomize on every load and tab switch
+      // Always shuffle standard videos
       return [...uniquePosts].sort(() => Math.random() - 0.5);
     }
   }, [filter, shuffleKey, posts]);

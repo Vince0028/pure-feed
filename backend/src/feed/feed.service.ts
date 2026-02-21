@@ -16,9 +16,16 @@ export class FeedService {
    * Get all posts, sorted newest first.
    */
   getAll(): FeedPost[] {
-    return [...this.posts].sort(
-      (a, b) => new Date(b.createdAt).getTime() - new Date(a.createdAt).getTime(),
-    );
+    const articles = this.posts.filter(p => p.contentType === 'article');
+    const videos = this.posts.filter(p => p.contentType !== 'article');
+
+    // Sort articles explicitly by generated AI Fame Score
+    articles.sort((a, b) => (b.fameScore || 50) - (a.fameScore || 50));
+
+    // Sort videos by recency
+    videos.sort((a, b) => new Date(b.createdAt).getTime() - new Date(a.createdAt).getTime());
+
+    return [...articles, ...videos];
   }
 
   /**

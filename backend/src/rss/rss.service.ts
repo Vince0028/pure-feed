@@ -27,7 +27,7 @@ export class RssService {
    * Fetch the latest articles from all configured RSS feeds.
    * @param itemsPerFeed - Number of items to grab from each feed
    */
-  async fetchArticles(itemsPerFeed = 3): Promise<RawFeedItem[]> {
+  async fetchArticles(itemsPerFeed = 10): Promise<RawFeedItem[]> {
     const results: RawFeedItem[] = [];
 
     for (const feed of this.feeds) {

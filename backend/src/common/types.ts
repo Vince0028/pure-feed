@@ -12,6 +12,7 @@ export interface FeedPost {
   caption?: string;
   summary?: string[];
   tags: string[];
+  fameScore?: number;
   isTechFluff: boolean;
   createdAt: string;
 }
@@ -27,9 +28,14 @@ export interface RawFeedItem {
   title: string;
   caption?: string;
   tags: string[];
+  fameScore?: number;
 }
 
 /**
  * Gatekeeper verdict — TECH items are kept, FLUFF items are discarded.
+ * Returns an object with the verdict and an optional fameScore for articles.
  */
-export type GatekeeperVerdict = 'TECH' | 'FLUFF';
+export interface GatekeeperResult {
+  verdict: 'TECH' | 'FLUFF';
+  fameScore?: number;
+}
