@@ -4325,7 +4325,7 @@ export function FeedCard({ post, isActive, isNearby = false }: FeedCardProps) {
             <iframe
               src={
                 post.source === "tiktok"
-                  ? `${post.embedUrl}?autoplay=${isActive ? "1" : "0"}&loop=1&muted=0`
+                  ? `${post.embedUrl}?autoplay=0&loop=1&muted=0`
                   : `${post.embedUrl}?${isActive ? "autoplay=1" : "autoplay=0"}&rel=0&loop=1&modestbranding=1`
               }
               title={post.title}
