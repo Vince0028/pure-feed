@@ -31,12 +31,12 @@ export class FeedService {
     if (!this.supabase) return [];
 
     try {
-      // Fetch all posts, up to 500 for the feed
+      // Fetch all posts, up to 2000 for the feed
       const { data, error } = await this.supabase
         .from('posts')
         .select('*')
         .order('createdAt', { ascending: false })
-        .limit(500);
+        .limit(2000);
 
       if (error) throw error;
       if (!data) return [];

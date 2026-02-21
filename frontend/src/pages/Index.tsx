@@ -12,6 +12,7 @@ const Index = () => {
   const [filter, setFilter] = useState<FilterTab>("shorts");
   const [activeIndex, setActiveIndex] = useState(0);
   const [shuffleKey, setShuffleKey] = useState(0);
+  const [visibleCount, setVisibleCount] = useState(10);
   const containerRef = useRef<HTMLDivElement>(null);
   const isScrolling = useRef(false);
   const touchStartY = useRef(0);
@@ -82,18 +83,21 @@ const Index = () => {
     if (shuffleKey > 0) {
       setActiveIndex(0);
       tabIndices.current[filter] = 0;
+      setVisibleCount(10);
     }
-  }, [shuffleKey]);
+  }, [shuffleKey, filter]);
 
   // Tap active tab to refresh (like TikTok)
   const handleTabClick = (tab: FilterTab) => {
     if (tab === filter) {
       setShuffleKey((k) => k + 1);
+      setVisibleCount(10);
     } else {
       setFilter(tab);
       // Restore the saved scroll position for that tab
       const saved = tabIndices.current[tab];
       setActiveIndex(saved);
+      setVisibleCount(Math.max(10, saved + 5));
     }
   };
 
@@ -154,14 +158,21 @@ const Index = () => {
     return () => window.removeEventListener("keydown", handler);
   }, [goTo]);
 
-  // Infinite scroll — when user reaches the last 3 posts, reshuffle and append more
+  // Infinite scroll — when user reaches the last 3 posts of the visible chunk, append more
   useEffect(() => {
     if (filteredPosts.length === 0) return;
-    const remaining = filteredPosts.length - 1 - activeIndex;
+    const renderedPosts = filteredPosts.slice(0, visibleCount);
+    const remaining = renderedPosts.length - 1 - activeIndex;
     if (remaining <= 2) {
-      setShuffleKey((k) => k + 1);
+      if (visibleCount < filteredPosts.length) {
+        // Load 10 more dynamically
+        setVisibleCount((prev) => Math.min(prev + 10, filteredPosts.length));
+      } else {
+        // We reached the actual end of all thousands of posts, reshuffle to loop
+        setShuffleKey((k) => k + 1);
+      }
     }
-  }, [activeIndex, filteredPosts.length]);
+  }, [activeIndex, visibleCount, filteredPosts.length]);
 
   return (
     <div ref={containerRef} className="fixed inset-0 overflow-hidden bg-background">
@@ -171,7 +182,7 @@ const Index = () => {
         animate={{ y: `-${activeIndex * 100}%` }}
         transition={{ type: "spring", stiffness: 300, damping: 30 }}
       >
-        {filteredPosts.map((post, i) => {
+        {filteredPosts.slice(0, visibleCount).map((post, i) => {
           const distance = Math.abs(i - activeIndex);
           const shouldRender = distance <= 3;
           const isNearby = distance === 1;
@@ -203,7 +214,7 @@ const Index = () => {
 
       {/* Side navigation dots — show only nearby ±4 dots, hidden on mobile */}
       <div className="hidden sm:flex fixed right-4 top-1/2 -translate-y-1/2 z-50 flex-col items-center gap-1.5">
-        {filteredPosts.map((_, i) => {
+        {filteredPosts.slice(0, visibleCount).map((_, i) => {
           const distance = Math.abs(i - activeIndex);
           if (distance > 4) return null;
           const scale = distance === 0 ? 1 : distance <= 2 ? 0.8 : 0.5;
