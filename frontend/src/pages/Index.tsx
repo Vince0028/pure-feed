@@ -45,7 +45,10 @@ const Index = () => {
     const uniqueIds = new Set<string>();
     const uniquePosts = [];
     for (const p of typed) {
-      if (!uniqueIds.has(p.sourceId)) {
+      // Allow generic mock URLs to bypass deduplication
+      if (p.sourceId === "https://tiktok.com" || p.sourceId === "https://youtube.com/shorts" || p.sourceId.includes("mock")) {
+        uniquePosts.push(p);
+      } else if (!uniqueIds.has(p.sourceId)) {
         uniqueIds.add(p.sourceId);
         uniquePosts.push(p);
       }
