@@ -4,6 +4,7 @@ import { YoutubeService } from '../youtube/youtube.service';
 import { RssService } from '../rss/rss.service';
 import { ExternalArticlesService } from '../external-articles/external-articles.service';
 import { GatekeeperService } from '../gatekeeper/gatekeeper.service';
+import { SummarizerService } from '../summarizer/summarizer.service';
 import { FeedService } from '../feed/feed.service';
 import { TiktokService } from '../tiktok/tiktok.service';
 import { FeedPost, RawFeedItem } from '../common/types';
@@ -23,6 +24,7 @@ export class CronJobService implements OnModuleInit {
     private readonly rss: RssService,
     private readonly externalArticles: ExternalArticlesService,
     private readonly gatekeeper: GatekeeperService,
+    private readonly summarizer: SummarizerService,
     private readonly feed: FeedService,
     private readonly tiktok: TiktokService,
   ) { }
@@ -91,7 +93,26 @@ export class CronJobService implements OnModuleInit {
 
     const sortedItems = [...articles, ...videos];
 
-    // 4. Convert to FeedPost and store
+    // 4. Generate AI summaries for articles (3 bullet points each)
+    this.logger.log('🧠 Generating AI summaries for articles...');
+    const summaryMap = new Map<string, string[]>(); // sourceId -> summary
+    for (const item of sortedItems) {
+      try {
+        await new Promise(resolve => setTimeout(resolve, 2000)); // Rate limit
+        const content = item.snippet || item.caption || '';
+        const url = item.contentType === 'article' ? item.sourceId : undefined;
+        const summary = await this.summarizer.summarize(item.title, content, url);
+        if (summary && summary.length > 0) {
+          summaryMap.set(item.sourceId, summary);
+          this.logger.log(`📝 Summary generated for: ${item.title.slice(0, 50)}`);
+        }
+      } catch (err) {
+        this.logger.warn(`⚠️ Summary failed for: ${item.title.slice(0, 50)} — ${err.message}`);
+      }
+    }
+    this.logger.log(`Generated ${summaryMap.size} summaries`);
+
+    // 5. Convert to FeedPost and store
     const posts: FeedPost[] = sortedItems.map((item) => ({
       id: randomUUID(),
       source: item.source,
@@ -103,6 +124,7 @@ export class CronJobService implements OnModuleInit {
       snippet: item.snippet,
       sourceName: item.sourceName,
       readTime: item.readTime,
+      summary: summaryMap.get(item.sourceId),
       tags: item.tags,
       fameScore: item.fameScore,
       isTechFluff: false,
