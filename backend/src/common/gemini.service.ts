@@ -54,9 +54,13 @@ export class GeminiService {
       this.logger.log(`Loaded ${this.clients.length} Gemini API key(s) for rotation`);
     }
 
-    const groqKeysStr = this.config.get<string>('GROQ_API_KEYS') || this.config.get<string>('GROQ_API_KEY') || '';
-    const groqArr = groqKeysStr.split(',').map(k => k.trim()).filter(Boolean);
-    this.groqKeys.push(...groqArr);
+    // Load ALL Groq keys from separate env vars
+    const groqEnvVars = ['GROQ_API_KEYS', 'GROQ_SECOND_API_KEYS', 'GROQ_THIRD_API_KEYS', 'GROQ_FOURTH_API_KEYS'];
+    for (const envVar of groqEnvVars) {
+      const val = this.config.get<string>(envVar) || '';
+      const parsed = val.split(',').map(k => k.trim()).filter(Boolean);
+      this.groqKeys.push(...parsed);
+    }
 
     if (this.groqKeys.length > 0) {
       this.logger.log(`Loaded ${this.groqKeys.length} Groq API key(s) as fallback`);
@@ -104,11 +108,25 @@ export class GeminiService {
   }
 
   /**
-   * Direct HTTP fetch to Groq OpenAI-compatible completions API using Llama 3 8B.
+   * Direct HTTP fetch to Groq OpenAI-compatible completions API.
+   * Rotates across multiple models AND keys for maximum throughput.
+   * With 4 keys × 3 models = 12 total fallback attempts.
    */
+  private readonly groqModels = [
+    'llama-3.1-8b-instant',
+    'gemma2-9b-it',
+    'llama-3.3-70b-versatile',
+  ];
+  private groqKeyIndex = 0;
+  private groqModelIndex = 0;
+
   private async generateWithGroq(prompt: string): Promise<string> {
-    for (let i = 0; i < this.groqKeys.length; i++) {
-      const key = this.groqKeys[i];
+    const totalAttempts = this.groqKeys.length * this.groqModels.length;
+
+    for (let attempt = 0; attempt < totalAttempts; attempt++) {
+      const key = this.groqKeys[this.groqKeyIndex];
+      const model = this.groqModels[this.groqModelIndex];
+
       try {
         const response = await fetch('https://api.groq.com/openai/v1/chat/completions', {
           method: 'POST',
@@ -117,23 +135,35 @@ export class GeminiService {
             'Content-Type': 'application/json'
           },
           body: JSON.stringify({
-            model: 'llama-3.1-8b-instant',
+            model,
             messages: [{ role: 'user', content: prompt }],
             temperature: 0.1,
           })
         });
 
         if (!response.ok) {
-          throw new Error(`Groq HTTP error ${response.status}`);
+          const errText = await response.text().catch(() => '');
+          this.logger.warn(`Groq key #${this.groqKeyIndex + 1} [${model}] HTTP ${response.status}`);
+
+          // Rotate to next model, then next key
+          this.groqModelIndex = (this.groqModelIndex + 1) % this.groqModels.length;
+          if (this.groqModelIndex === 0) {
+            this.groqKeyIndex = (this.groqKeyIndex + 1) % this.groqKeys.length;
+          }
+          continue;
         }
 
         const data = await response.json();
         return data.choices?.[0]?.message?.content?.trim() || '';
       } catch (err: any) {
-        this.logger.error(`Groq key #${i + 1} failed: ${err.message}`);
+        this.logger.error(`Groq key #${this.groqKeyIndex + 1} [${model}] failed: ${err.message}`);
+        this.groqModelIndex = (this.groqModelIndex + 1) % this.groqModels.length;
+        if (this.groqModelIndex === 0) {
+          this.groqKeyIndex = (this.groqKeyIndex + 1) % this.groqKeys.length;
+        }
       }
     }
-    throw new Error('All Groq API keys exhausted or failed');
+    throw new Error('All Groq API keys and models exhausted or failed');
   }
 
   /**

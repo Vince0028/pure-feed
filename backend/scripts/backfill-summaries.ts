@@ -22,6 +22,7 @@ const geminiKey = process.env.GEMINI_API_KEY || '';
 const groqKey1 = process.env.GROQ_API_KEYS || '';
 const groqKey2 = process.env.GROQ_SECOND_API_KEYS || '';
 const groqKey3 = process.env.GROQ_THIRD_API_KEYS || '';
+const groqKey4 = process.env.GROQ_FOURTH_API_KEYS || '';
 
 let geminiModel: any = null;
 if (geminiKey) {
@@ -29,16 +30,21 @@ if (geminiKey) {
     geminiModel = genAI.getGenerativeModel({ model: 'gemini-2.0-flash' });
 }
 
-const groqKeys = [groqKey1, groqKey2, groqKey3].filter(Boolean);
-let currentGroqIndex = 0;
+const groqKeys = [groqKey1, groqKey2, groqKey3, groqKey4].filter(Boolean);
+const groqModels = ['llama-3.1-8b-instant', 'gemma2-9b-it', 'llama-3.3-70b-versatile'];
+let currentGroqKeyIndex = 0;
+let currentGroqModelIndex = 0;
 
-console.log(`🔑 Loaded: Gemini=${geminiKey ? '✅' : '❌'}, Groq keys=${groqKeys.length}`);
+console.log(`🔑 Loaded: Gemini=${geminiKey ? '✅' : '❌'}, Groq keys=${groqKeys.length}, Models=${groqModels.length}`);
 
 // ── Groq helper ───────────────────────────────────────────────
 async function callGroq(prompt: string): Promise<string> {
-    for (let attempt = 0; attempt < groqKeys.length; attempt++) {
-        const keyIndex = (currentGroqIndex + attempt) % groqKeys.length;
-        const key = groqKeys[keyIndex];
+    const totalAttempts = groqKeys.length * groqModels.length;
+
+    for (let attempt = 0; attempt < totalAttempts; attempt++) {
+        const key = groqKeys[currentGroqKeyIndex];
+        const model = groqModels[currentGroqModelIndex];
+
         try {
             const response = await fetch('https://api.groq.com/openai/v1/chat/completions', {
                 method: 'POST',
@@ -47,29 +53,33 @@ async function callGroq(prompt: string): Promise<string> {
                     'Content-Type': 'application/json',
                 },
                 body: JSON.stringify({
-                    model: 'llama-3.1-8b-instant',
+                    model,
                     messages: [{ role: 'user', content: prompt }],
                     temperature: 0.3,
                 }),
             });
 
             if (!response.ok) {
-                if (response.status === 429) {
-                    console.log(`    🔄 Groq key #${keyIndex + 1} rate limited, trying next...`);
-                    currentGroqIndex = (keyIndex + 1) % groqKeys.length;
-                    continue;
+                console.log(`    🔄 Groq key #${currentGroqKeyIndex + 1} [${model}] HTTP ${response.status}, rotating...`);
+                // Rotate: next model, then next key
+                currentGroqModelIndex = (currentGroqModelIndex + 1) % groqModels.length;
+                if (currentGroqModelIndex === 0) {
+                    currentGroqKeyIndex = (currentGroqKeyIndex + 1) % groqKeys.length;
                 }
-                throw new Error(`Groq HTTP ${response.status}`);
+                continue;
             }
 
             const data = await response.json();
-            currentGroqIndex = keyIndex;
             return data.choices?.[0]?.message?.content?.trim() || '';
         } catch (err: any) {
-            if (attempt === groqKeys.length - 1) throw err;
+            currentGroqModelIndex = (currentGroqModelIndex + 1) % groqModels.length;
+            if (currentGroqModelIndex === 0) {
+                currentGroqKeyIndex = (currentGroqKeyIndex + 1) % groqKeys.length;
+            }
+            if (attempt === totalAttempts - 1) throw err;
         }
     }
-    throw new Error('All Groq keys exhausted');
+    throw new Error('All Groq keys and models exhausted');
 }
 
 // ── AI Call with fallback: Gemini → Groq ──────────────────────
