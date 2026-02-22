@@ -58,11 +58,11 @@ export class CronJobService implements OnModuleInit {
     // Fetch TikToks (Using Apify synchronous scraper to get ~20 latest videos)
     const tiktokPromise = this.tiktok.fetchTiktokShorts(20);
 
-    // Fetch 2 batches of YouTube shorts (using rotating hashtags) -> ~100 items
-    const youtubeShortsPromises = Array(2).fill(0).map(() => this.youtube.fetchShorts(undefined, 50));
+    // Fetch 1 batch of YouTube shorts (using rotating hashtags) -> ~50 items
+    const youtubeShortsPromises = Array(1).fill(0).map(() => this.youtube.fetchShorts(undefined, 50));
 
-    // Fetch 8 batches of long videos (using rotating AI hashtags) -> ~400 items
-    const youtubeVideosPromises = Array(8).fill(0).map(() => this.youtube.fetchLongVideos(undefined, 50));
+    // Fetch 3 batches of long videos (using rotating AI hashtags) -> ~150 items
+    const youtubeVideosPromises = Array(3).fill(0).map(() => this.youtube.fetchLongVideos(undefined, 50));
 
     const [tiktoks, youtubeShortsJson, youtubeVideosJson, rssItems, externalItems] = await Promise.all([
       tiktokPromise,
