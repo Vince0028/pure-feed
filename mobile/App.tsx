@@ -1,5 +1,5 @@
 import { StatusBar } from 'expo-status-bar';
-import { SafeAreaView, View, Text, TouchableOpacity, FlatList, Dimensions, ActivityIndicator, StyleSheet, Image, ViewToken } from 'react-native';
+import { SafeAreaView, View, Text, TouchableOpacity, FlatList, Dimensions, ActivityIndicator, StyleSheet, Image, ViewToken, Platform } from 'react-native';
 import { ChevronUp, ChevronDown } from 'lucide-react-native';
 import { useState, useEffect, useRef, useMemo, useCallback } from 'react';
 import { fetchFeed, FeedPost } from './src/lib/api';
@@ -129,7 +129,8 @@ export default function App() {
                 style={styles.feedContainer}
                 onLayout={(e) => {
                     // Update feedHeight to the exact pixel height available minus padding/safe areas
-                    setFeedHeight(e.nativeEvent.layout.height);
+                    // Use Math.floor to avoid fraction-pixel rendering bugs on Web that break scroll snapping
+                    setFeedHeight(Math.floor(e.nativeEvent.layout.height));
                 }}
             >
                 {loading && filteredPosts.length === 0 ? (
@@ -150,16 +151,20 @@ export default function App() {
                         initialNumToRender={3}
                         windowSize={5}
                         maxToRenderPerBatch={3}
-                        pagingEnabled
+                        pagingEnabled={Platform.OS !== 'web'}
                         showsVerticalScrollIndicator={false}
-                        snapToInterval={feedHeight}
+                        snapToInterval={Platform.OS === 'web' ? undefined : Math.floor(feedHeight)}
                         snapToAlignment="start"
                         disableIntervalMomentum={true}
                         decelerationRate="fast"
                         viewabilityConfig={viewabilityConfig}
                         onViewableItemsChanged={onViewableItemsChanged}
+                        contentContainerStyle={Platform.OS === 'web' ? { scrollSnapType: 'y mandatory' } as any : {}}
+                        style={Platform.OS === 'web' ? { scrollSnapType: 'y mandatory', height: '100vh', overflowY: 'auto', overscrollBehaviorY: 'none' } as any : {}}
                         renderItem={({ item, index }: { item: any; index: number }) => (
-                            <FeedCard post={item} isActive={index === activeIndex} feedHeight={feedHeight} />
+                            <View style={Platform.OS === 'web' ? { scrollSnapAlign: 'start', scrollSnapStop: 'always', height: feedHeight } as any : {}}>
+                                <FeedCard post={item} isActive={index === activeIndex} feedHeight={feedHeight} />
+                            </View>
                         )}
                         getItemLayout={(_, index) => ({
                             length: feedHeight,
@@ -199,7 +204,11 @@ export default function App() {
 }
 
 const styles = StyleSheet.create({
-    container: { flex: 1, backgroundColor: '#09090b' },
+    container: {
+        flex: 1,
+        backgroundColor: '#09090b',
+        ...(Platform.OS === 'web' ? { height: Dimensions.get('window').height, overflow: 'hidden' as any } : {})
+    },
     topBar: { position: 'absolute', top: 50, width: '100%', zIndex: 50, paddingVertical: 8, alignItems: 'center' },
     tabRow: { flexDirection: 'row', gap: 8 },
     tab: { paddingHorizontal: 14, paddingVertical: 6, borderRadius: 999, backgroundColor: 'rgba(250,250,250,0.1)' },

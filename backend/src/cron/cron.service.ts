@@ -61,15 +61,15 @@ export class CronJobService implements OnModuleInit {
     // Fetch 1 batch of YouTube shorts (using rotating hashtags) -> ~50 items
     const youtubeShortsPromises = Array(1).fill(0).map(() => this.youtube.fetchShorts(undefined, 50));
 
-    // Fetch 3 batches of long videos (using rotating AI hashtags) -> ~150 items
-    const youtubeVideosPromises = Array(3).fill(0).map(() => this.youtube.fetchLongVideos(undefined, 50));
+    // Fetch 1 batch of long videos (using rotating AI hashtags) -> ~50 items
+    const youtubeVideosPromises = Array(1).fill(0).map(() => this.youtube.fetchLongVideos(undefined, 50));
 
     const [tiktoks, youtubeShortsJson, youtubeVideosJson, rssItems, externalItems] = await Promise.all([
       tiktokPromise,
       Promise.all(youtubeShortsPromises),
       Promise.all(youtubeVideosPromises),
       this.rss.fetchArticles(5),
-      this.externalArticles.fetchAll(40),
+      this.externalArticles.fetchAll(80),
     ]);
 
     const allItems: RawFeedItem[] = [
