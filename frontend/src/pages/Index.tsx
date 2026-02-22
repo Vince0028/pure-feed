@@ -140,15 +140,21 @@ const Index = () => {
     const start = (e: TouchEvent) => {
       touchStartY.current = e.touches[0].clientY;
     };
+    // Prevent the browser from natively scrolling the page during a swipe
+    const move = (e: TouchEvent) => {
+      e.preventDefault();
+    };
     const end = (e: TouchEvent) => {
       const diff = touchStartY.current - e.changedTouches[0].clientY;
-      if (Math.abs(diff) < 50) return;
+      if (Math.abs(diff) < 30) return;
       goTo(diff > 0 ? "down" : "up");
     };
     el.addEventListener("touchstart", start, { passive: true });
+    el.addEventListener("touchmove", move, { passive: false });
     el.addEventListener("touchend", end, { passive: true });
     return () => {
       el.removeEventListener("touchstart", start);
+      el.removeEventListener("touchmove", move);
       el.removeEventListener("touchend", end);
     };
   }, [goTo]);

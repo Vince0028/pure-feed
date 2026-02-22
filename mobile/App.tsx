@@ -99,6 +99,18 @@ export default function App() {
         setActiveIndex(nextIndex);
     };
 
+    // Programmatic scroll correction: after every scroll ends, force-snap to the nearest exact page boundary
+    const handleScrollEnd = useCallback((e: any) => {
+        if (!feedHeight || feedHeight <= 0) return;
+        const offsetY = e.nativeEvent.contentOffset.y;
+        const nearestIndex = Math.round(offsetY / feedHeight);
+        const targetOffset = nearestIndex * feedHeight;
+        // Only correct if we're off by more than 2px (avoid infinite correction loops)
+        if (Math.abs(offsetY - targetOffset) > 2) {
+            flatListRef.current?.scrollToOffset({ offset: targetOffset, animated: true });
+        }
+    }, [feedHeight]);
+
     return (
         <SafeAreaView style={styles.container}>
             <StatusBar style="light" />
@@ -128,9 +140,11 @@ export default function App() {
             <View
                 style={styles.feedContainer}
                 onLayout={(e) => {
-                    // Update feedHeight to the exact pixel height available minus padding/safe areas
-                    // Use Math.floor to avoid fraction-pixel rendering bugs on Web that break scroll snapping
-                    setFeedHeight(Math.floor(e.nativeEvent.layout.height));
+                    const h = e.nativeEvent.layout.height;
+                    const newHeight = Platform.OS === 'web' ? Math.floor(h) : h;
+                    // Ignore small height changes on mobile web (URL bar hiding/showing) to prevent mid-scroll state updates that cancel scroll velocity
+                    if (Platform.OS === 'web' && Math.abs(feedHeight - newHeight) < 150) return;
+                    setFeedHeight(newHeight);
                 }}
             >
                 {loading && filteredPosts.length === 0 ? (
@@ -151,20 +165,18 @@ export default function App() {
                         initialNumToRender={3}
                         windowSize={5}
                         maxToRenderPerBatch={3}
-                        pagingEnabled={Platform.OS !== 'web'}
+                        pagingEnabled
                         showsVerticalScrollIndicator={false}
-                        snapToInterval={Platform.OS === 'web' ? undefined : Math.floor(feedHeight)}
+                        snapToInterval={feedHeight}
                         snapToAlignment="start"
                         disableIntervalMomentum={true}
                         decelerationRate="fast"
                         viewabilityConfig={viewabilityConfig}
                         onViewableItemsChanged={onViewableItemsChanged}
-                        contentContainerStyle={Platform.OS === 'web' ? { scrollSnapType: 'y mandatory' } as any : {}}
-                        style={Platform.OS === 'web' ? { scrollSnapType: 'y mandatory', height: '100vh', overflowY: 'auto', overscrollBehaviorY: 'none' } as any : {}}
+                        onMomentumScrollEnd={handleScrollEnd}
+                        onScrollEndDrag={handleScrollEnd}
                         renderItem={({ item, index }: { item: any; index: number }) => (
-                            <View style={Platform.OS === 'web' ? { scrollSnapAlign: 'start', scrollSnapStop: 'always', height: feedHeight } as any : {}}>
-                                <FeedCard post={item} isActive={index === activeIndex} feedHeight={feedHeight} />
-                            </View>
+                            <FeedCard post={item} isActive={index === activeIndex} feedHeight={feedHeight} />
                         )}
                         getItemLayout={(_, index) => ({
                             length: feedHeight,
@@ -207,7 +219,6 @@ const styles = StyleSheet.create({
     container: {
         flex: 1,
         backgroundColor: '#09090b',
-        ...(Platform.OS === 'web' ? { height: Dimensions.get('window').height, overflow: 'hidden' as any } : {})
     },
     topBar: { position: 'absolute', top: 50, width: '100%', zIndex: 50, paddingVertical: 8, alignItems: 'center' },
     tabRow: { flexDirection: 'row', gap: 8 },

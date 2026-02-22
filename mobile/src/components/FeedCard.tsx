@@ -320,7 +320,7 @@ const s = StyleSheet.create({
     videoTitle: { fontSize: 22, fontWeight: '700', color: '#fafafa', letterSpacing: -0.5 },
     videoTag: { backgroundColor: 'rgba(250,250,250,0.1)', paddingHorizontal: 6, paddingVertical: 2, borderRadius: 6 },
     videoTagText: { fontSize: 10, color: 'rgba(250,250,250,0.6)' },
-    articleContainer: { position: 'absolute', top: 0, left: 0, right: 0, bottom: 0, backgroundColor: '#09090b', paddingHorizontal: 20, paddingTop: 100, paddingBottom: 100 },
+    articleContainer: { position: 'absolute', top: 0, left: 0, right: 0, bottom: 0, backgroundColor: '#09090b', paddingHorizontal: 20, paddingTop: 140, paddingBottom: 100 },
     articleBadge: { flexDirection: 'row', alignItems: 'center', gap: 4, backgroundColor: 'rgba(251,191,36,0.1)', borderWidth: 1, borderColor: 'rgba(251,191,36,0.15)', paddingHorizontal: 8, paddingVertical: 4, borderRadius: 6 },
     articleBadgeText: { fontSize: 12, fontWeight: '600', color: '#fbbf24' },
     tag: { backgroundColor: 'rgba(250,250,250,0.05)', borderWidth: 1, borderColor: 'rgba(250,250,250,0.1)', paddingHorizontal: 10, paddingVertical: 4, borderRadius: 999 },
