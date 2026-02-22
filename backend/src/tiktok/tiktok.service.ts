@@ -33,13 +33,14 @@ export class TiktokService {
                 "commentsPerPost": 0,
                 "excludePinnedPosts": true,
                 "hashtags": [
-                    "AIAgents",
+                    "AITools",
                     "TechTok",
                     "DevTok",
                     "Coding",
-                    "OpenAI",
-                    "LLM",
-                    "GenerativeAI"
+                    "SoftwareEngineer",
+                    "ChatGPT",
+                    "NewTech",
+                    "TechNews"
                 ],
                 "resultsPerPage": maxItems,
                 "scrapeRelatedVideos": false,
@@ -120,7 +121,7 @@ export class TiktokService {
      * Extract relevant tags from caption text.
      */
     private extractTags(text: string): string[] {
-        const keywords = ['AI', 'Coding', 'LLM', 'Tech', 'OpenAI', 'Programming'];
+        const keywords = ['AI', 'Coding', 'Software', 'Developer', 'Tech', 'AITools', 'ChatGPT', 'OpenAI', 'TechNews', 'Programming'];
         return keywords.filter(kw => text.toLowerCase().includes(kw.toLowerCase()));
     }
 }
