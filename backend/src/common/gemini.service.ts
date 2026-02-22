@@ -18,6 +18,7 @@ export class GeminiService {
   private readonly clients: { genAI: GoogleGenerativeAI; model: GenerativeModel; modelName: string; keyId: number }[] = [];
   private activeIndex = 0;
   private readonly groqKeys: string[] = [];
+  private geminiCooldownUntil = 0; // Timestamp: skip Gemini entirely until this time
 
   constructor(private config: ConfigService) {
     // Load all keys: GEMINI_API_KEYS (comma-separated) takes priority,
@@ -33,9 +34,6 @@ export class GeminiService {
 
     const geminiModels = [
       'gemini-2.0-flash',
-      'gemini-1.5-pro',
-      'gemini-1.5-flash-8b',
-      'gemini-1.5-flash-latest'
     ];
 
     let keyIndex = 1;
@@ -83,6 +81,14 @@ export class GeminiService {
       throw new Error('No Gemini API keys configured');
     }
 
+    // 1. If Gemini is in cooldown (quota exhausted), skip straight to Groq
+    if (Date.now() < this.geminiCooldownUntil) {
+      if (this.groqKeys.length > 0) {
+        return this.generateWithGroq(prompt);
+      }
+      throw new Error('All AI API keys exhausted — try again later');
+    }
+
     const totalKeys = this.clients.length;
     let attempts = 0;
 
@@ -93,6 +99,14 @@ export class GeminiService {
         return result.response.text().trim();
       } catch (err: any) {
         this.logger.warn(`Gemini Error on Key #${client.keyId} [${client.modelName}]: ${err.message}`);
+
+        // If quota/rate error, set a 5-minute cooldown to skip Gemini entirely
+        if (this.isQuotaOrRateError(err)) {
+          this.geminiCooldownUntil = Date.now() + 5 * 60 * 1000;
+          this.logger.warn('Gemini quota hit — cooldown for 5 minutes, using Groq directly');
+          break;
+        }
+
         this.activeIndex = (this.activeIndex + 1) % totalKeys;
         attempts++;
       }
