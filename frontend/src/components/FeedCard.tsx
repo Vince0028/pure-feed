@@ -4535,13 +4535,13 @@ export function FeedCard({ post, isActive, isNearby = false }: FeedCardProps) {
             </div>
 
             {/* Title */}
-            <h2 className="text-lg sm:text-xl font-semibold leading-tight text-foreground">
+            <h2 className="text-lg sm:text-xl font-semibold leading-tight text-foreground pointer-events-auto">
               {post.title}
             </h2>
 
             {/* Caption — hidden on very small screens for video to save space */}
             {post.caption && (
-              <p className="text-sm text-foreground/50 line-clamp-2 hidden sm:block">
+              <p className="text-sm text-foreground/50 line-clamp-2 hidden sm:block pointer-events-auto">
                 {post.caption}
               </p>
             )}
@@ -4550,6 +4550,8 @@ export function FeedCard({ post, isActive, isNearby = false }: FeedCardProps) {
             <div className="pointer-events-auto">
               <button
                 onClick={handleToggle}
+                onPointerDown={(e) => e.stopPropagation()}
+                onTouchStart={(e) => e.stopPropagation()}
                 disabled={loading}
                 className="flex w-full items-center justify-between rounded-lg border border-border/50 bg-background/70 backdrop-blur-md px-3 py-2 text-sm text-foreground/80 transition-colors hover:bg-secondary/60 disabled:opacity-50"
               >
@@ -4580,7 +4582,12 @@ export function FeedCard({ post, isActive, isNearby = false }: FeedCardProps) {
                     transition={{ duration: 0.25 }}
                     className="overflow-hidden"
                   >
-                    <ul className="mt-2 space-y-1.5 rounded-lg border border-border/40 bg-background/70 backdrop-blur-md p-3 max-h-48 overflow-y-auto overscroll-contain pointer-events-auto">
+                    <ul
+                      className="mt-2 space-y-1.5 rounded-lg border border-border/40 bg-background/70 backdrop-blur-md p-3 max-h-48 overflow-y-auto overscroll-contain pointer-events-auto"
+                      onPointerDown={(e) => e.stopPropagation()}
+                      onTouchStart={(e) => e.stopPropagation()}
+                      onWheel={(e) => e.stopPropagation()}
+                    >
                       {summary.map((point, i) => (
                         <li key={i} className="flex gap-2 text-xs sm:text-sm text-foreground/80">
                           <span className="mt-0.5 text-muted-foreground shrink-0">{i + 1}.</span>
