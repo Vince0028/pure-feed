@@ -55,8 +55,8 @@ export class CronJobService implements OnModuleInit {
     // 1. Fetch from all sources
     this.logger.log('📡 Fetching from TikTok + YouTube + RSS + HackerNews + Dev.to + Lobsters...');
 
-    // Fetch TikToks (Using Apify synchronous scraper to get ~60 latest videos)
-    const tiktokPromise = this.tiktok.fetchTiktokShorts(60);
+    // Fetch TikToks (Using Apify synchronous scraper to get ~20 latest videos)
+    const tiktokPromise = this.tiktok.fetchTiktokShorts(20);
 
     // Fetch 2 batches of YouTube shorts (using rotating hashtags) -> ~100 items
     const youtubeShortsPromises = Array(2).fill(0).map(() => this.youtube.fetchShorts(undefined, 50));

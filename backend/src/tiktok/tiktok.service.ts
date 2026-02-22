@@ -17,20 +17,18 @@ export class TiktokService {
     /**
      * Fetches trending AI/Programming TikToks using Apify.
      */
-    async fetchTiktokShorts(maxItems: number = 30): Promise<RawFeedItem[]> {
-        const apifyToken = this.configService.get<string>('APIFY_API_TOKEN');
+    async fetchTiktokShorts(maxItems: number = 20): Promise<RawFeedItem[]> {
+        const primaryToken = this.configService.get<string>('APIFY_API_TOKEN');
+        const secondaryToken = this.configService.get<string>('APIFY_SECOND_API_TOKEN');
 
-        if (!apifyToken) {
-            this.logger.warn('⚠️ No Apify token found! Skipping TikTok scrape... [Add APIFY_API_TOKEN to .env]');
+        if (!primaryToken && !secondaryToken) {
+            this.logger.warn('⚠️ No Apify token found! Skipping TikTok scrape... [Add APIFY_API_TOKEN or APIFY_SECOND_API_TOKEN to .env]');
             return [];
         }
 
         this.logger.log('📱 Triggering Apify TikTok Scraper (clockworks)...');
 
         try {
-            // Endpoint provided by the user: "run-sync-get-dataset-items"
-            const url = `https://api.apify.com/v2/acts/clockworks~tiktok-scraper/run-sync-get-dataset-items?token=${apifyToken}`;
-
             const payload = {
                 "commentsPerPost": 0,
                 "excludePinnedPosts": true,
@@ -50,22 +48,17 @@ export class TiktokService {
                 "shouldDownloadVideos": false
             };
 
-            // Set timeout relatively high since scraping takes time
-            const response = await fetch(url, {
-                method: 'POST',
-                headers: { 'Content-Type': 'application/json' },
-                body: JSON.stringify(payload),
-            });
-
-            if (!response.ok) {
-                throw new Error(`Apify returned ${response.status}: ${await response.text()}`);
-            }
-
-            // The URL suffix "-get-dataset-items" means the response directly returns the array
-            const data = await response.json();
-
-            if (!Array.isArray(data)) {
-                throw new Error('Apify API did not return an array. Check endpoint response.');
+            let data;
+            const tokenToTryFirst = primaryToken || secondaryToken;
+            try {
+                data = await this.executeApifyFetch(tokenToTryFirst, payload);
+            } catch (err) {
+                if (secondaryToken && primaryToken && tokenToTryFirst !== secondaryToken) {
+                    this.logger.warn(`⚠️ Primary Apify token failed (${err.message}). Retrying with APIFY_SECOND_API_TOKEN...`);
+                    data = await this.executeApifyFetch(secondaryToken, payload);
+                } else {
+                    throw err;
+                }
             }
 
             const items: RawFeedItem[] = data.map((item: any) => ({
@@ -87,6 +80,31 @@ export class TiktokService {
             this.logger.error('Failed to scrape TikToks from Apify', err);
             return [];
         }
+    }
+
+    /**
+     * Executes the Apify fetch request.
+     */
+    private async executeApifyFetch(token: string, payload: any): Promise<any> {
+        const url = `https://api.apify.com/v2/acts/clockworks~tiktok-scraper/run-sync-get-dataset-items?token=${token}`;
+
+        const response = await fetch(url, {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify(payload),
+        });
+
+        if (!response.ok) {
+            throw new Error(`Apify returned ${response.status}: ${await response.text()}`);
+        }
+
+        const data = await response.json();
+
+        if (!Array.isArray(data)) {
+            throw new Error('Apify API did not return an array. Check endpoint response.');
+        }
+
+        return data;
     }
 
     /**
