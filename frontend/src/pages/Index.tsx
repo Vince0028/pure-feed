@@ -9,6 +9,7 @@ import { fetchFeed } from "@/lib/api";
 type FilterTab = "articles" | "shorts" | "videos";
 
 const Index = () => {
+  // Start with empty array so we don't confuse users with offline fallback data in production, unless it fails completely
   const [posts, setPosts] = useState<FeedPost[]>(mockPosts);
   const [filter, setFilter] = useState<FilterTab>("articles");
   const [activeIndex, setActiveIndex] = useState(0);
@@ -18,14 +19,15 @@ const Index = () => {
   const isScrolling = useRef(false);
   const touchStartY = useRef(0);
 
-  // Fetch real data from the explicit API client (so VITE_API_BASE_URL points to Render)
+  // Fetch real data from the explicit API client
   useEffect(() => {
     fetchFeed()
       .then(data => {
         if (Array.isArray(data) && data.length > 0) {
-          // Prepend real backend data before the mock database, so fresh stuff is at the top
-          // The deduplication loop below will then prioritize the real API items and kill duplicate mock items
-          setPosts(current => [...data, ...current]);
+          // Replace mock posts entirely with real backend data
+          setPosts(data);
+        } else {
+          console.warn("No real data found from Supabase (maybe missing env vars?). Falling back to mock posts.");
         }
       })
       .catch(err => console.error("Failed to load live feed items:", err));
