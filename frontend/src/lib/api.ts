@@ -4,9 +4,10 @@ import { createClient } from '@supabase/supabase-js';
 const API_BASE = import.meta.env.VITE_API_BASE_URL || "/api";
 
 // Initialize Supabase client for direct database fetching
-const supabaseUrl = import.meta.env.VITE_SUPABASE_URL || '';
-const supabaseKey = import.meta.env.VITE_SUPABASE_ANON_KEY || '';
-const supabase = createClient(supabaseUrl, supabaseKey);
+const supabaseUrl = import.meta.env.VITE_SUPABASE_URL;
+const supabaseKey = import.meta.env.VITE_SUPABASE_ANON_KEY;
+// Only create client if values exist, otherwise the app crashes on load with missing env vars
+const supabase = supabaseUrl && supabaseKey ? createClient(supabaseUrl, supabaseKey) : null;
 
 /**
  * Fetch all posts safely from Supabase (vypassing the sleepy Render backend!)
@@ -14,6 +15,10 @@ const supabase = createClient(supabaseUrl, supabaseKey);
  */
 export async function fetchFeed(): Promise<FeedPost[]> {
   try {
+    if (!supabase) {
+      console.error("Missing Supabase Env Variables. Please add VITE_SUPABASE_URL and VITE_SUPABASE_ANON_KEY in Vercel.");
+      return [];
+    }
     // 1. Ask Supabase directly instead of Render API!
     const { data, error } = await supabase
       .from('posts')
