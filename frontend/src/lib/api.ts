@@ -47,7 +47,7 @@ export async function fetchFeed(): Promise<FeedPost[]> {
 }
 
 /**
- * Trigger the backend to summarize a post.
+ * Trigger Vercel Serverless Function to summarize a post.
  * Returns 3 bullet points.
  */
 export async function summarizePost(
@@ -56,7 +56,7 @@ export async function summarizePost(
   url?: string
 ): Promise<string[]> {
   try {
-    const res = await fetch(`${API_BASE}/summarize`, {
+    const res = await fetch(`/api/summarize`, {
       method: "POST",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify({ title, content, url }),
@@ -65,7 +65,7 @@ export async function summarizePost(
     const data = await res.json();
     return data.summary;
   } catch (err) {
-    console.warn("Backend summarization failed:", err);
+    console.warn("Vercel summarization failed:", err);
     return [];
   }
 }
