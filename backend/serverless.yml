@@ -1,0 +1,71 @@
+# This is the "CloudFormation" generator file! 
+# Serverless Framework reads this and turns it into pure AWS architecture.
+service: nofluff-ai-backend
+
+provider:
+  name: aws
+  runtime: nodejs20.x
+  region: us-east-1 # You can change this to any AWS region closer to you if wanted (e.g. ap-southeast-1 for SG)
+  memorySize: 1024  # Give the scraper enough memory to run smoothly
+  timeout: 60       # AWS API Gateway hard timeout is 30s. We set Lambda to 60s for background execution.
+  environment:
+    # Here we map all the ENV vars that your Nest JS app needs
+    # When deploying, it pulls these from your local .env file
+    SUPABASE_URL: ${env:SUPABASE_URL, ''}
+    SUPABASE_ANON_KEY: ${env:SUPABASE_ANON_KEY, ''}
+    GEMINI_API_KEY: ${env:GEMINI_API_KEY, ''}
+    CRON_SECRET: ${env:CRON_SECRET, 'aws-cron-secret'}
+    # (Add any other keys you have like YOUTUBE_KEY here)
+
+functions:
+  api:
+    handler: dist/lambda.handler
+    events:
+      # This connects API Gateway so the Vercel Frontend can hit the backend
+      - http:
+          method: ANY
+          path: /
+          cors: true
+      - http:
+          method: ANY
+          path: '{proxy+}'
+          cors: true
+          
+  # This sets up the Amazon EventBridge Cron Job!
+  # It automatically runs every 3 days.
+  scraperCronJob:
+    handler: dist/lambda.handler
+    timeout: 300 # 5 minutes for the background cron to run safely without API Gateway limits
+    events:
+      - schedule:
+          rate: rate(3 days)
+          enabled: true
+
+# This plugin makes Serverless automatically read your local .env file during deployment
+plugins:
+  - serverless-dotenv-plugin
+
+resources:
+  Resources:
+    # ----------------------------------------------------
+    # BILLING / SAFETY ALARM (CloudWatch)
+    # ----------------------------------------------------
+    # This alarm monitors how many times your background Scraper runs.
+    # If it runs more than 50 times in a month (way above our 10-time expectation),
+    # it triggers an alert. (Note: The free tier gives you 1,000,000 invocations).
+    ScraperRunawayAlarm:
+      Type: AWS::CloudWatch::Alarm
+      Properties:
+        AlarmName: NoFluff-Scraper-Runaway-Protection
+        AlarmDescription: "Alert if the scraper is running way more often than expected (Protects against recursive loops)"
+        Namespace: AWS/Lambda
+        MetricName: Invocations
+        Dimensions:
+          - Name: FunctionName
+            Value: !Ref ScraperCronJobLambdaFunction # Serverless auto-names the function target this way
+        Statistic: Sum
+        Period: 86400 # 1 day in seconds
+        EvaluationPeriods: 1
+        Threshold: 10 # If it runs more than 10 times in a SINGLE DAY, panic.
+        ComparisonOperator: GreaterThanThreshold
+        TreatMissingData: notBreaching
